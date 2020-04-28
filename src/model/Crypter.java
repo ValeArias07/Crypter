@@ -1,5 +1,5 @@
 package model;
 
-public class Crypter {
+public abstract class Crypter {
 
 }
