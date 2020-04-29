@@ -1,0 +1,9 @@
+//org.eclipse.ui.commands/state/org.eclipse.ui.navigator.resources.nested.changeProjectPresentation/org.eclipse.ui.commands.radioState=false
+PLUGINS_NOT_ACTIVATED_ON_STARTUP=;org.eclipse.m2e.discovery;
+eclipse.preferences.version=1
+org.eclipse.egit.ui.IgnoredResourceBackgroundColor=255,255,255
+org.eclipse.ui.editors.rangeIndicatorColor=0,120,215
+org.eclipse.ui.workbench.HOVER_BACKGROUND=255,255,225
+org.eclipse.ui.workbench.HOVER_FOREGROUND=0,0,0
+org.eclipse.ui.workbench.INFORMATION_BACKGROUND=255,255,225
+org.eclipse.ui.workbench.INFORMATION_FOREGROUND=0,0,0

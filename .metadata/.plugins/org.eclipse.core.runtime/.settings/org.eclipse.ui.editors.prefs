@@ -1,0 +1,9 @@
+AbstractTextEditor.Color.Background.SystemDefault=false
+AbstractTextEditor.Color.SelectionBackground.SystemDefault=false
+AbstractTextEditor.Color.SelectionForeground.SystemDefault=false
+eclipse.preferences.version=1
+overviewRuler_migration=migrated_3.1
+predarkestdark.AbstractTextEditor.Color.Background.SystemDefault=true
+predarkestdark.AbstractTextEditor.Color.Foreground.SystemDefault=true
+predarkestdark.AbstractTextEditor.Color.SelectionBackground.SystemDefault=true
+predarkestdark.AbstractTextEditor.Color.SelectionForeground.SystemDefault=true
