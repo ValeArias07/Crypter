@@ -13,15 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="MainPain" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="MainPain" fx:id="mainPaneEncrypt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="Animation" layoutX="20.0" layoutY="23.0" prefHeight="121.0" prefWidth="561.0">
          <children>
             <Label layoutX="248.0" layoutY="52.0" text="//Animation" />
          </children>
       </AnchorPane>
-      <AnchorPane id="InputTextOptions" fx:id="consolePane21" layoutX="20.0" layoutY="174.0" minHeight="80.0" minWidth="510.0" prefHeight="98.0" prefWidth="562.0" style="-fx-border-color: #000000;">
+      <AnchorPane id="InputTextOptions" fx:id="consolePane21Encript" layoutX="20.0" layoutY="174.0" minHeight="80.0" minWidth="510.0" prefHeight="98.0" prefWidth="562.0" style="-fx-border-color: #000000;">
          <children>
             <HBox id="InputOptions" layoutX="7.0" layoutY="14.0" prefHeight="23.0" prefWidth="549.0">
                <children>
@@ -30,15 +29,18 @@
                         <Insets left="5.0" right="80.0" />
                      </padding>
                   </Label>
-                  <RadioButton fx:id="consoleRadio" mnemonicParsing="false" onAction="#consoleChoosen" prefHeight="17.0" prefWidth="150.0" text="Console">
+                  <RadioButton fx:id="consoleRadioEncrypt" mnemonicParsing="false" onAction="#consoleChoosenEncrypt" prefHeight="17.0" prefWidth="150.0" text="Console">
                      <padding>
                         <Insets right="100.0" />
                      </padding>
                      <toggleGroup>
-                        <ToggleGroup fx:id="optionText" />
+                        <ToggleGroup fx:id="optionTextEncript" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="textFileRadio" mnemonicParsing="false" onAction="#textFileChoosen" text="Text file" toggleGroup="$optionText" />
+                  <RadioButton fx:id="textFileRadioEncrypt" mnemonicParsing="false" onAction="#textFileChoosenEncrypt" text="Text file">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="optionText" />
+                     </toggleGroup></RadioButton>
                </children>
             </HBox>
             <VBox id="Console" layoutX="10.0" layoutY="33.0" prefHeight="63.0" prefWidth="545.0">
@@ -48,7 +50,7 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="consoleTextField" minHeight="36.0" minWidth="20.0" prefHeight="36.0" prefWidth="532.0">
+                  <TextField fx:id="consoleTextFieldEncrypt" minHeight="36.0" minWidth="20.0" prefHeight="36.0" prefWidth="532.0">
                      <padding>
                         <Insets right="5.0" />
                      </padding>
@@ -58,11 +60,11 @@
                   <Insets right="5.0" />
                </padding>
             </VBox>
-            <AnchorPane id="TextFileRoute" fx:id="textPane21" layoutX="-2.0" layoutY="47.0" prefHeight="36.0" prefWidth="569.0" visible="false">
+            <AnchorPane id="TextFileRoute" fx:id="textPane21Encrypt" layoutX="-2.0" layoutY="47.0" prefHeight="36.0" prefWidth="569.0" visible="false">
                <children>
                   <Label layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="133.0" text="Select the text file route:" />
-                  <Button fx:id="searchFileButton" layoutX="482.0" layoutY="2.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="32.0" prefWidth="69.0" text="Search" />
-                  <Label fx:id="routeShow" layoutX="149.0" layoutY="6.0" prefHeight="19.0" prefWidth="324.0" style="-fx-border-color: #000000;" />
+                  <Button fx:id="searchFileButtonModi" layoutX="482.0" layoutY="2.0" mnemonicParsing="false" onAction="#clickSearchEncrypt" prefHeight="32.0" prefWidth="69.0" text="Search" />
+                  <Label fx:id="routeShowModi" layoutX="149.0" layoutY="6.0" prefHeight="19.0" prefWidth="324.0" style="-fx-border-color: #000000;" />
                </children>
             </AnchorPane>
          </children>
@@ -79,7 +81,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ChoiceBox fx:id="encriptionOptions" prefHeight="25.0" prefWidth="371.0">
+                  <ChoiceBox fx:id="encriptionOptionsEncrypt" prefHeight="25.0" prefWidth="371.0">
                      <padding>
                         <Insets right="10.0" />
                      </padding>
@@ -93,7 +95,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="keyTextField" prefHeight="25.0" prefWidth="370.0">
+                  <TextField fx:id="keyTextFieldEncrypt" prefHeight="25.0" prefWidth="370.0">
                      <padding>
                         <Insets right="10.0" />
                      </padding>
@@ -107,15 +109,18 @@
                         <Insets left="10.0" right="170.0" />
                      </padding>
                   </Label>
-                  <RadioButton fx:id="leftDirection" mnemonicParsing="false" text="Left">
+                  <RadioButton fx:id="leftDirectionEncrypt" mnemonicParsing="false" text="Left">
                      <padding>
                         <Insets right="100.0" />
                      </padding>
                      <toggleGroup>
-                        <ToggleGroup fx:id="direction" />
+                        <ToggleGroup fx:id="directionEncrypt" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="rightDirection" mnemonicParsing="false" text="Right" toggleGroup="$direction" />
+                  <RadioButton fx:id="rightDirectionEncrypt" mnemonicParsing="false" text="Right">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="direction" />
+                     </toggleGroup></RadioButton>
                </children>
             </HBox>
          </children>
@@ -126,8 +131,8 @@
             <Insets top="10.0" />
          </padding>
       </VBox>
-      <ProgressBar fx:id="progressBar" layoutX="23.0" layoutY="424.0" prefHeight="40.0" prefWidth="560.0" progress="0.29" />
-      <Button id="EncryptAction" fx:id="encrytptActionButton" layoutX="23.0" layoutY="493.0" mnemonicParsing="false" onAction="#clickEncryptAction" prefHeight="26.0" prefWidth="560.0" text="Encript" />
+      <ProgressBar fx:id="progressBarEncrypt" layoutX="23.0" layoutY="424.0" prefHeight="40.0" prefWidth="560.0" progress="0.29" />
+      <Button id="EncryptAction" fx:id="encrytptActionButtonEncrypt" layoutX="23.0" layoutY="493.0" mnemonicParsing="false" onAction="#clickEncryptActionEncrypt" prefHeight="26.0" prefWidth="560.0" text="Encript" />
       <Label layoutX="18.0" layoutY="283.0" text="Encryption Settings">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -138,14 +143,14 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button id="DecryptWindow" fx:id="decryptWindow" layoutX="23.0" layoutY="533.0" mnemonicParsing="false" onAction="#goToDecrypt" prefHeight="25.0" prefWidth="208.0" text="Decript" />
-      <Button id="RouteWindow" fx:id="routeManagerWindow" layoutX="375.0" layoutY="533.0" mnemonicParsing="false" onAction="#goToRouteManager" prefHeight="26.0" prefWidth="208.0" text="Route Manager" />
+      <Button id="DecryptWindow" fx:id="decryptWindowEncrypt" layoutX="23.0" layoutY="533.0" mnemonicParsing="false" onAction="#goToDecryptEncrypt" prefHeight="25.0" prefWidth="208.0" text="Decript" />
+      <Button id="RouteWindow" fx:id="routeManagerWindowEncrypt" layoutX="375.0" layoutY="533.0" mnemonicParsing="false" onAction="#goToRouteManagerEncrypt" prefHeight="26.0" prefWidth="208.0" text="Route Manager" />
       <Label layoutX="23.0" layoutY="407.0" text="Progress Bar:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="timeShow" layoutX="76.0" layoutY="464.0" text="00:00:00" />
+      <Label fx:id="timeShowEncrypt" layoutX="76.0" layoutY="464.0" text="00:00:00" />
       <Label layoutX="26.0" layoutY="464.0" prefHeight="17.0" prefWidth="45.0" text="Time:">
          <font>
             <Font name="System Bold" size="12.0" />

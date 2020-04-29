@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="MainPane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="MainPane" fx:id="mainPaneRoute" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="188.0" layoutY="37.0" text="ROUTE MANAGER">
          <font>
@@ -48,7 +48,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="encryptButton" layoutX="36.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToEncrypt" prefHeight="73.0" prefWidth="219.0" text="Encrypt">
+      <Button fx:id="encryptButton" layoutX="36.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToEncrypt_RM" prefHeight="73.0" prefWidth="219.0" text="Encrypt">
          <font>
             <Font name="Book Antiqua Bold Italic" size="18.0" />
          </font></Button>

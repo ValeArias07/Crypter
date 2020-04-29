@@ -20,7 +20,7 @@
             <Label layoutX="248.0" layoutY="52.0" text="//Animation" />
          </children>
       </AnchorPane>
-      <AnchorPane id="InputTextOptions" fx:id="consolePane21" layoutX="20.0" layoutY="174.0" minHeight="80.0" minWidth="510.0" prefHeight="98.0" prefWidth="562.0" style="-fx-border-color: #000000;">
+      <AnchorPane id="InputTextOptions" fx:id="consolePane21Encript" layoutX="20.0" layoutY="174.0" minHeight="80.0" minWidth="510.0" prefHeight="98.0" prefWidth="562.0" style="-fx-border-color: #000000;">
          <children>
             <HBox id="InputOptions" layoutX="7.0" layoutY="14.0" prefHeight="23.0" prefWidth="549.0">
                <children>
@@ -34,10 +34,13 @@
                         <Insets right="100.0" />
                      </padding>
                      <toggleGroup>
-                        <ToggleGroup fx:id="optionText" />
+                        <ToggleGroup fx:id="optionTextEncript" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="textFileRadioEncrypt" mnemonicParsing="false" onAction="#textFileChoosenEncrypt" text="Text file" toggleGroup="$optionText" />
+                  <RadioButton fx:id="textFileRadioEncrypt" mnemonicParsing="false" onAction="#textFileChoosenEncrypt" text="Text file">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="optionText" />
+                     </toggleGroup></RadioButton>
                </children>
             </HBox>
             <VBox id="Console" layoutX="10.0" layoutY="33.0" prefHeight="63.0" prefWidth="545.0">
@@ -57,10 +60,10 @@
                   <Insets right="5.0" />
                </padding>
             </VBox>
-            <AnchorPane id="TextFileRoute" fx:id="textPane21" layoutX="-2.0" layoutY="47.0" prefHeight="36.0" prefWidth="569.0" visible="false">
+            <AnchorPane id="TextFileRoute" fx:id="textPane21Encrypt" layoutX="-2.0" layoutY="47.0" prefHeight="36.0" prefWidth="569.0" visible="false">
                <children>
                   <Label layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="133.0" text="Select the text file route:" />
-                  <Button fx:id="searchFileButtonModi" layoutX="482.0" layoutY="2.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="32.0" prefWidth="69.0" text="Search" />
+                  <Button fx:id="searchFileButtonModi" layoutX="482.0" layoutY="2.0" mnemonicParsing="false" onAction="#clickSearchEncrypt" prefHeight="32.0" prefWidth="69.0" text="Search" />
                   <Label fx:id="routeShowModi" layoutX="149.0" layoutY="6.0" prefHeight="19.0" prefWidth="324.0" style="-fx-border-color: #000000;" />
                </children>
             </AnchorPane>
@@ -111,10 +114,13 @@
                         <Insets right="100.0" />
                      </padding>
                      <toggleGroup>
-                        <ToggleGroup fx:id="direction" />
+                        <ToggleGroup fx:id="directionEncrypt" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="rightDirectionEncrypt" mnemonicParsing="false" text="Right" toggleGroup="$direction" />
+                  <RadioButton fx:id="rightDirectionEncrypt" mnemonicParsing="false" text="Right">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="direction" />
+                     </toggleGroup></RadioButton>
                </children>
             </HBox>
          </children>
