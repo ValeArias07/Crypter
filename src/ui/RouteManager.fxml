@@ -9,18 +9,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="MainPane" fx:id="mainPaneRoute" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="MainPane" fx:id="mainPaneRoute" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="188.0" layoutY="37.0" text="ROUTE MANAGER">
+      <Label layoutX="199.0" layoutY="43.0" text="ROUTE MANAGER" textFill="WHITE">
          <font>
-            <Font name="Book Antiqua Bold" size="26.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Label layoutX="113.0" layoutY="81.0" text="Encrypted">
+      <Label layoutX="113.0" layoutY="81.0" text="Encrypted" textFill="WHITE">
          <font>
             <Font name="Book Antiqua" size="14.0" />
          </font></Label>
-      <Label layoutX="433.0" layoutY="81.0" text="Decrypted">
+      <Label layoutX="433.0" layoutY="81.0" text="Decrypted" textFill="WHITE">
          <font>
             <Font name="Book Antiqua" size="14.0" />
          </font></Label>
