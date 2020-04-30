@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -31,12 +30,24 @@
                         </Menu>
                      </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Decrypt" />
+                <Menu mnemonicParsing="false" text="Decrypt">
+                     <items>
+                        <Menu mnemonicParsing="false" text="TextInput">
+                           <items>
+                              <RadioMenuItem mnemonicParsing="false" selected="true" text="Console">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="textInputToggle2" />
+                                 </toggleGroup>
+                              </RadioMenuItem>
+                              <RadioMenuItem mnemonicParsing="false" text="Text file" toggleGroup="$textInputToggle2" />
+                           </items>
+                        </Menu>
+                     </items></Menu>
             </items>
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/Settings.png" />
+                        <Image url="@../images/Settings.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -49,14 +60,14 @@
          <children>
             <ImageView fitHeight="575.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/crypter%20bf.png" />
+                  <Image url="@../images/crypter%20bf.png" />
                </image>
             </ImageView>
             <Button fx:id="prueba" layoutX="175.0" layoutY="410.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/encript.png" />
+                        <Image url="@../images/encript.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -65,7 +76,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/decript.png" />
+                        <Image url="@../images/decript.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -74,7 +85,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/routeManager.png" />
+                        <Image url="@../images/routeManager.png" />
                      </image>
                   </ImageView>
                </graphic>

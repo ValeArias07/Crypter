@@ -31,7 +31,7 @@ public class Main extends Application {
 		primaryStage.setHeight(635);
 		primaryStage.setWidth(605);
 		primaryStage.setResizable(false);
-		primaryStage.getIcons().add(new Image("icon/iconito.png"));
+		primaryStage.getIcons().add(new Image("images/iconito.png"));
 		primaryStage.setTitle("Crypter");
 		primaryStage.show();
 	}
