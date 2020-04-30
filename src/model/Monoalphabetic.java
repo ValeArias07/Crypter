@@ -1,5 +1,6 @@
 package model;
 
-public class Monoalphabetic {
+public abstract class Monoalphabetic extends Crypter {
 
+	protected final String ABC = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 }

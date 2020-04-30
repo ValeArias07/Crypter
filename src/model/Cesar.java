@@ -1,17 +1,16 @@
 package model;
 
-public class Cesar {
+public class Cesar extends Monoalphabetic {
 
-	public final String ABC = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-
-	private int track; // cantidad de letras a mover
 	private String direction; // right(R), left(L)
+	private int track;
 
 	public Cesar(int track, String direction) {
 		this.track = track;
 		this.direction = direction;
 	}
 
+	@Override
 	public String encrypt(String txt) {
 
 		String crypter;
@@ -27,7 +26,6 @@ public class Cesar {
 		}
 
 		return crypter;
-
 	}
 
 	private String leftMove(String txt) {
@@ -137,6 +135,7 @@ public class Cesar {
 		}
 	}
 
+	@Override
 	public String decrypt(String txt) {
 
 		int directionParameter = searchNumber(txt);

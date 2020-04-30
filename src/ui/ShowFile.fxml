@@ -18,7 +18,7 @@
             <Font name="Book Antiqua Bold" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="textArea" editable="false" layoutX="16.0" layoutY="79.0" prefHeight="156.0" prefWidth="525.0" style="-fx-border-color: #000000;" />
+      <TextArea fx:id="textArea" editable="false" layoutX="16.0" layoutY="79.0" prefHeight="156.0" prefWidth="525.0" style="-fx-border-color: #000000;" wrapText="true" />
       <MenuBar layoutY="1.0" prefHeight="17.0" prefWidth="556.0">
         <menus>
           <Menu mnemonicParsing="false" text="Help">

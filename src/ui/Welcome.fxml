@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -56,14 +56,14 @@
       </MenuBar>
    </top>
    <center>
-      <AnchorPane fx:id="mainPane" prefHeight="575.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="575.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="575.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/crypter%20bf.png" />
                </image>
             </ImageView>
-            <Button fx:id="prueba" layoutX="175.0" layoutY="410.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
+            <Button layoutX="175.0" layoutY="410.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#encryptWelcome" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -72,7 +72,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="prueba1" layoutX="175.0" layoutY="463.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
+            <Button layoutX="175.0" layoutY="463.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#decryptWelcome" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -81,7 +81,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="prueba2" layoutX="175.0" layoutY="513.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
+            <Button layoutX="175.0" layoutY="513.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#routeManagerWelcome" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>

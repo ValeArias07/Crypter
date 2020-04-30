@@ -1,10 +1,14 @@
 package model;
 
-public class Atbash extends Monoalphabetic{
+public class Atbash extends Monoalphabetic {
 
-	public Atbash(int numberKey) {
-		//super(numberKey);
-
+	@Override
+	public String encrypt(String txt) {
+		return null;
 	}
 
+	@Override
+	public String decrypt(String txt) {
+		return null;
+	}
 }
