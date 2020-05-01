@@ -10,80 +10,70 @@ public class VigenereTest {
 	
 	private void setUp1() {
 		String key="louis";
-		String message="hola";
-		vigenere= new Vigenere(key, message);
+		vigenere= new Vigenere(key);
 	}
 	
 	private void setUp2() {
 		String key="fishclown";
-		String message="valentina";
-		vigenere= new Vigenere(key, message);
+		vigenere= new Vigenere(key);
 	}
 	
 	private void setUp3() {
 		String key="redhair";
-		String message="alejandro";
-		vigenere= new Vigenere(key, message);
+		vigenere= new Vigenere(key);
 	}
 	
 	private void setUp4() {
 		String key="reggaeton";
-		String message="jose luis";
-		vigenere= new Vigenere(key, message);
+		vigenere= new Vigenere(key);
 	}
 	
 	private void setUp5() {
 		String key="reggaeton";
-		String message="asyk lybg";
-		vigenere= new Vigenere(key, message);
+		vigenere= new Vigenere(key);
 	}
 	private void setUp6() {
 		String key="redhair";
-		String message="rphqavuis";
-		vigenere= new Vigenere(key, message);
+		vigenere= new Vigenere(key);
 	}
 	
 	private void setUp7() {
 		String key="fishclown";
-		String message="aidlpewjn";
-		vigenere= new Vigenere(key, message);
-	}
-	@Test
-	 void filledTest() {
-		setUp1();
-		int column=13;
-		int file=12;
-		assertEquals('x',vigenere.getVigenereMatrix(column, file));
-		column=12;
-		assertEquals('w',vigenere.getVigenereMatrix(column, file));
+		vigenere= new Vigenere(key);
 	}
 	
 	@Test
 	void encrypt() {
 		setUp1();
-		assertEquals("scfi",vigenere.encript());
+		String message="niño";
+		assertEquals("ywxi",vigenere.encrypt(message));
 		
 		setUp2();
-		assertEquals("aidlpewjn",vigenere.encript());
+		message="valentina";
+		assertEquals("aidlpewjn",vigenere.encrypt(message));
 		
 		setUp3();
-		assertEquals("rphqavuis",vigenere.encript());
+		message="jose luis";
+		assertEquals("rphqavuis",vigenere.encrypt(message));
 		
 		setUp4();
-		assertEquals("asyk lybg",vigenere.encript());
+		message="alejandro";
+		assertEquals("asyk lybg",vigenere.encrypt(message));
 	}
 	
 	@Test
 	void decrypt() {
 		setUp5();
-		assertEquals("jose luis",vigenere.decrypt());
-		
-		vigenere.show();
+		String message="asyk lybg";
+		assertEquals("jose luis",vigenere.decrypt(message));
+
 		setUp6();
-		assertEquals("alejandro", vigenere.decrypt());
+		message="rphqavuis";
+		assertEquals("alejandro", vigenere.decrypt(message));
 		
 		setUp7();
-		assertEquals("valentina", vigenere.decrypt());
+		message="aidlpewjn";
+		assertEquals("valentina", vigenere.decrypt(message));
 	}
 	
 	@Test 
@@ -97,15 +87,14 @@ public class VigenereTest {
 		index=vigenere.recursiveSearchFileEncriptedLetter(23,1,'y');
 		assertEquals('c',vigenere.getVigenereMatrix(0,index));
 		
-		assertEquals(3,vigenere.recursiveSearchFileEncriptedLetter(23,1,'y'));
-		index=vigenere.recursiveSearchFileEncriptedLetter(23,0,'y');
-		assertEquals('c',vigenere.getVigenereMatrix(0,index));
+		assertEquals(5,vigenere.recursiveSearchFileEncriptedLetter(23,1,'a'));
+		index=vigenere.recursiveSearchFileEncriptedLetter(23,0,'a');
+		assertEquals('e',vigenere.getVigenereMatrix(0,index));
 	}
 	
 	@Test
 	void recursiveSearchPlaneLetterTest() {
 		setUp1();
-		
 		int index=1;
 		assertEquals(index,vigenere.recursiveSearchPlaneLetter(0, 'a'));
 		index=13;
@@ -136,5 +125,13 @@ public class VigenereTest {
 		assertEquals('a', vigenere.getVigenereMatrix(1,1));
 		assertEquals('l', vigenere.getVigenereMatrix(7,6));
 		assertEquals('e', vigenere.getVigenereMatrix(15,17));
+	}
+	
+	@Test
+	 void filledTest() {
+		setUp1();
+		assertEquals('g',vigenere.getVigenereMatrix(4, 4));
+		assertEquals('j',vigenere.getVigenereMatrix(7, 4));
+		assertEquals('k',vigenere.getVigenereMatrix(6, 6));
 	}
 }

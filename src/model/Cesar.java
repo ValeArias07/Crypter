@@ -12,6 +12,7 @@ public class Cesar extends Monoalphabetic {
 
 	@Override
 	public String encrypt(String txt) {
+		
 
 		String crypter;
 

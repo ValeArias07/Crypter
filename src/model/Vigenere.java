@@ -1,25 +1,23 @@
 package model;
 
-import java.lang.reflect.Array;
+public class Vigenere extends Polyalphabetic{	
 
-public class Vigenere extends Polyalphabetic{
-	private String planeText;
 	private char[][] vigenereMatrix;
-	public static final char[] abcMinus = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-	public Vigenere(String encriptionKey, String planeText) {
+
+	public Vigenere(String encriptionKey) {
 		super(encriptionKey);
-		this.planeText=planeText;
 		vigenereMatrix= new char[27][27];
 		filled();
 	}
 	
-	public String encript() {
-	char[] planeWord=planeText.toCharArray();	
+	@Override
+	public String encrypt(String txt) {
+	char[] planeWord=txt.toCharArray();	
 	String encriptedWord="";
 	int k=0;
 	for (int i = 0; i < planeWord.length; i++) {
 		char currentCharColumn=planeWord[i];
-		if(currentCharColumn!=' ') {
+		if(currentCharColumn!=' ' && currentCharColumn!='ñ') {
 			char currentCharFile=super.getEncriptionKey().charAt(k);
 			k=(k==super.getEncriptionKey().length()-1)?0:k+1;
 			
@@ -27,6 +25,8 @@ public class Vigenere extends Polyalphabetic{
 			int indexFile=recursiveSearchKeyLetter(0,currentCharFile);
 			
 			encriptedWord+=vigenereMatrix[indexFile][indexColumn];
+		}else if(currentCharColumn=='ñ') {
+			encriptedWord+="x";
 		}else {
 			encriptedWord+=" ";
 		}
@@ -34,14 +34,15 @@ public class Vigenere extends Polyalphabetic{
 	return encriptedWord;
 	}
 	
-	public String decrypt() {
+	@Override
+	public String decrypt(String planeText) {
 		int k=0;
 		String decriptedWord="";
 
 		char[] planeWord=planeText.toCharArray();
 		for (int i = 0; i < planeWord.length; i++) {
 			char currentCharEncripted=planeWord[i];
-			if(currentCharEncripted!=' ') {
+			if(currentCharEncripted!=' '&& currentCharEncripted!='ñ') {
 				
 			char currentCharRow=super.getEncriptionKey().charAt(k);
 			k=(k==super.getEncriptionKey().length()-1)?0:k+1;
@@ -49,19 +50,21 @@ public class Vigenere extends Polyalphabetic{
 			int indexColumn=recursiveSearchFileEncriptedLetter(indexRow,1,currentCharEncripted);
 			decriptedWord+=vigenereMatrix[0][indexColumn];
 			
-			}else {
+			}else if(currentCharEncripted==' '){
 				decriptedWord+=" ";
+			}else {
+				decriptedWord+="x";
 			}
 		}
 		return decriptedWord;
 	}
 	public void filled() {
-	///////HEAD COLUMN AND ROW
+			///////HEAD COLUMN AND ROW
 			int l=0;
 			vigenereMatrix[0][0]=' ';
 			for (int i = 1; i < vigenereMatrix.length; i++) {
-				vigenereMatrix[i][0]=abcMinus[l];
-				vigenereMatrix[0][i]=abcMinus[l];
+				vigenereMatrix[i][0]=ABC.charAt(l);
+				vigenereMatrix[0][i]=ABC.charAt(l);
 				l=(l<26)?l+1:0;
 			}
 			
@@ -69,7 +72,7 @@ public class Vigenere extends Polyalphabetic{
 			int plus=-1;
 			for (int cont = 1; cont < vigenereMatrix.length; cont++) {
 			for (int i = 1; i < vigenereMatrix.length && plus+i<26 ; i++) {
-				vigenereMatrix[i][cont]=abcMinus[i+plus];
+				vigenereMatrix[i][cont]=ABC.charAt(i+plus);
 				}
 			plus++;
 			}
@@ -79,7 +82,7 @@ public class Vigenere extends Polyalphabetic{
 			for (int i = vigenereMatrix.length-1; i>0; i--) {
 			l=0;
 			for (int k = 2+plus; k < vigenereMatrix.length && l<26; k++) {
-				vigenereMatrix[i][k]=abcMinus[l];
+				vigenereMatrix[i][k]=ABC.charAt(l);
 				l++;
 			}
 			plus++;
