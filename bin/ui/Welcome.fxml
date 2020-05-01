@@ -20,30 +20,30 @@
                      <items>
                         <Menu mnemonicParsing="false" text="TextInput">
                            <items>
-                              <RadioMenuItem mnemonicParsing="false" selected="true" text="Console">
+                              <RadioMenuItem mnemonicParsing="false" onAction="#consoleEncryptTIO" selected="true" text="Console">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="textInputToggleEncrypt" />
                                  </toggleGroup>
                               </RadioMenuItem>
-                              <RadioMenuItem mnemonicParsing="false" text="Text file" toggleGroup="$textInputToggleEncrypt" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#textFileEncryptTIO" text="Text file" toggleGroup="$textInputToggleEncrypt" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Method type">
                            <items>
                               <Menu mnemonicParsing="false" text="Monoalphabetic">
                                  <items>
-                                    <RadioMenuItem mnemonicParsing="false" selected="true" text="Cesar">
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#cesarEncryptMM" selected="true" text="Cesar">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="encryptedToggle" />
                                        </toggleGroup>
                                     </RadioMenuItem>
-                                    <RadioMenuItem mnemonicParsing="false" text="Atbash" toggleGroup="$encryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#atbashEncryptMM" text="Atbash" toggleGroup="$encryptedToggle" />
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Polialphabetic">
                                  <items>
-                                    <RadioMenuItem mnemonicParsing="false" text="Vigenere" toggleGroup="$encryptedToggle" />
-                                    <RadioMenuItem mnemonicParsing="false" text="AES" toggleGroup="$encryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#vigenereEncryptMM" text="Vigenere" toggleGroup="$encryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#aesEncryptMM" text="AES" toggleGroup="$encryptedToggle" />
                                  </items>
                               </Menu>
                            </items>
@@ -54,30 +54,30 @@
                      <items>
                         <Menu mnemonicParsing="false" text="TextInput">
                            <items>
-                              <RadioMenuItem mnemonicParsing="false" selected="true" text="Console">
+                              <RadioMenuItem mnemonicParsing="false" onAction="#consoleDecryptTIO" selected="true" text="Console">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="textInputToggleDecrypt" />
                                  </toggleGroup>
                               </RadioMenuItem>
-                              <RadioMenuItem mnemonicParsing="false" text="Text file" toggleGroup="$textInputToggleDecrypt" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#textFileDecryptTIO" text="Text file" toggleGroup="$textInputToggleDecrypt" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Method type">
                            <items>
                               <Menu mnemonicParsing="false" text="Monoalphabetic">
                                  <items>
-                                    <RadioMenuItem mnemonicParsing="false" selected="true" text="Cesar">
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#cesarDecryptMM" selected="true" text="Cesar">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="decryptedToggle" />
                                        </toggleGroup>
                                     </RadioMenuItem>
-                                    <RadioMenuItem mnemonicParsing="false" text="Atbash" toggleGroup="$decryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#atbashDecryptMM" text="Atbash" toggleGroup="$decryptedToggle" />
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Polialphabetic">
                                  <items>
-                                    <RadioMenuItem mnemonicParsing="false" text="Vigenere" toggleGroup="$decryptedToggle" />
-                                    <RadioMenuItem mnemonicParsing="false" text="AES" toggleGroup="$decryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#vigenereDecryptMM" text="Vigenere" toggleGroup="$decryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#aesDecryptMM" text="AES" toggleGroup="$decryptedToggle" />
                                  </items>
                               </Menu>
                            </items>
