@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="MainPain" fx:id="mainPaneEncrypt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="MainPain" fx:id="mainPaneEncrypt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="Animation" layoutX="20.0" layoutY="23.0" prefHeight="121.0" prefWidth="561.0">
          <children>
@@ -131,7 +131,7 @@
             <Insets top="10.0" />
          </padding>
       </VBox>
-      <ProgressBar fx:id="progressBarEncrypt" layoutX="23.0" layoutY="424.0" prefHeight="40.0" prefWidth="560.0" progress="0.29" />
+      <ProgressBar fx:id="progressBarEncrypt" layoutX="23.0" layoutY="424.0" prefHeight="40.0" prefWidth="560.0" />
       <Button id="EncryptAction" fx:id="encrytptActionButtonEncrypt" layoutX="23.0" layoutY="493.0" mnemonicParsing="false" onAction="#clickEncryptActionEncrypt" prefHeight="26.0" prefWidth="560.0" text="Encript" />
       <Label layoutX="18.0" layoutY="283.0" text="Encryption Settings">
          <font>
