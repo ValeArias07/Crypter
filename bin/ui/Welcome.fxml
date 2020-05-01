@@ -10,36 +10,76 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false">
+          <Menu fx:id="settingsMenu" mnemonicParsing="false" visible="false">
             <items>
-                <Menu mnemonicParsing="false" text="Encrypt">
+                <Menu fx:id="encryptSubMenu" mnemonicParsing="false" text="Encrypt">
                      <items>
                         <Menu mnemonicParsing="false" text="TextInput">
                            <items>
                               <RadioMenuItem mnemonicParsing="false" selected="true" text="Console">
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="textInputToggle" />
+                                    <ToggleGroup fx:id="textInputToggleEncrypt" />
                                  </toggleGroup>
                               </RadioMenuItem>
-                              <RadioMenuItem mnemonicParsing="false" text="Text file" toggleGroup="$textInputToggle" />
+                              <RadioMenuItem mnemonicParsing="false" text="Text file" toggleGroup="$textInputToggleEncrypt" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Method type">
+                           <items>
+                              <Menu mnemonicParsing="false" text="Monoalphabetic">
+                                 <items>
+                                    <RadioMenuItem mnemonicParsing="false" selected="true" text="Cesar">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="encryptedToggle" />
+                                       </toggleGroup>
+                                    </RadioMenuItem>
+                                    <RadioMenuItem mnemonicParsing="false" text="Atbash" toggleGroup="$encryptedToggle" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Polialphabetic">
+                                 <items>
+                                    <RadioMenuItem mnemonicParsing="false" text="Vigenere" toggleGroup="$encryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" text="AES" toggleGroup="$encryptedToggle" />
+                                 </items>
+                              </Menu>
                            </items>
                         </Menu>
                      </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Decrypt">
+                <Menu fx:id="decryptSubMenu" mnemonicParsing="false" text="Decrypt">
                      <items>
                         <Menu mnemonicParsing="false" text="TextInput">
                            <items>
                               <RadioMenuItem mnemonicParsing="false" selected="true" text="Console">
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="textInputToggle2" />
+                                    <ToggleGroup fx:id="textInputToggleDecrypt" />
                                  </toggleGroup>
                               </RadioMenuItem>
-                              <RadioMenuItem mnemonicParsing="false" text="Text file" toggleGroup="$textInputToggle2" />
+                              <RadioMenuItem mnemonicParsing="false" text="Text file" toggleGroup="$textInputToggleDecrypt" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Method type">
+                           <items>
+                              <Menu mnemonicParsing="false" text="Monoalphabetic">
+                                 <items>
+                                    <RadioMenuItem mnemonicParsing="false" selected="true" text="Cesar">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="decryptedToggle" />
+                                       </toggleGroup>
+                                    </RadioMenuItem>
+                                    <RadioMenuItem mnemonicParsing="false" text="Atbash" toggleGroup="$decryptedToggle" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Polialphabetic">
+                                 <items>
+                                    <RadioMenuItem mnemonicParsing="false" text="Vigenere" toggleGroup="$decryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" text="AES" toggleGroup="$decryptedToggle" />
+                                 </items>
+                              </Menu>
                            </items>
                         </Menu>
                      </items></Menu>
