@@ -17,29 +17,48 @@ public class Vigenere extends Polyalphabetic{
 	char[] planeWord=planeText.toCharArray();	
 	String encriptedWord="";
 	int k=0;
-	/**
-	//////Filled of KeyText
-	for (int j = 0; j < super.getEncriptionKey().length(); j++) {
-		//keyText[j]=super.getEncriptionKey().charAt(k);
-		k=(k==super.getEncriptionKey().length())?0:k+1;
-	} 
-	*/
-	/////
 	for (int i = 0; i < planeWord.length; i++) {
 		char currentCharColumn=planeWord[i];
-		char currentCharFile=super.getEncriptionKey().charAt(k);
-		k=(k==super.getEncriptionKey().length())?0:k+1;
-		int indexColumn=recursiveSearchPlaneLetter(0,currentCharColumn);
-		int indexFile=recursiveSearchKeyLetter(0,currentCharFile);
-		encriptedWord+=vigenereMatrix[indexFile][indexColumn];
+		if(currentCharColumn!=' ') {
+			char currentCharFile=super.getEncriptionKey().charAt(k);
+			k=(k==super.getEncriptionKey().length()-1)?0:k+1;
+			
+			int indexColumn=recursiveSearchPlaneLetter(0,currentCharColumn);
+			int indexFile=recursiveSearchKeyLetter(0,currentCharFile);
+			
+			encriptedWord+=vigenereMatrix[indexFile][indexColumn];
+		}else {
+			encriptedWord+=" ";
+		}
 	}
 	return encriptedWord;
 	}
 	
+	public String decrypt() {
+		int k=0;
+		String decriptedWord="";
+
+		char[] planeWord=planeText.toCharArray();
+		for (int i = 0; i < planeWord.length; i++) {
+			char currentCharEncripted=planeWord[i];
+			if(currentCharEncripted!=' ') {
+				
+			char currentCharRow=super.getEncriptionKey().charAt(k);
+			k=(k==super.getEncriptionKey().length()-1)?0:k+1;
+			int indexRow=recursiveSearchKeyLetter(1,currentCharRow);
+			int indexColumn=recursiveSearchFileEncriptedLetter(indexRow,1,currentCharEncripted);
+			decriptedWord+=vigenereMatrix[0][indexColumn];
+			
+			}else {
+				decriptedWord+=" ";
+			}
+		}
+		return decriptedWord;
+	}
 	public void filled() {
 	///////HEAD COLUMN AND ROW
 			int l=0;
-			vigenereMatrix[0][0]='#';
+			vigenereMatrix[0][0]=' ';
 			for (int i = 1; i < vigenereMatrix.length; i++) {
 				vigenereMatrix[i][0]=abcMinus[l];
 				vigenereMatrix[0][i]=abcMinus[l];
@@ -67,6 +86,16 @@ public class Vigenere extends Polyalphabetic{
 			}
 	}
 	
+	public int recursiveSearchFileEncriptedLetter(int fileKey, int currentColumn, char currentChar) {
+		if(currentColumn<=26) {
+			if(vigenereMatrix[fileKey][currentColumn]==currentChar) {
+				return currentColumn;
+			}else {
+				return recursiveSearchFileEncriptedLetter(fileKey, currentColumn+1,currentChar);
+			}
+		}
+		return -1;
+	}
 	public int recursiveSearchPlaneLetter(int currentColumn, char currentChar) {
 		if(currentColumn<=26) {
 			if(vigenereMatrix[0][currentColumn]==currentChar) {
@@ -87,7 +116,6 @@ public class Vigenere extends Polyalphabetic{
 			}
 		}
 		return -1;
-		
 	}
 	
 	public char getVigenereMatrix(int column, int file) {
