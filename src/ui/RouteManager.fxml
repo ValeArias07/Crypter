@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="MainPane" fx:id="mainPaneRoute" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="90.0" layoutY="86.0" text="Encrypted" textFill="WHITE">
          <font>
@@ -18,9 +18,9 @@
          <font>
             <Font name="Book Antiqua" size="20.0" />
          </font></Label>
-      <ListView fx:id="encryptedList" layoutX="27.0" layoutY="116.0" prefHeight="294.0" prefWidth="219.0" style="-fx-border-color: #000000;" />
-      <ListView fx:id="decryptedList" layoutX="357.0" layoutY="116.0" prefHeight="294.0" prefWidth="219.0" style="-fx-border-color: #000000;" />
-      <Button fx:id="showButton" layoutX="268.0" layoutY="173.0" mnemonicParsing="false" onAction="#showFile" prefHeight="60.0" prefWidth="60.0">
+      <ListView fx:id="encryptedListViewRM" layoutX="27.0" layoutY="116.0" prefHeight="294.0" prefWidth="219.0" style="-fx-border-color: #000000;" />
+      <ListView fx:id="decryptedListViewRM" layoutX="357.0" layoutY="116.0" prefHeight="294.0" prefWidth="219.0" style="-fx-border-color: #000000;" />
+      <Button layoutX="268.0" layoutY="173.0" mnemonicParsing="false" onAction="#showFileRM" prefHeight="60.0" prefWidth="60.0">
          <font>
             <Font name="Book Antiqua Italic" size="14.0" />
          </font>
@@ -31,7 +31,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="deleteButton" layoutX="268.0" layoutY="302.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="60.0" prefWidth="60.0">
+      <Button layoutX="268.0" layoutY="302.0" mnemonicParsing="false" onAction="#deleteFileRM" prefHeight="60.0" prefWidth="60.0">
          <font>
             <Font name="Book Antiqua Italic" size="14.0" />
          </font>
@@ -42,7 +42,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="encryptButton" layoutX="241.0" layoutY="466.0" mnemonicParsing="false" onAction="#goToEncrypt_RM" prefHeight="52.0" prefWidth="71.0">
+      <Button layoutX="241.0" layoutY="466.0" mnemonicParsing="false" onAction="#backRM" prefHeight="52.0" prefWidth="71.0">
          <font>
             <Font name="Book Antiqua Bold Italic" size="18.0" />
          </font>

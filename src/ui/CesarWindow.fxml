@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <RadioButton layoutX="330.0" layoutY="35.0" mnemonicParsing="false" />
+      <RadioButton layoutX="390.0" layoutY="35.0" mnemonicParsing="false" />
+      <Label layoutX="73.0" layoutY="35.0" text="DIRECTION" />
+   </children>
+</AnchorPane>

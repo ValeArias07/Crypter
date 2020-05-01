@@ -1,309 +1,107 @@
 package ui;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Menu;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class CrypterGUI {
-
-	// DECRIPT ATTRIBUTES
+	// WELCOME ATTRIBUTES
 	@FXML
-	private AnchorPane mainPane;
-
-	@FXML
-	private AnchorPane consolePane21;
+	private BorderPane borderPaneMain;
 
 	@FXML
-	private RadioButton consoleRadio;
+	private Menu settingsMenu;
 
 	@FXML
-	private ToggleGroup optionText;
+	private Menu encryptSubMenu;
 
 	@FXML
-	private RadioButton textFileRadio;
+	private ToggleGroup textInputToggleEncrypt;
 
 	@FXML
-	private TextField consoleTextField;
+	private ToggleGroup encryptedToggle;
 
 	@FXML
-	private AnchorPane textPane21;
+	private Menu decryptSubMenu;
 
 	@FXML
-	private Button searchFileButton;
+	private ToggleGroup textInputToggleDecrypt;
 
 	@FXML
-	private Label routeShow;
+	private ToggleGroup decryptedToggle;
+
+	// ROUTE_MANAGER ATTRIBUTES
+	@FXML
+	private ListView<?> encryptedListViewRM;
 
 	@FXML
-	private ChoiceBox<?> decriptionOptions;
+	private ListView<?> decryptedListViewRM;
+
+	/// >>>METHODS CLASS
+	private void load(String route) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route));
+		fxmlLoader.setController(this);
+		Parent parent = fxmlLoader.load();
+		borderPaneMain.getChildren().setAll(parent);
+	}
+
+	// WELCOME METHODS
+	@FXML
+	void decryptWelcome(ActionEvent event) throws IOException {
+		load("DecryptWindow.fxml");
+	}
 
 	@FXML
-	private TextField keyTextField;
+	void encryptWelcome(ActionEvent event) throws IOException {
+		load("EncryptWindow.fxml");
+	}
 
 	@FXML
-	private RadioButton leftDirection;
+	void routeManagerWelcome(ActionEvent event) throws IOException {
+		load("RouteManager.fxml");
+	}
+
+	// ROUTE_MANAGER METHODS
+	@FXML
+	void backRM(ActionEvent event) throws IOException {
+		load("Menu.fxml");
+	}
 
 	@FXML
-	private ToggleGroup direction;
-
-	@FXML
-	private RadioButton rightDirection;
-
-	@FXML
-	private ProgressBar progressBar;
-
-	@FXML
-	private Button decrytptActionButton;
-
-	@FXML
-	private Button EncryptWindow;
-
-	@FXML
-	private Button routeManagerWindow;
-
-	@FXML
-	private Label timeShow;
-
-	// ENCRIPT-WINDOW ATTRIBUTES
-	@FXML
-	private AnchorPane mainPaneEncrypt;
-
-	@FXML
-	private AnchorPane consolePane21Encript;
-
-	@FXML
-	private RadioButton consoleRadioEncrypt;
-
-	@FXML
-	private ToggleGroup optionTextEncript;
-
-	@FXML
-	private RadioButton textFileRadioEncrypt;
-
-	@FXML
-	private TextField consoleTextFieldEncrypt;
-
-	@FXML
-	private AnchorPane textPane21Encrypt;
-
-	@FXML
-	private Button searchFileButtonModi;
-
-	@FXML
-	private Label routeShowModi;
-
-	@FXML
-	private ChoiceBox<?> encriptionOptionsEncrypt;
-
-	@FXML
-	private TextField keyTextFieldEncrypt;
-
-	@FXML
-	private RadioButton leftDirectionEncrypt;
-
-	@FXML
-	private ToggleGroup directionEncrypt;
-
-	@FXML
-	private RadioButton rightDirectionEncrypt;
-
-	@FXML
-	private ProgressBar progressBarEncrypt;
-
-	@FXML
-	private Button encrytptActionButtonEncrypt;
-
-	@FXML
-	private Button decryptWindowEncrypt;
-
-	@FXML
-	private Button routeManagerWindowEncrypt;
-
-	@FXML
-	private Label timeShowEncrypt;
-
-	// ROUTE-MANAGER ATTRIBUTES
-	@FXML
-	private AnchorPane mainPaneRoute;
-
-	@FXML
-	private ListView<?> encryptedList;
-
-	@FXML
-	private ListView<?> decryptedList;
-
-	@FXML
-	private Button showButton;
-
-	@FXML
-	private Button deleteButton;
-
-	@FXML
-	private MenuItem addFileOption;
-
-	@FXML
-	private MenuItem aboutOptionRM;
-
-	@FXML
-	private Button encryptButton;
-
-	@FXML
-	private Button decryptButton;
-
-	// SHOW-FILES ATTRIBUTES
-	@FXML
-	private TextArea textArea;
-
-	@FXML
-	private MenuItem aboutOptionSF;
-
-	@FXML
-	private ChoiceBox<?> fontChoice;
-
-	@FXML
-	private ChoiceBox<?> heightChoice;
-
-	@FXML
-	private Button negritaButton;
-
-	@FXML
-	private Button cursiveButton;
-
-	@FXML
-	private Button subButton;
-
-	// DECRIPT METHODS
-	@FXML
-	void clickDecyptAction(ActionEvent event) {
+	void deleteFileRM(ActionEvent event) {
 
 	}
 
 	@FXML
-	void clickSearch(ActionEvent event) {
+	void showFileRM(ActionEvent event) {
 
 	}
 
+	// MENU METHODS
 	@FXML
-	void consoleChoosen(ActionEvent event) {
-
+	void decryptMenu(ActionEvent event) throws IOException {
+		load("DecryptWindow.fxml");
 	}
 
 	@FXML
-	void goToEncrypt(ActionEvent event) {
-
+	void encryptMenu(ActionEvent event) throws IOException {
+		load("EncryptWindow.fxml");
 	}
 
 	@FXML
-	void goToRouteManager(ActionEvent event) {
-
+	void routeManagerMenu(ActionEvent event) throws IOException {
+		load("RouteManager.fxml");
 	}
 
 	@FXML
-	void textFileChoosen(ActionEvent event) {
-
-	}
-
-	// ENCRIPT-WINDOW METHODS
-	@FXML
-	void clickEncryptActionEncrypt(ActionEvent event) {
-
-	}
-
-	@FXML
-	void clickSearchEncrypt(ActionEvent event) {
-
-	}
-
-	@FXML
-	void consoleChoosenEncrypt(ActionEvent event) {
-
-	}
-
-	@FXML
-	void goToDecryptEncrypt(ActionEvent event) {
-
-	}
-
-	@FXML
-	void goToRouteManagerEncrypt(ActionEvent event) {
-
-	}
-
-	@FXML
-	void textFileChoosenEncrypt(ActionEvent event) {
-
-	}
-
-	// ROUTE-MANAGER METHODS
-	@FXML
-	void aboutRouteManager(ActionEvent event) {
-
-	}
-
-	@FXML
-	void addFile(ActionEvent event) {
-
-	}
-
-	@FXML
-	void deleteFile(ActionEvent event) {
-
-	}
-
-	@FXML
-	void goToDecrypt(ActionEvent event) {
-
-	}
-
-	@FXML
-	void goToEncrypt_RM(ActionEvent event) {
-
-	}
-
-	@FXML
-	void showFile(ActionEvent event) {
-
-	}
-
-	// SHOW-FILES METHODS
-	@FXML
-	void aboutShowFile(ActionEvent event) {
-
-	}
-
-	@FXML
-	void cursiveOption(ActionEvent event) {
-
-	}
-
-	@FXML
-	void fontOptions(MouseEvent event) {
-
-	}
-
-	@FXML
-	void heightOption(MouseEvent event) {
-
-	}
-
-	@FXML
-	void negritaOption(ActionEvent event) {
-
-	}
-
-	@FXML
-	void subOption(ActionEvent event) {
+	void exit(ActionEvent event) {
 
 	}
 }

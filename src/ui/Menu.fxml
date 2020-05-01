@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="575.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
@@ -13,7 +12,7 @@
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
-      <Button layoutX="142.0" layoutY="190.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="300.0">
+      <Button layoutX="142.0" layoutY="218.0" mnemonicParsing="false" onAction="#encryptMenu" prefHeight="45.0" prefWidth="300.0">
          <graphic>
             <ImageView fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,7 +21,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="142.0" layoutY="257.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="300.0">
+      <Button layoutX="140.0" layoutY="288.0" mnemonicParsing="false" onAction="#decryptMenu" prefHeight="45.0" prefWidth="300.0">
          <graphic>
             <ImageView fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -31,7 +30,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="142.0" layoutY="332.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="300.0">
+      <Button layoutX="142.0" layoutY="363.0" mnemonicParsing="false" onAction="#routeManagerMenu" prefHeight="45.0" prefWidth="300.0">
          <graphic>
             <ImageView fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -40,10 +39,15 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="240.0" layoutY="429.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" />
-      <ImageView fitHeight="45.0" fitWidth="110.0" layoutX="263.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="240.0" layoutY="467.0" mnemonicParsing="false" onAction="#exit" prefHeight="45.0" prefWidth="120.0" />
+      <ImageView fitHeight="45.0" fitWidth="110.0" layoutX="263.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/exit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="284.0" layoutX="140.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/crypterTitle.png" />
          </image>
       </ImageView>
    </children>
