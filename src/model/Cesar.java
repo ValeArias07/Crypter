@@ -12,7 +12,6 @@ public class Cesar extends Monoalphabetic {
 
 	@Override
 	public String encrypt(String txt) {
-		
 
 		String crypter = null;
 
@@ -59,8 +58,8 @@ public class Cesar extends Monoalphabetic {
 					crypter = crypter + ABC.charAt(ward - track);
 				} else {
 					ward = (ward - track) + ABC.length();
-					while(ward<0) {
-						ward = ward + ABC.length();
+					while (ward < 0) {
+						ward = ward + (ABC.length());
 					}
 					crypter = crypter + ABC.charAt(ward);
 				}
@@ -85,7 +84,7 @@ public class Cesar extends Monoalphabetic {
 					crypter = crypter + ABC.charAt(ward + track);
 				} else {
 					ward = (ward + track) - ABC.length();
-					while(ward>ABC.length()) {
+					while (ward >= ABC.length()) {
 						ward = ward - ABC.length();
 					}
 					crypter = crypter + ABC.charAt(ward);
