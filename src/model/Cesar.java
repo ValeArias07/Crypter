@@ -73,7 +73,7 @@ public class Cesar extends Monoalphabetic {
 		return crypter;
 	}
 
-	public String rigthMove(String txt) {
+	private String rigthMove(String txt) {
 
 		String crypter = "";
 
