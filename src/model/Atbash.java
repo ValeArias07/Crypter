@@ -14,7 +14,7 @@ public class Atbash extends Monoalphabetic {
 			index=searchLetter(0, txt.charAt(i));
 			if(index!=-1) {
 				if(index>=27) {
-					crypter+=ABC.charAt((ABC.length()-index)+ABC.length()/2);
+					crypter+=ABC.charAt((ABC.length()-index)+(ABC.length()-1)/2);
 				}else {
 					crypter+=ABC.charAt(((ABC.length()/2)-1)-index);
 				}
@@ -26,10 +26,15 @@ public class Atbash extends Monoalphabetic {
 	
 	@Override
 	public String decrypt(String txt) {
-		return null;
+		
+		String decrypter= "";
+		
+		decrypter=encrypt(txt);
+		
+		return decrypter;
 	}
 	
-	public int searchLetter(int index, char letter){
+	private int searchLetter(int index, char letter){
 		
 		if(index<=ABC.length()-1) {
 			if(ABC.charAt(index)==letter) {
