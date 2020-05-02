@@ -23,11 +23,16 @@ public class Vigenere extends Polyalphabetic{
 			
 			int indexColumn=recursiveSearchPlaneLetter(0,currentCharColumn);
 			int indexFile=recursiveSearchKeyLetter(0,currentCharFile);
+		
+			if(indexColumn==-1 || indexFile==-1) {
+				encriptedWord+=currentCharColumn;
+			}else {
+				encriptedWord+=vigenereMatrix[indexFile][indexColumn];
+			}
 			
-			encriptedWord+=vigenereMatrix[indexFile][indexColumn];
 		}else if(currentCharColumn=='ñ') {
 			encriptedWord+="x";
-		}else {
+		}else{
 			encriptedWord+=" ";
 		}
 	}

@@ -28,50 +28,37 @@ public class VigenereTest {
 		vigenere= new Vigenere(key);
 	}
 	
-	private void setUp5() {
-		String key="reggaeton";
-		vigenere= new Vigenere(key);
-	}
-	private void setUp6() {
-		String key="redhair";
-		vigenere= new Vigenere(key);
-	}
-	
-	private void setUp7() {
-		String key="fishclown";
-		vigenere= new Vigenere(key);
-	}
-	
 	@Test
 	void encrypt() {
 		setUp1();
-		String message="niño";
-		assertEquals("ywxi",vigenere.encrypt(message));
+		String message="niño-";
+		assertEquals("ywxi-",vigenere.encrypt(message));
 		
 		setUp2();
 		message="valentina";
 		assertEquals("aidlpewjn",vigenere.encrypt(message));
 		
 		setUp3();
-		message="jose luis";
-		assertEquals("rphqavuis",vigenere.encrypt(message));
-		
-		setUp4();
 		message="alejandro";
+		assertEquals("rphqavuis",vigenere.encrypt(message));
+	
+		setUp4();
+		message="jose luis";
 		assertEquals("asyk lybg",vigenere.encrypt(message));
+
 	}
 	
 	@Test
 	void decrypt() {
-		setUp5();
+		setUp4();
 		String message="asyk lybg";
 		assertEquals("jose luis",vigenere.decrypt(message));
 
-		setUp6();
+		setUp3();
 		message="rphqavuis";
 		assertEquals("alejandro", vigenere.decrypt(message));
 		
-		setUp7();
+		setUp2();
 		message="aidlpewjn";
 		assertEquals("valentina", vigenere.decrypt(message));
 	}
@@ -80,16 +67,10 @@ public class VigenereTest {
 	void recursiveSearchFileEncriptedLetterTest(){
 		setUp1();
 		assertEquals(5,vigenere.recursiveSearchFileEncriptedLetter(10,1,'n'));
-		int index=vigenere.recursiveSearchFileEncriptedLetter(10,1,'n');
-		assertEquals('n',vigenere.getVigenereMatrix(10,index));
-		
 		assertEquals(3,vigenere.recursiveSearchFileEncriptedLetter(23,1,'y'));
-		index=vigenere.recursiveSearchFileEncriptedLetter(23,1,'y');
-		assertEquals('c',vigenere.getVigenereMatrix(0,index));
-		
 		assertEquals(5,vigenere.recursiveSearchFileEncriptedLetter(23,1,'a'));
-		index=vigenere.recursiveSearchFileEncriptedLetter(23,0,'a');
-		assertEquals('e',vigenere.getVigenereMatrix(0,index));
+		assertEquals(26, vigenere.recursiveSearchFileEncriptedLetter(26, 1, 'y'));
+		assertEquals(13, vigenere.recursiveSearchFileEncriptedLetter(11, 1, 'w'));
 	}
 	
 	@Test
