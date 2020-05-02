@@ -3,7 +3,6 @@ package model;
 public class Atbash extends Monoalphabetic {
 	
 	public Atbash() {
-		
 	}
 
 	@Override
@@ -41,4 +40,7 @@ public class Atbash extends Monoalphabetic {
 		}
 		return -1;
 	}
+
 }
+
+

@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="550.0" style="-fx-border-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <RadioButton layoutX="330.0" layoutY="35.0" mnemonicParsing="false" />
-      <RadioButton layoutX="390.0" layoutY="35.0" mnemonicParsing="false" />
-      <Label layoutX="73.0" layoutY="35.0" text="DIRECTION" />
+      <RadioButton fx:id="R" layoutX="294.0" layoutY="37.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="16.0" text="L">
+         <toggleGroup>
+            <ToggleGroup fx:id="directionToggleCesar" />
+         </toggleGroup>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/left.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <RadioButton fx:id="L" layoutX="412.0" layoutY="37.0" mnemonicParsing="false" text="R" toggleGroup="$directionToggleCesar">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/right.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="40.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/directionKey.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="40.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/numberKey.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="numberKeyCesar" layoutX="294.0" layoutY="128.0" prefHeight="30.0" prefWidth="81.0" />
    </children>
 </AnchorPane>

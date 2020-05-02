@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="350.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea fx:id="textConsole" layoutX="25.0" layoutY="100.0" prefHeight="375.0" prefWidth="300.0" wrapText="true" />
+      <ImageView fitHeight="56.0" fitWidth="184.0" layoutX="83.0" layoutY="44.0">
+         <image>
+            <Image url="@../images/consoleWhite.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="encryptByConsole" layoutX="67.0" layoutY="494.0" mnemonicParsing="false" onAction="#encryptByConsole" prefHeight="22.0" prefWidth="135.0" visible="false">
+         <graphic>
+            <ImageView disable="true" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/encript.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="decryptByConsole" layoutX="67.0" layoutY="494.0" mnemonicParsing="false" onAction="#decryptByConsole" prefHeight="22.0" prefWidth="135.0" visible="false">
+         <graphic>
+            <ImageView disable="true" fitHeight="150.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/decript.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

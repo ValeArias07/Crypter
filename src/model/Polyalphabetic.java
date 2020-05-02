@@ -1,7 +1,7 @@
 package model;
 
 public abstract class Polyalphabetic extends Crypter   {
-	private String encriptionKey;
+	protected String encriptionKey;
 	protected final String ABC = "abcdefghijklmnopqrstuvwxyz";
 	
 	public Polyalphabetic(String encriptionKey) {

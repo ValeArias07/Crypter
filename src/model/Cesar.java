@@ -59,8 +59,10 @@ public class Cesar extends Monoalphabetic {
 					crypter = crypter + ABC.charAt(ward - track);
 				} else {
 					ward = (ward - track) + ABC.length();
+					while(ward<0) {
+						ward = ward + ABC.length();
+					}
 					crypter = crypter + ABC.charAt(ward);
-					System.out.println(ABC.charAt(26));
 				}
 
 			} else {
@@ -71,7 +73,7 @@ public class Cesar extends Monoalphabetic {
 		return crypter;
 	}
 
-	public String rigthMove(String txt) {
+	private String rigthMove(String txt) {
 
 		String crypter = "";
 
@@ -83,6 +85,9 @@ public class Cesar extends Monoalphabetic {
 					crypter = crypter + ABC.charAt(ward + track);
 				} else {
 					ward = (ward + track) - ABC.length();
+					while(ward>ABC.length()) {
+						ward = ward - ABC.length();
+					}
 					crypter = crypter + ABC.charAt(ward);
 				}
 

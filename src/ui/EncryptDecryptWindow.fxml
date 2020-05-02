@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="MainPain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button id="EncryptAction" fx:id="encryptByFile" layoutX="25.0" layoutY="480.0" mnemonicParsing="false" onAction="#encryptByFile" prefHeight="26.0" prefWidth="550.0" visible="false">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/encript.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button id="DecryptWindow" layoutX="25.0" layoutY="530.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="75.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <AnchorPane fx:id="borderSelected" layoutX="25.0" layoutY="200.0" prefHeight="210.0" prefWidth="550.0" />
+      <ImageView fitHeight="57.0" fitWidth="228.0" layoutX="23.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/uselected.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="aesImage" fitHeight="61.0" fitWidth="208.0" layoutX="230.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/aes.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="vigenereImage" fitHeight="61.0" fitWidth="200.0" layoutX="230.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/vigenere.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="encryptionTitle" fitHeight="95.0" fitWidth="290.0" layoutX="155.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/encryption.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cesarImage" fitHeight="40.0" fitWidth="157.0" layoutX="240.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/cesar.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="atbashImage" fitHeight="40.0" fitWidth="165.0" layoutX="240.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/atbast.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="searchFile" layoutX="525.0" layoutY="415.0" mnemonicParsing="false" onAction="#searchFile" visible="false">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/buscar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="fileRoute" layoutX="26.0" layoutY="422.0" prefHeight="28.0" prefWidth="469.0" promptText="Route" visible="false" />
+      <Button fx:id="goToConsole" layoutX="247.0" layoutY="480.0" mnemonicParsing="false" onAction="#goToConsole" visible="false">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/consoleBlack.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="decryptionTitle" fitHeight="95.0" fitWidth="290.0" layoutX="155.0" layoutY="43.0" visible="false">
+         <image>
+            <Image url="@../images/decryption.png" />
+         </image>
+      </ImageView>
+      <Button id="EncryptAction" fx:id="decryptByFile" layoutX="25.0" layoutY="480.0" mnemonicParsing="false" onAction="#decryptByFile" prefHeight="26.0" prefWidth="550.0" visible="false">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/decript.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
