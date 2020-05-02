@@ -6,4 +6,16 @@ public class AES extends Polyalphabetic{
 		super(encriptionKey);
 	}
 
+	@Override
+	public String encrypt(String txt) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String decrypt(String txt) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

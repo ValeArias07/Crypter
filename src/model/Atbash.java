@@ -46,3 +46,4 @@ public class Atbash extends Monoalphabetic {
 		return -1;
 	}
 }
+
