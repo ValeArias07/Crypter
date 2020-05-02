@@ -26,10 +26,15 @@ public class Atbash extends Monoalphabetic {
 	
 	@Override
 	public String decrypt(String txt) {
-		return null;
+		
+		String decrypter= "";
+		
+		decrypter=encrypt(txt);
+		
+		return decrypter;
 	}
 	
-	public int searchLetter(int index, char letter){
+	private int searchLetter(int index, char letter){
 		
 		if(index<=ABC.length()-1) {
 			if(ABC.charAt(index)==letter) {
@@ -40,7 +45,5 @@ public class Atbash extends Monoalphabetic {
 		}
 		return -1;
 	}
-
 }
-
 
