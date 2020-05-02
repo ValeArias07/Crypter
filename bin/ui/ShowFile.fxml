@@ -3,61 +3,49 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="556.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="16.0" layoutY="59.0" text="Text Encrypted/Decrypted:">
+      <Label layoutX="16.0" layoutY="47.0" text="Text Encrypted:" textFill="#fffdfd">
          <font>
             <Font name="Book Antiqua Bold" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="textArea" editable="false" layoutX="16.0" layoutY="79.0" prefHeight="156.0" prefWidth="525.0" style="-fx-border-color: #000000;" wrapText="true" />
-      <MenuBar layoutY="1.0" prefHeight="17.0" prefWidth="556.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem fx:id="aboutOptionSF" mnemonicParsing="false" onAction="#aboutShowFile" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <HBox alignment="CENTER" layoutX="80.0" layoutY="26.0" prefHeight="33.0" prefWidth="430.0">
+      <TextArea fx:id="textFromText" editable="false" layoutX="16.0" layoutY="67.0" prefHeight="166.0" prefWidth="525.0" style="-fx-border-color: #000000;" wrapText="true" />
+      <HBox alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="33.0" prefWidth="430.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="62.0" text="Font :">
+            <Label prefHeight="17.0" prefWidth="62.0" text="Font :" textFill="WHITE">
                <font>
                   <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
             </Label>
-            <ChoiceBox id="Font" fx:id="fontChoice" onDragDetected="#fontOptions" prefHeight="25.0" prefWidth="157.0" />
-            <Label prefHeight="17.0" prefWidth="62.0" text="  Height:">
+            <ChoiceBox id="Font" fx:id="fontChoice" prefHeight="25.0" prefWidth="157.0" />
+            <Label prefHeight="17.0" prefWidth="62.0" text="  Height:" textFill="WHITE">
                <font>
                   <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
             </Label>
-            <ChoiceBox id="Height" fx:id="heightChoice" onDragDetected="#heightOption" prefHeight="25.0" prefWidth="51.0" />
-            <Label prefHeight="17.0" prefWidth="62.0" text="    Style:">
+            <ChoiceBox id="Height" fx:id="heightChoice" prefHeight="25.0" prefWidth="51.0" />
+            <Label prefHeight="17.0" prefWidth="62.0" text="    Style:" textFill="WHITE">
                <font>
                   <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="negritaButton" mnemonicParsing="false" onAction="#negritaOption" text="N">
+            <Button mnemonicParsing="false" onAction="#negritaOption" text="N">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="cursiveButton" mnemonicParsing="false" onAction="#cursiveOption" text="K">
+            <Button mnemonicParsing="false" onAction="#cursiveOption" text="K">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="subButton" mnemonicParsing="false" onAction="#subOption" text="S" underline="true" />
+            <Button mnemonicParsing="false" onAction="#subOption" text="S" underline="true" />
          </children>
       </HBox>
    </children>

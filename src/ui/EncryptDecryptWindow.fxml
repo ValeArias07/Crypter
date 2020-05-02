@@ -40,7 +40,7 @@
             <Image url="@../images/vigenere.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="94.0" fitWidth="291.0" layoutX="155.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="encryptionTitle" fitHeight="95.0" fitWidth="290.0" layoutX="155.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/encryption.png" />
          </image>
@@ -70,6 +70,20 @@
             <ImageView fitHeight="20.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/consoleBlack.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="decryptionTitle" fitHeight="95.0" fitWidth="290.0" layoutX="155.0" layoutY="43.0" visible="false">
+         <image>
+            <Image url="@../images/decryption.png" />
+         </image>
+      </ImageView>
+      <Button id="EncryptAction" fx:id="decryptByFile" layoutX="25.0" layoutY="480.0" mnemonicParsing="false" onAction="#decryptByFile" prefHeight="26.0" prefWidth="550.0" visible="false">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/decript.png" />
                </image>
             </ImageView>
          </graphic>

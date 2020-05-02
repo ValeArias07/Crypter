@@ -14,11 +14,20 @@
             <Image url="@../images/consoleWhite.png" />
          </image>
       </ImageView>
-      <Button layoutX="67.0" layoutY="494.0" mnemonicParsing="false" onAction="#encryptByConsole" prefHeight="22.0" prefWidth="135.0">
+      <Button fx:id="encryptByConsole" layoutX="67.0" layoutY="494.0" mnemonicParsing="false" onAction="#encryptByConsole" prefHeight="22.0" prefWidth="135.0" visible="false">
          <graphic>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/encript.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="decryptByConsole" layoutX="67.0" layoutY="494.0" mnemonicParsing="false" onAction="#decryptByConsole" prefHeight="22.0" prefWidth="135.0" visible="false">
+         <graphic>
+            <ImageView disable="true" fitHeight="150.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/decript.png" />
                </image>
             </ImageView>
          </graphic>
