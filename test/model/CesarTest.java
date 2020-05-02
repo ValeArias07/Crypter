@@ -139,6 +139,109 @@ class CesarTest {
 
 	@Test
 	void decryptTest() {
+		
+		setup1();
+
+		String txt = cesar.decrypt("b");
+		assertEquals("a", txt);
+		
+		txt = cesar.decrypt("A");
+		assertEquals("z", txt);
+
+		txt = cesar.decrypt("a");
+		assertEquals("Z", txt);
+
+		txt = cesar.decrypt("ipmb dpnp ftubt");
+		assertEquals("hola como estas", txt);
+
+		txt = cesar.decrypt("Ipmb, ¿dpnp ftubt?");
+		assertEquals("Hola, ¿como estas?", txt);
+		
+		setup2();
+
+		txt = cesar.decrypt("Z");
+		assertEquals("a", txt);
+
+		txt = cesar.decrypt("y");
+		assertEquals("z", txt);
+
+		txt = cesar.decrypt("Y");
+		assertEquals("Z", txt);
+
+		txt = cesar.decrypt("gñkZ bñlñ drsZr");
+		assertEquals("hola como estas", txt);
+
+		txt = cesar.decrypt("GñkZ, ¿bñlñ drsZr?");
+		assertEquals("Hola, ¿como estas?", txt);
+
+		setup3();
+
+		txt = cesar.decrypt("a");
+		assertEquals("a", txt);
+
+		txt = cesar.decrypt("z");
+		assertEquals("z", txt);
+
+		txt = cesar.decrypt("Z");
+		assertEquals("Z", txt);
+
+		txt = cesar.decrypt("hola como estas");
+		assertEquals("hola como estas", txt);
+
+		txt = cesar.decrypt("Hola, ¿como estas?");
+		assertEquals("Hola, ¿como estas?", txt);
+
+		setup4();
+
+		txt = cesar.decrypt("a");
+		assertEquals("a", txt);
+
+		txt = cesar.decrypt("z");
+		assertEquals("z", txt);
+
+		txt = cesar.decrypt("Z");
+		assertEquals("Z", txt);
+
+		txt = cesar.decrypt("hola como estas");
+		assertEquals("hola como estas", txt);
+
+		txt = cesar.decrypt("Hola, ¿como estas?");
+		assertEquals("Hola, ¿como estas?", txt);
+
+		setup5();
+
+		txt = cesar.decrypt("S");
+		assertEquals("a", txt);
+
+		txt = cesar.decrypt("r");
+		assertEquals("z", txt);
+
+		txt = cesar.decrypt("R");
+		assertEquals("Z", txt);
+
+		txt = cesar.decrypt("ZhdS Uheh WlmSl");
+		assertEquals("hola como estas", txt);
+
+		txt = cesar.decrypt("zhdS, ¿Uheh WlmSl?");
+		assertEquals("Hola, ¿como estas?", txt);
+
+		setup6();
+
+		txt = cesar.decrypt("i");
+		assertEquals("a", txt);
+
+		txt = cesar.decrypt("H");
+		assertEquals("z", txt);
+
+		txt = cesar.decrypt("h");
+		assertEquals("Z", txt);
+
+		txt = cesar.decrypt("owsi kwtw mABiA");
+		assertEquals("hola como estas", txt);
+
+		txt = cesar.decrypt("Owsi, ¿kwtw mABiA?");
+		assertEquals("Hola, ¿como estas?", txt);
+
 
 	}
 
