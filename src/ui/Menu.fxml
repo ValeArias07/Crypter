@@ -14,7 +14,7 @@
       </ImageView>
       <Button layoutX="142.0" layoutY="218.0" mnemonicParsing="false" onAction="#encryptMenu" prefHeight="45.0" prefWidth="300.0">
          <graphic>
-            <ImageView fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/encript.png" />
                </image>
@@ -23,7 +23,7 @@
       </Button>
       <Button layoutX="140.0" layoutY="288.0" mnemonicParsing="false" onAction="#decryptMenu" prefHeight="45.0" prefWidth="300.0">
          <graphic>
-            <ImageView fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/decript.png" />
                </image>
@@ -32,15 +32,15 @@
       </Button>
       <Button layoutX="142.0" layoutY="363.0" mnemonicParsing="false" onAction="#routeManagerMenu" prefHeight="45.0" prefWidth="300.0">
          <graphic>
-            <ImageView fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="45.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/routeManager.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="240.0" layoutY="467.0" mnemonicParsing="false" onAction="#exit" prefHeight="45.0" prefWidth="120.0" />
-      <ImageView fitHeight="45.0" fitWidth="110.0" layoutX="263.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="238.0" layoutY="468.0" mnemonicParsing="false" onAction="#exit" prefHeight="45.0" prefWidth="120.0" />
+      <ImageView disable="true" fitHeight="35.0" fitWidth="56.0" layoutX="270.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/exit.png" />
          </image>

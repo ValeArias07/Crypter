@@ -16,73 +16,40 @@
         <menus>
           <Menu fx:id="settingsMenu" mnemonicParsing="false" visible="false">
             <items>
-                <Menu fx:id="encryptSubMenu" mnemonicParsing="false" text="Encrypt">
+                <Menu fx:id="subMenu" mnemonicParsing="false" text="Encrypt">
                      <items>
                         <Menu mnemonicParsing="false" text="TextInput">
                            <items>
-                              <RadioMenuItem mnemonicParsing="false" onAction="#consoleEncryptTIO" selected="true" text="Console">
+                              <RadioMenuItem mnemonicParsing="false" onAction="#consoleTIO" selected="true" text="Console">
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="textInputToggleEncrypt" />
+                                    <ToggleGroup fx:id="textInputToggle" />
                                  </toggleGroup>
                               </RadioMenuItem>
-                              <RadioMenuItem mnemonicParsing="false" onAction="#textFileEncryptTIO" text="Text file" toggleGroup="$textInputToggleEncrypt" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#textFileTIO" text="Text file" toggleGroup="$textInputToggle" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Method type">
                            <items>
                               <Menu mnemonicParsing="false" text="Monoalphabetic">
                                  <items>
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#cesarEncryptMM" selected="true" text="Cesar">
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#cesarM" selected="true" text="Cesar">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="encryptedToggle" />
+                                          <ToggleGroup fx:id="methodToggle" />
                                        </toggleGroup>
                                     </RadioMenuItem>
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#atbashEncryptMM" text="Atbash" toggleGroup="$encryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#atbashM" text="Atbash" toggleGroup="$methodToggle" />
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Polialphabetic">
                                  <items>
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#vigenereEncryptMM" text="Vigenere" toggleGroup="$encryptedToggle" />
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#aesEncryptMM" text="AES" toggleGroup="$encryptedToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#vigenereM" text="Vigenere" toggleGroup="$methodToggle" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#aesM" text="AES" toggleGroup="$methodToggle" />
                                  </items>
                               </Menu>
                            </items>
                         </Menu>
                      </items>
                 </Menu>
-                <Menu fx:id="decryptSubMenu" mnemonicParsing="false" text="Decrypt">
-                     <items>
-                        <Menu mnemonicParsing="false" text="TextInput">
-                           <items>
-                              <RadioMenuItem mnemonicParsing="false" onAction="#consoleDecryptTIO" selected="true" text="Console">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="textInputToggleDecrypt" />
-                                 </toggleGroup>
-                              </RadioMenuItem>
-                              <RadioMenuItem mnemonicParsing="false" onAction="#textFileDecryptTIO" text="Text file" toggleGroup="$textInputToggleDecrypt" />
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Method type">
-                           <items>
-                              <Menu mnemonicParsing="false" text="Monoalphabetic">
-                                 <items>
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#cesarDecryptMM" selected="true" text="Cesar">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="decryptedToggle" />
-                                       </toggleGroup>
-                                    </RadioMenuItem>
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#atbashDecryptMM" text="Atbash" toggleGroup="$decryptedToggle" />
-                                 </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Polialphabetic">
-                                 <items>
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#vigenereDecryptMM" text="Vigenere" toggleGroup="$decryptedToggle" />
-                                    <RadioMenuItem mnemonicParsing="false" onAction="#aesDecryptMM" text="AES" toggleGroup="$decryptedToggle" />
-                                 </items>
-                              </Menu>
-                           </items>
-                        </Menu>
-                     </items></Menu>
             </items>
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
@@ -105,7 +72,7 @@
             </ImageView>
             <Button layoutX="175.0" layoutY="410.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#encryptWelcome" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/encript.png" />
                      </image>
@@ -114,7 +81,7 @@
             </Button>
             <Button layoutX="175.0" layoutY="463.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#decryptWelcome" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/decript.png" />
                      </image>
@@ -123,7 +90,7 @@
             </Button>
             <Button layoutX="175.0" layoutY="513.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#routeManagerWelcome" prefHeight="30.0" prefWidth="250.0" style="-fx-background-image: N:\Semestre 3\APO2\Espacio de trabajo\eclipse_proyects\Crypter-\images\crypter bf.png;">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="30.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/routeManager.png" />
                      </image>

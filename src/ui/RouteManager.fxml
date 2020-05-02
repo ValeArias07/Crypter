@@ -25,7 +25,7 @@
             <Font name="Book Antiqua Italic" size="14.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/show.png" />
                </image>
@@ -36,7 +36,7 @@
             <Font name="Book Antiqua Italic" size="14.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/delete.png" />
                </image>
@@ -47,7 +47,7 @@
             <Font name="Book Antiqua Bold Italic" size="18.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="40.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/back.png" />
                </image>

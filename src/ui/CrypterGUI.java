@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
 
 public class CrypterGUI {
 	// WELCOME ATTRIBUTES
+
 	@FXML
 	private BorderPane borderPaneMain;
 
@@ -31,26 +33,20 @@ public class CrypterGUI {
 	private Menu settingsMenu;
 
 	@FXML
-	private Menu encryptSubMenu;
+	private Menu subMenu;
 
 	@FXML
-	private ToggleGroup textInputToggleEncrypt;
+	private ToggleGroup textInputToggle;
 
 	@FXML
-	private ToggleGroup encryptedToggle;
+	private ToggleGroup methodToggle;
 
-	@FXML
-	private Menu decryptSubMenu;
-
-	@FXML
-	private ToggleGroup textInputToggleDecrypt;
-
-	@FXML
-	private ToggleGroup decryptedToggle;
-
-	// ENCRYPT_WINDOW ATTRIBUTES
+	// ENCRYPT/DECRYPT_WINDOW ATTRIBUTES
 	@FXML
 	private Button encryptByFile;
+
+	@FXML
+	private Button decryptByFile;
 
 	@FXML
 	private AnchorPane borderSelected;
@@ -76,6 +72,12 @@ public class CrypterGUI {
 	@FXML
 	private Button goToConsole;
 
+	@FXML
+	private ImageView decryptionTitle;
+
+	@FXML
+	private ImageView encryptionTitle;
+
 	// ROUTE_MANAGER ATTRIBUTES
 	@FXML
 	private ListView<?> encryptedListViewRM;
@@ -83,7 +85,8 @@ public class CrypterGUI {
 	@FXML
 	private ListView<?> decryptedListViewRM;
 
-	// CESAR_WINDOWS ATTRIBUTES
+	// <<<SUB WINDOWS>>>
+	// CESAR_WINDOW ATTRIBUTES
 	@FXML
 	private RadioButton R;
 
@@ -96,9 +99,30 @@ public class CrypterGUI {
 	@FXML
 	private TextField numberKeyCesar;
 
+	// VIGENERE/AES_WINDOW ATTRIBUTES
+	@FXML
+	private TextField wordKeyVigenere_AES;
+	/// <<<< >>>>
+
 	// CONSOLE ATTRIBUTES
 	@FXML
 	private TextArea textConsole;
+
+	@FXML
+	private Button encryptByConsole;
+
+	@FXML
+	private Button decryptByConsole;
+
+	// SHOW_STAGE ATTRIBUTES
+	@FXML
+	private TextArea textFromText;
+
+	@FXML
+	private ChoiceBox<?> fontChoice;
+
+	@FXML
+	private ChoiceBox<?> heightChoice;
 
 	// >>>ATTRIBUTES CLASS
 	private Stage secondStage;
@@ -108,6 +132,8 @@ public class CrypterGUI {
 	}
 
 	/// >>>METHODS CLASS
+
+	// ---// LOADS
 	private void load(String route) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route));
 		fxmlLoader.setController(this);
@@ -115,20 +141,26 @@ public class CrypterGUI {
 		borderPaneMain.setCenter(parent);
 	}
 
-	// ---// LOADS
 	private void loadEncryptWindow() throws IOException {
 
 		settingsMenu.setVisible(true);
-		decryptSubMenu.setVisible(false);
-		encryptSubMenu.setVisible(true);
-		load("EncryptWindow.fxml");
-		setInputEncryptSettings();
-		setTypeEncryptSettings();
-
+		subMenu.setText("Encrypt");
+		load("EncryptDecryptWindow.fxml");
+		encryptionTitle.setVisible(true);
+		decryptionTitle.setVisible(false);
+		setInputSettings();
+		setTypeSettings();
 	}
 
 	private void loadDecryptWindow() throws IOException {
-		load("DecryptWindow.fxml");
+
+		settingsMenu.setVisible(true);
+		subMenu.setText("Decrypt");
+		load("EncryptDecryptWindow.fxml");
+		encryptionTitle.setVisible(false);
+		decryptionTitle.setVisible(true);
+		setInputSettings();
+		setTypeSettings();
 	}
 
 	private void loadRouteManager() throws IOException {
@@ -136,6 +168,7 @@ public class CrypterGUI {
 	}
 
 	private void loadMenu() throws IOException {
+		settingsMenu.setVisible(false);
 		load("Menu.fxml");
 	}
 
@@ -153,36 +186,40 @@ public class CrypterGUI {
 	}
 
 	private void subLoadAtbash() throws IOException {
-
+		subLoad("AtbashWindow.fxml");
 	}
 
-	private void subLoadAES() throws IOException {
-
-	}
-
-	private void subLoadVigenere() throws IOException {
-
+	private void subLoadVigenereAES() throws IOException {
+		subLoad("Vigenere-AES-Window.fxml");
 	}
 
 	// ---// SETTINGS
-	private void setInputEncryptSettings() {
-		if (((RadioMenuItem) textInputToggleEncrypt.getSelectedToggle()).getText().equals("Console")) {
+	private void setInputSettings() {
+		if (((RadioMenuItem) textInputToggle.getSelectedToggle()).getText().equals("Console")) {
 			encryptByFile.setVisible(false);
+			decryptByFile.setVisible(false);
 			fileRoute.setVisible(false);
 			searchFile.setVisible(false);
 			goToConsole.setVisible(true);
+
 		} else {
-			if (((RadioMenuItem) textInputToggleEncrypt.getSelectedToggle()).getText().equals("Text file")) {
-				encryptByFile.setVisible(true);
+			if (((RadioMenuItem) textInputToggle.getSelectedToggle()).getText().equals("Text file")) {
 				fileRoute.setVisible(true);
 				searchFile.setVisible(true);
 				goToConsole.setVisible(false);
+				if (subMenu.getText().equals("Encrypt")) {
+					encryptByFile.setVisible(true);
+					decryptByFile.setVisible(false);
+				} else {
+					encryptByFile.setVisible(false);
+					decryptByFile.setVisible(true);
+				}
 			}
 		}
 	}
 
-	private void setTypeEncryptSettings() throws IOException {
-		if (((RadioMenuItem) encryptedToggle.getSelectedToggle()).getText().equals("Cesar")) {
+	private void setTypeSettings() throws IOException {
+		if (((RadioMenuItem) methodToggle.getSelectedToggle()).getText().equals("Cesar")) {
 			vigenereImage.setVisible(false);
 			atbashImage.setVisible(false);
 			aesImage.setVisible(false);
@@ -190,28 +227,54 @@ public class CrypterGUI {
 
 			subLoadCesar();
 		} else {
-			if (((RadioMenuItem) encryptedToggle.getSelectedToggle()).getText().equals("Atbash")) {
+			if (((RadioMenuItem) methodToggle.getSelectedToggle()).getText().equals("Atbash")) {
 				vigenereImage.setVisible(false);
 				atbashImage.setVisible(true);
 				aesImage.setVisible(false);
 				cesarImage.setVisible(false);
+
+				subLoadAtbash();
 			} else {
-				if (((RadioMenuItem) encryptedToggle.getSelectedToggle()).getText().equals("Vigenere")) {
+				if (((RadioMenuItem) methodToggle.getSelectedToggle()).getText().equals("Vigenere")) {
 					vigenereImage.setVisible(true);
 					atbashImage.setVisible(false);
 					aesImage.setVisible(false);
 					cesarImage.setVisible(false);
+
+					subLoadVigenereAES();
 				} else {
 					vigenereImage.setVisible(false);
 					atbashImage.setVisible(false);
 					aesImage.setVisible(true);
 					cesarImage.setVisible(false);
+
+					subLoadVigenereAES();
 				}
 			}
 		}
 	}
 
 	// WELCOME METHODS
+	@FXML
+	void aesM(ActionEvent event) throws IOException {
+		setTypeSettings();
+	}
+
+	@FXML
+	void atbashM(ActionEvent event) throws IOException {
+		setTypeSettings();
+	}
+
+	@FXML
+	void cesarM(ActionEvent event) throws IOException {
+		setTypeSettings();
+	}
+
+	@FXML
+	void consoleTIO(ActionEvent event) {
+		setInputSettings();
+	}
+
 	@FXML
 	void decryptWelcome(ActionEvent event) throws IOException {
 		loadDecryptWindow();
@@ -227,68 +290,17 @@ public class CrypterGUI {
 		loadRouteManager();
 	}
 
-	// ---->>> MENU-BAR METHODS
 	@FXML
-	void aesDecryptMM(ActionEvent event) throws IOException {
-
+	void textFileTIO(ActionEvent event) {
+		setInputSettings();
 	}
 
 	@FXML
-	void aesEncryptMM(ActionEvent event) throws IOException {
-		setTypeEncryptSettings();
+	void vigenereM(ActionEvent event) throws IOException {
+		setTypeSettings();
 	}
 
-	@FXML
-	void atbashDecryptMM(ActionEvent event) throws IOException {
-
-	}
-
-	@FXML
-	void atbashEncryptMM(ActionEvent event) throws IOException {
-		setTypeEncryptSettings();
-	}
-
-	@FXML
-	void cesarDecryptMM(ActionEvent event) throws IOException {
-
-	}
-
-	@FXML
-	void cesarEncryptMM(ActionEvent event) throws IOException {
-		setTypeEncryptSettings();
-	}
-
-	@FXML
-	void consoleDecryptTIO(ActionEvent event) {
-
-	}
-
-	@FXML
-	void consoleEncryptTIO(ActionEvent event) {
-		setInputEncryptSettings();
-	}
-
-	@FXML
-	void textFileDecryptTIO(ActionEvent event) {
-
-	}
-
-	@FXML
-	void textFileEncryptTIO(ActionEvent event) {
-		setInputEncryptSettings();
-	}
-
-	@FXML
-	void vigenereDecryptMM(ActionEvent event) throws IOException {
-
-	}
-
-	@FXML
-	void vigenereEncryptMM(ActionEvent event) throws IOException {
-		setTypeEncryptSettings();
-	}
-
-	// ENCRYPT_WINDOW METHODS
+	// ENCRYPT-DECRYPT_WINDOW METHODS
 	@FXML
 	void back(ActionEvent event) throws IOException {
 		loadMenu();
@@ -300,10 +312,24 @@ public class CrypterGUI {
 	}
 
 	@FXML
+	void decryptByFile(ActionEvent event) {
+
+	}
+
+	@FXML
 	void goToConsole(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Console.fxml"));
 		fxmlLoader.setController(this);
 		Parent parent = fxmlLoader.load();
+
+		if (subMenu.getText().equals("Encrypt")) {
+			encryptByConsole.setVisible(true);
+			decryptByConsole.setVisible(false);
+		} else {
+			encryptByConsole.setVisible(false);
+			decryptByConsole.setVisible(true);
+		}
+
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
@@ -320,7 +346,9 @@ public class CrypterGUI {
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("TXT", "*.txt"));
 
 		File file = fileChooser.showOpenDialog(null);
-		fileRoute.setText(file.getAbsolutePath());
+
+		if (file != null)
+			fileRoute.setText(file.getAbsolutePath());
 	}
 
 	// ROUTE_MANAGER METHODS
@@ -335,8 +363,16 @@ public class CrypterGUI {
 	}
 
 	@FXML
-	void showFileRM(ActionEvent event) {
+	void showFileRM(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShowFile.fxml"));
+		fxmlLoader.setController(this);
+		Parent parent = fxmlLoader.load();
 
+		Scene scene = new Scene(parent);
+		secondStage.setScene(scene);
+		secondStage.setResizable(false);
+		secondStage.setTitle("Show console");
+		secondStage.show();
 	}
 
 	// MENU METHODS
@@ -357,12 +393,33 @@ public class CrypterGUI {
 
 	@FXML
 	void exit(ActionEvent event) {
-
+		System.exit(0);
 	}
 
 	// CONSOLE METHODS
 	@FXML
 	void encryptByConsole(ActionEvent event) {
+
+	}
+
+	@FXML
+	void decryptByConsole(ActionEvent event) {
+
+	}
+
+	// SHOW_STAGE METHODS
+	@FXML
+	void cursiveOption(ActionEvent event) {
+
+	}
+
+	@FXML
+	void negritaOption(ActionEvent event) {
+
+	}
+
+	@FXML
+	void subOption(ActionEvent event) {
 
 	}
 }
