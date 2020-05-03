@@ -28,6 +28,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Cesar;
+import model.Crypter;
 
 public class CrypterGUI {
 	// WELCOME ATTRIBUTES
@@ -132,6 +133,8 @@ public class CrypterGUI {
 
 	// >>>ATTRIBUTES CLASS
 	private Stage secondStage;
+
+	private Crypter crypter;
 
 	public CrypterGUI() {
 		secondStage = new Stage();
@@ -462,7 +465,7 @@ public class CrypterGUI {
 					String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
 					try {
 						int numberKey = Integer.parseInt(numberKeyCesar.getText());
-						Cesar crypter = new Cesar(numberKey, direction);
+						crypter = new Cesar(numberKey, direction);
 						String returnText = crypter.encrypt(textConsole.getText());
 						EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
 							public void handle(DialogEvent e) {
@@ -514,7 +517,7 @@ public class CrypterGUI {
 					String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
 					try {
 						int numberKey = Integer.parseInt(numberKeyCesar.getText());
-						Cesar crypter = new Cesar(numberKey, direction);
+						crypter = new Cesar(numberKey, direction);
 						String returnText = crypter.decrypt(textConsole.getText());
 						EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
 							public void handle(DialogEvent e) {
