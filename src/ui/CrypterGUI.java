@@ -3,13 +3,18 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 
+import exception.EmptyFieldException;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
@@ -22,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Cesar;
 
 public class CrypterGUI {
 	// WELCOME ATTRIBUTES
@@ -193,6 +199,38 @@ public class CrypterGUI {
 		subLoad("Vigenere-AES-Window.fxml");
 	}
 
+	// *
+	private void loadShowFile() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShowFile.fxml"));
+		fxmlLoader.setController(this);
+		Parent parent = fxmlLoader.load();
+
+		Scene scene = new Scene(parent);
+		secondStage.setScene(scene);
+		secondStage.setResizable(false);
+		secondStage.setTitle("Show file");
+		secondStage.show();
+	}
+
+	// *
+	private void loadAlert(AlertType type, String title, String middle, String bot) {
+		Alert alert = new Alert(type);
+		alert.setContentText(bot);
+		alert.setHeaderText(middle);
+		alert.setTitle(title);
+		alert.show();
+	}
+
+	private void loadAlert(AlertType type, String title, String middle, String bot, EventHandler<DialogEvent> e) {
+		Alert alert = new Alert(type);
+		alert.setContentText(bot);
+		alert.setHeaderText(middle);
+		alert.setTitle(title);
+		alert.show();
+
+		alert.setOnCloseRequest(e);
+	}
+
 	// ---// SETTINGS
 	private void setInputSettings() {
 		if (((RadioMenuItem) textInputToggle.getSelectedToggle()).getText().equals("Console")) {
@@ -226,6 +264,9 @@ public class CrypterGUI {
 			cesarImage.setVisible(true);
 
 			subLoadCesar();
+
+			L.setSelected(true);
+			numberKeyCesar.setText("3");
 		} else {
 			if (((RadioMenuItem) methodToggle.getSelectedToggle()).getText().equals("Atbash")) {
 				vigenereImage.setVisible(false);
@@ -252,6 +293,27 @@ public class CrypterGUI {
 				}
 			}
 		}
+	}
+
+	// ---// IS?
+	private String getSelectedMethod() {
+		if (vigenereImage.isVisible()) {
+			return "VIGENERE";
+		}
+
+		if (atbashImage.isVisible()) {
+			return "ATBASH";
+		}
+
+		if (aesImage.isVisible()) {
+			return "AES";
+		}
+
+		if (cesarImage.isVisible()) {
+			return "CESAR";
+		}
+
+		return null;
 	}
 
 	// WELCOME METHODS
@@ -330,6 +392,8 @@ public class CrypterGUI {
 			decryptByConsole.setVisible(true);
 		}
 
+		textConsole.setText(" ");
+
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
@@ -364,15 +428,7 @@ public class CrypterGUI {
 
 	@FXML
 	void showFileRM(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShowFile.fxml"));
-		fxmlLoader.setController(this);
-		Parent parent = fxmlLoader.load();
-
-		Scene scene = new Scene(parent);
-		secondStage.setScene(scene);
-		secondStage.setResizable(false);
-		secondStage.setTitle("Show console");
-		secondStage.show();
+		loadShowFile();
 	}
 
 	// MENU METHODS
@@ -399,12 +455,105 @@ public class CrypterGUI {
 	// CONSOLE METHODS
 	@FXML
 	void encryptByConsole(ActionEvent event) {
+		try {
+			if (!textConsole.getText().equals(" ")) {
+				String method = getSelectedMethod();
+				if (method.equals("CESAR")) {
+					String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
+					try {
+						int numberKey = Integer.parseInt(numberKeyCesar.getText());
+						Cesar crypter = new Cesar(numberKey, direction);
+						String returnText = crypter.encrypt(textConsole.getText());
+						EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+							public void handle(DialogEvent e) {
+								try {
+									loadShowFile();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+								textFromText.setText(returnText);
+							}
+						};
+						loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+								"then the preview will open", e);
 
+					} catch (NumberFormatException e) {
+						loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
+								"Please, type a number the next time");
+					}
+				} else {
+					if (method.equals("AES")) {
+						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+								"We are sorry");
+					} else {
+						if (method.equals("VIGENERE")) {
+							loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+									"We are sorry");
+						} else {
+							if (method.equals("ATBASH")) {
+								loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+										"We are sorry");
+							}
+						}
+					}
+				}
+			} else {
+				throw new EmptyFieldException("CONSOLE", "ENCRYPT");
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
+		}
 	}
 
 	@FXML
 	void decryptByConsole(ActionEvent event) {
-
+		try {
+			if (!textConsole.getText().equals(" ")) {
+				String method = getSelectedMethod();
+				if (method.equals("CESAR")) {
+					String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
+					try {
+						int numberKey = Integer.parseInt(numberKeyCesar.getText());
+						Cesar crypter = new Cesar(numberKey, direction);
+						String returnText = crypter.decrypt(textConsole.getText());
+						EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+							public void handle(DialogEvent e) {
+								try {
+									loadShowFile();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+								textFromText.setText(returnText);
+							}
+						};
+						loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+								"then the preview will open", e);
+					} catch (NumberFormatException e) {
+						loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
+								"Please, type a number the next time");
+					}
+				} else {
+					if (method.equals("AES")) {
+						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+								"We are sorry");
+					} else {
+						if (method.equals("VIGENERE")) {
+							loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+									"We are sorry");
+						} else {
+							if (method.equals("ATBASH")) {
+								loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+										"We are sorry");
+							}
+						}
+					}
+				}
+			} else {
+				throw new EmptyFieldException("CONSOLE", "DECRYPT");
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
+		}
 	}
 
 	// SHOW_STAGE METHODS
