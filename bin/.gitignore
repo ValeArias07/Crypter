@@ -1,4 +1,6 @@
 /images/
-/model/
 /ui/
 /exception/
+/model/
+/RouteManager.class
+/thread/
