@@ -1,7 +1,10 @@
 package model;
 
 import java.time.LocalDateTime;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> af580f93860ab85d0e5899946da70279c9230b50
 
 public class RoutesList {
 	
@@ -20,6 +23,7 @@ public class RoutesList {
 		}
 	}
 	
+<<<<<<< HEAD
 	private void add(RouteNode current, String route, LocalDateTime time, boolean type, String text) {
 		if(current.getNext()!=null) {
 			add(current.getNext(),route, time, type, text);
@@ -90,6 +94,41 @@ public class RoutesList {
 		if(firstRouteNode!=null) {
 			ArrayList <RouteNode> list= new ArrayList <RouteNode>();
 			return getRoutes(firstRouteNode, type, list);
+=======
+
+	public void add(String route, boolean type, String text){
+		LocalDateTime time= LocalDateTime.now();
+		if(firstRouteNode!=null) {
+			add(firstRouteNode, route, time, type, text);
+		}else {
+			firstRouteNode= new RouteNode(route, time, type, text);
+		}
+	}
+	
+	private void add(RouteNode current, String route, LocalDateTime time, boolean type, String text) {
+		if(current.getNext()!=null) {
+			add(current.getNext(),route, time, type, text);
+		}else {
+			current.setNext(new RouteNode(route, time, type, text));
+			current.getNext().setPrev(current);
+		}
+	}
+	
+	public String search(String route, boolean type) {
+	if(firstRouteNode!=null) {
+		return search(firstRouteNode, route, type);
+	}
+	return null;
+	}
+	
+	private String search(RouteNode current, String route, boolean type) {
+		if(current.getRoute().equals(route)) {
+			/////// Do we need return route or return text?
+			return current.getRoute();
+		}else {
+			if(current.getNext()!=null)
+			search(current.getNext(), route, type);
+>>>>>>> af580f93860ab85d0e5899946da70279c9230b50
 		}
 		return null;
 	}
