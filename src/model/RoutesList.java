@@ -13,57 +13,54 @@ public class RoutesList {
 
 	public void add(String route, boolean type, String text){
 		LocalDateTime time= LocalDateTime.now();
+		RouteNode node= new RouteNode(route,time, type, text);
 		if(firstRouteNode!=null) {
-			add(firstRouteNode, route, time, type, text);
+			add(firstRouteNode, node);
 		}else {
-			firstRouteNode= new RouteNode(route, time, type, text);
+			firstRouteNode=node;
 		}
 	}
 	
-
-	private void add(RouteNode current, String route, LocalDateTime time, boolean type, String text) {
+	private void add(RouteNode current, RouteNode node) {
 		if(current.getNext()!=null) {
-			add(current.getNext(),route, time, type, text);
+			add(current.getNext(),node);
 		}else {
-			current.setNext(new RouteNode(route, time, type, text));
+			current.setNext(node);
 			current.getNext().setPrev(current);
 		}
 	}
 	
-	public String search(String route, boolean type) {
+	public String search(String route) {
 	if(firstRouteNode!=null) {
-		return search(firstRouteNode, route, type);
+		return search(firstRouteNode, route);
 	}
 	return null;
 	}
 	
-	private String search(RouteNode current, String route, boolean type) {
+	private String search(RouteNode current, String route) {
 		if(current.getRoute().equals(route)) {
-			/////// Do we need return route or return text?
-			return current.getRoute();
-		}else {
+			return current.getText();
+		}else{
 			if(current.getNext()!=null)
-			search(current.getNext(), route, type);
+			search(current.getNext(), route);
 		}
 		return null;
 	}
 	
-
-	public String delete(String route, boolean type) {
+	public RouteNode delete(String route) {
 		if(firstRouteNode!=null) {
-			return delete(firstRouteNode, route, type);
+			return delete(firstRouteNode, route);
 		}else {
 			return null;
 		}
 	}
 	
-	private String delete(RouteNode current, String route, boolean type) {
-		if(current.getRoute().equals(route) && current.getType()==type) {
-			String message=current.getRoute();
-			
+	private RouteNode delete(RouteNode current, String route) {
+		if(current.getRoute().equals(route) ) {
+
 			//////When current is the only node 
 			if(current.getNext()==null && current.getPrev()==null) {
-				current=null;
+				firstRouteNode=null;
 				
 			/////When current is the first node	
 			}else if(current.getPrev()==null) {
@@ -71,7 +68,7 @@ public class RoutesList {
 				
 			/////When current is the last one 
 			}else if(current.getNext()==null){
-				current.setPrev(null);
+				current.getPrev().setNext(null);
 				
 			/////When current is in the middle
 			}else {
@@ -79,13 +76,14 @@ public class RoutesList {
 				current.getNext().setPrev(current.getPrev());
 			}
 			
-			return message;
+			return current;
 		}else {
 			if(current.getNext()!=null)
-			return delete(current.getNext(), route, type);
+			return delete(current.getNext(), route);
 		}
 		return null;
 	}
+	
 	
 	public ArrayList <RouteNode> getRoutes(boolean type) {
 		if(firstRouteNode!=null) {

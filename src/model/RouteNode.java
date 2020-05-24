@@ -22,6 +22,8 @@ public class RouteNode {
 		this.date = date;
 		this.type= type;
 		this.text= text;
+		nextRoute=null;
+		previousRoute=null;
 	}
 	
 	public LocalDateTime getDate() {
