@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DialogEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
@@ -25,12 +26,31 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polyline;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Cesar;
 import model.Crypter;
 
 public class CrypterGUI {
+	
+	/////////////////////////////////////////////////// ANIMATIONS//////////////////////////////////////////////////////////////////
+	public static final Color[] COLOR = new Color[] {Color.web("#3D1934"),Color.web("#B81858"),Color.web("#EBD46E")};
+	
+	private static final String ABC = "abcdefghijklmnopqrstuvwxyz";
+    @FXML
+    private Polyline fUp;
+
+    @FXML
+    private Polyline fDown;
+    
+    @FXML
+    private Label aLetter;
+
+    @FXML
+    private Label zLetter;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	// WELCOME ATTRIBUTES
 
 	@FXML
@@ -574,4 +594,64 @@ public class CrypterGUI {
 	void subOption(ActionEvent event) {
 
 	}
+	
+	////////////////////////////////////////////////ANIMATIONS//////////////////////////////////////////////////////////////////////////
+	public void updateX(boolean type, double value) {
+    	if(type) {
+    	fUp.setLayoutX(value);
+    	}else {
+    		fDown.setLayoutX(value);
+    	}
+    }
+    
+    public double getX(boolean type) {
+    	if(type) {
+        	 return fUp.getLayoutX();
+        	}else {
+        		return fDown.getLayoutX();
+        	}
+    }
+    
+    public void rotate(boolean type, double value) {
+    	if(type) {
+       	 fUp.setRotate(value);
+       	}else {
+       		fDown.setRotate(value);
+       	}
+    }
+    
+    public void changeColor(boolean type, int value) {
+    	
+    	if(type) {
+    		fUp.setFill(COLOR[value]);
+
+    	}else {
+    		fUp.setFill(COLOR[value]);
+    	}
+    	
+    }
+    
+    public double getXLetters(boolean type) {
+    	if(type) {
+        	 return aLetter.getLayoutX();
+        	}else {
+        		return zLetter.getLayoutX();
+        	}
+    }
+  
+    public void updateXLetters(boolean type, double value) {
+    	if(type) {
+    		aLetter.setLayoutX(value);
+    	}else {
+    		zLetter.setLayoutX(value);
+    	}
+    }
+    public void updateContent(boolean type, int value) {
+    	if(type) {
+    		aLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
+    	}else {
+    		zLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
+    	}
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

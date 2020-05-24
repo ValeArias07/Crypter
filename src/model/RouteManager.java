@@ -31,4 +31,10 @@ public class RouteManager{
 	public void addRoute(String route, String text, boolean type) {
 		routeList.add(route, type, text);
 	}
+	
+	public String deleteRoute(String route, boolean type) {
+		return routeList.delete(route, type);
+	}
+	
+	
 }

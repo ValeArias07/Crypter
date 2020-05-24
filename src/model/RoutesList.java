@@ -53,7 +53,7 @@ public class RoutesList {
 		if(firstRouteNode!=null) {
 			return delete(firstRouteNode, route, type);
 		}else {
-			return "List empty";
+			return null;
 		}
 	}
 	
