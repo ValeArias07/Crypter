@@ -8,17 +8,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.RouteManager;
 
 public class Main extends Application {
 
 	private CrypterGUI crypter;
-
+	private RouteManager rm;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	public Main() {
-		crypter = new CrypterGUI();
+		rm = new RouteManager();
+		crypter = new CrypterGUI(rm);
 	}
 
 	public void start(Stage primaryStage) throws IOException {

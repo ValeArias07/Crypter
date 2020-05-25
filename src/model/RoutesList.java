@@ -15,21 +15,31 @@ public class RoutesList {
 		LocalDateTime time= LocalDateTime.now();
 		RouteNode node= new RouteNode(route,time, type, text);
 		if(firstRouteNode!=null) {
-			add(firstRouteNode, node);
+			RouteNode current = searchLast(firstRouteNode);
+			current.setNext(node);
+			current.getNext().setPrev(current);
 		}else {
 			firstRouteNode=node;
 		}
 	}
 	
-	private void add(RouteNode current, RouteNode node) {
+	private RouteNode searchLast(RouteNode current) {
 		if(current.getNext()!=null) {
-			add(current.getNext(),node);
+			current = current.getNext();
+			return searchLast(current);
 		}else {
-			current.setNext(node);
-			current.getNext().setPrev(current);
+			return current;
 		}
 	}
-	
+	/**
+	private RouteNode searchLast() {
+		RouteNode current = firstRouteNode;
+		while(current.getNext()!=null) {
+			current = current.getNext();
+		}
+		return current;
+	}
+	*/
 	public String search(String route) {
 	if(firstRouteNode!=null) {
 		return search(firstRouteNode, route);
@@ -85,17 +95,17 @@ public class RoutesList {
 	}
 	
 	
-	public ArrayList <RouteNode> getRoutes(boolean type) {
+	public ArrayList <String> getRoutes(boolean type) {
 		if(firstRouteNode!=null) {
-			ArrayList <RouteNode> list= new ArrayList <RouteNode>();
+			ArrayList <String> list= new ArrayList <String>();
 			return getRoutes(firstRouteNode, type, list);
 		}
 		return null;
 	}
 	
-	private ArrayList <RouteNode> getRoutes(RouteNode current, boolean type, ArrayList <RouteNode> list){
+	private ArrayList <String> getRoutes(RouteNode current, boolean type, ArrayList <String> list){
 		if(current.getType()==type) {
-			list.add(current);
+			list.add(current.getRoute());
 		}
 		
 		if(current.getNext()!=null) 
@@ -103,6 +113,5 @@ public class RoutesList {
 			else
 				return list;
 	}
-	
 }
 
