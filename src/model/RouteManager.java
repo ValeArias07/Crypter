@@ -10,9 +10,12 @@ import java.util.ArrayList;
 
 public class RouteManager{
 	
+<<<<<<< HEAD
+=======
 	private int actualNumberEncrypt;
 	private int actualNumberDecrypt;
 	
+>>>>>>> fa2dabe6ecab2d73d9d5040ee9f3ea0458c552d9
 	private RoutesList routeList;
 	
 	public RouteManager() {
