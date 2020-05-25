@@ -15,21 +15,31 @@ public class RoutesList {
 		LocalDateTime time= LocalDateTime.now();
 		RouteNode node= new RouteNode(route,time, type, text);
 		if(firstRouteNode!=null) {
-			add(firstRouteNode, node);
+			RouteNode current = searchLast(firstRouteNode);
+			current.setNext(node);
+			current.getNext().setPrev(current);
 		}else {
 			firstRouteNode=node;
 		}
 	}
 	
-	private void add(RouteNode current, RouteNode node) {
+	private RouteNode searchLast(RouteNode current) {
 		if(current.getNext()!=null) {
-			add(current.getNext(),node);
+			current = current.getNext();
+			return searchLast(current);
 		}else {
-			current.setNext(node);
-			current.getNext().setPrev(current);
+			return current;
 		}
 	}
-	
+	/**
+	private RouteNode searchLast() {
+		RouteNode current = firstRouteNode;
+		while(current.getNext()!=null) {
+			current = current.getNext();
+		}
+		return current;
+	}
+	*/
 	public String search(String route) {
 	if(firstRouteNode!=null) {
 		return search(firstRouteNode, route);
@@ -103,6 +113,5 @@ public class RoutesList {
 			else
 				return list;
 	}
-	
 }
 

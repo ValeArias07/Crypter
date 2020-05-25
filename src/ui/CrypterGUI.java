@@ -2,6 +2,7 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import exception.EmptyFieldException;
 import javafx.collections.FXCollections;
@@ -160,15 +161,12 @@ public class CrypterGUI {
 
 	private Crypter crypter;
 
-	public CrypterGUI() {
-		secondStage = new Stage();
-	}
-
 	//RELATIONS
 	private RouteManager rm;
 	
 	public CrypterGUI (RouteManager rm) {
 		this.rm = rm;
+		secondStage = new Stage();
 	}
 	
 	/// >>>METHODS CLASS
@@ -209,12 +207,25 @@ public class CrypterGUI {
 	}
 	
 	private void initializeListViews() throws InterruptedException {
+		
+		ArrayList<String> encrypts = rm.getRoutes(true);
+		ArrayList<String> decrypts = rm.getRoutes(true);
+		
 		ObservableList<String> observableListEn;
-    	observableListEn = FXCollections.observableArrayList(rm.getRoutes(true));
+		ObservableList<String> observableListDe;
+		
+		if(encrypts==null) {
+			observableListEn = FXCollections.observableArrayList("Empty");		
+		}else {
+			observableListEn = FXCollections.observableArrayList(encrypts);	
+		}
 		encryptedListViewRM.setItems(observableListEn);
 		
-		ObservableList<String> observableListDe;
-    	observableListDe = FXCollections.observableArrayList(rm.getRoutes(false));
+		if(decrypts==null) {
+			observableListDe = FXCollections.observableArrayList("Empty");		
+		}else {
+			observableListDe = FXCollections.observableArrayList(decrypts);	
+		}
 		decryptedListViewRM.setItems(observableListDe);
 	}
 
@@ -393,7 +404,7 @@ public class CrypterGUI {
 	}
 
 	@FXML
-	void routeManagerWelcome(ActionEvent event) throws IOException {
+	void routeManagerWelcome(ActionEvent event) throws IOException, InterruptedException {
 		loadRouteManager();
 	}
 
@@ -490,7 +501,7 @@ public class CrypterGUI {
 	}
 
 	@FXML
-	void routeManagerMenu(ActionEvent event) throws IOException {
+	void routeManagerMenu(ActionEvent event) throws IOException, InterruptedException {
 		loadRouteManager();
 	}
 
@@ -501,7 +512,7 @@ public class CrypterGUI {
 
 	// CONSOLE METHODS
 	@FXML
-	void encryptByConsole(ActionEvent event) {
+	void encryptByConsole(ActionEvent event) throws IOException {
 		try {
 			if (!textConsole.getText().equals(" ")) {
 				String method = getSelectedMethod();
@@ -511,6 +522,9 @@ public class CrypterGUI {
 						int numberKey = Integer.parseInt(numberKeyCesar.getText());
 						crypter = new Cesar(numberKey, direction);
 						String returnText = crypter.encrypt(textConsole.getText());
+						
+						rm.writeRoute(returnText, true);
+						
 						EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
 							public void handle(DialogEvent e) {
 								try {
@@ -553,7 +567,7 @@ public class CrypterGUI {
 	}
 
 	@FXML
-	void decryptByConsole(ActionEvent event) {
+	void decryptByConsole(ActionEvent event) throws IOException {
 		try {
 			if (!textConsole.getText().equals(" ")) {
 				String method = getSelectedMethod();
@@ -563,6 +577,9 @@ public class CrypterGUI {
 						int numberKey = Integer.parseInt(numberKeyCesar.getText());
 						crypter = new Cesar(numberKey, direction);
 						String returnText = crypter.decrypt(textConsole.getText());
+						
+						rm.writeRoute(returnText, false);
+						
 						EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
 							public void handle(DialogEvent e) {
 								try {

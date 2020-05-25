@@ -20,10 +20,10 @@ public class RouteNode {
 	public RouteNode(String route, LocalDateTime date, boolean type, String text) {
 		this.route = route;
 		this.date = date;
-		this.type= type;
-		this.text= text;
-		nextRoute=null;
-		previousRoute=null;
+		this.type = type;
+		this.text = text;
+		nextRoute = null;
+		previousRoute = null;
 	}
 	
 	public LocalDateTime getDate() {
@@ -55,6 +55,6 @@ public class RouteNode {
 	}
 
 	public void setPrev(RouteNode prev) {
-		nextRoute=prev;
+		previousRoute=prev;
 	}	
 }
