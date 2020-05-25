@@ -1,5 +1,7 @@
 package model;
 
+import exception.WordKeyInvalidException;
+
 public class Vigenere extends Polyalphabetic{	
 
 	private char[][] vigenereMatrix;
@@ -11,9 +13,14 @@ public class Vigenere extends Polyalphabetic{
 	}
 	
 	@Override
-	public String encrypt(String txt) {
-	char[] planeWord=txt.toCharArray();	
+	public String encrypt(String txt) throws WordKeyInvalidException {
+	txt=txt.toLowerCase();
 	String encriptedWord="";
+	if(encriptionKey.length()>txt.length()) {
+		int number=encriptionKey.length()-txt.length();
+		throw new WordKeyInvalidException(encriptionKey, number);
+	}else{
+	char[] planeWord=txt.toCharArray();	
 	int k=0;
 	for (int i = 0; i < planeWord.length; i++) {
 		char currentCharColumn=planeWord[i];
@@ -34,6 +41,7 @@ public class Vigenere extends Polyalphabetic{
 			encriptedWord+="x";
 		}else{
 			encriptedWord+=" ";
+			}
 		}
 	}
 	return encriptedWord;

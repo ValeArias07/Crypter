@@ -579,7 +579,10 @@ public class CrypterGUI {
 		}
 	}
 
-	// SHOW_STAGE METHODS
+	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
+	/**
+	 * Search the Font's list and the height's list
+	 */
 	@FXML
 	void cursiveOption(ActionEvent event) {
 
@@ -646,6 +649,7 @@ public class CrypterGUI {
     		zLetter.setLayoutX(value);
     	}
     }
+    
     public void updateContent(boolean type, int value) {
     	if(type) {
     		aLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
