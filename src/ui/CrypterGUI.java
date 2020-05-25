@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
@@ -34,6 +34,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polyline;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Atbash;
@@ -60,6 +63,19 @@ public class CrypterGUI {
 
     @FXML
     private Label zLetter;
+    
+    private boolean boldB;
+    
+    private boolean italicB;
+    
+    @FXML
+    private CheckBox bold;
+
+    @FXML
+    private CheckBox italic;
+    
+    @FXML
+    private TextField height;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	// WELCOME ATTRIBUTES
 
@@ -156,10 +172,7 @@ public class CrypterGUI {
 	private TextArea textFromText;
 
 	@FXML
-	private ChoiceBox<?> fontChoice;
-
-	@FXML
-	private ChoiceBox<?> heightChoice;
+	private ChoiceBox<String> fontChoice;
 
 	// >>>ATTRIBUTES CLASS
 	private Stage secondStage;
@@ -704,13 +717,8 @@ public class CrypterGUI {
 		}
 	}
 
-<<<<<<< HEAD
-
 	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
 
-=======
-	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
->>>>>>> 9a39e822539f4ba82d6e58b2cf7dc7a3605d4c25
 	private void decryptByConsoleVigenere() throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -761,31 +769,20 @@ public class CrypterGUI {
 	}
 	
 	// SHOW_STAGE METHODS
-<<<<<<< HEAD
-
-=======
 	
-	/**
-	 * Search the Font's list and the height's list
-	 */
-	
->>>>>>> 9a39e822539f4ba82d6e58b2cf7dc7a3605d4c25
 	@FXML
-	void cursiveOption(ActionEvent event) {
-	}
-
-	@FXML
-	void negritaOption(ActionEvent event) {
-		textFromText.setStyle("-fx:"+Font.BOLD);
+    void setChangesText(ActionEvent event) {
 		
-	}
+    }
+    
+    void initializeChoiceBox() {
+    	fontChoice.setItems(FXCollections.observableArrayList("Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"));
+    }
 
-	@FXML
-	void subOption(ActionEvent event) {
+    void changeFont() {
+    
+    }
 
-	}
-	////// .setFont(Font.font("Comic Sans MS", 18));
-	
 	////////////////////////////////////////////////ANIMATIONS//////////////////////////////////////////////////////////////////////////
 	public void updateX(boolean type, double value) {
     	if(type) {

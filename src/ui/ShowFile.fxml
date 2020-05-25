@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -16,36 +19,39 @@
          </font>
       </Label>
       <TextArea fx:id="textFromText" editable="false" layoutX="16.0" layoutY="67.0" prefHeight="166.0" prefWidth="525.0" style="-fx-border-color: #000000;" wrapText="true" />
-      <HBox alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="33.0" prefWidth="430.0">
+      <HBox alignment="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="33.0" prefWidth="525.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="62.0" text="Font :" textFill="WHITE">
+            <Label prefHeight="17.0" prefWidth="38.0" text="Font :" textFill="WHITE">
                <font>
                   <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
             </Label>
-            <ChoiceBox id="Font" fx:id="fontChoice" prefHeight="25.0" prefWidth="157.0" />
-            <Label prefHeight="17.0" prefWidth="62.0" text="  Height:" textFill="WHITE">
+            <ChoiceBox id="Font" fx:id="fontChoice" prefHeight="25.0" prefWidth="117.0" />
+            <Label prefHeight="17.0" prefWidth="55.0" text="  Height:" textFill="WHITE">
                <font>
                   <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
             </Label>
-            <ChoiceBox id="Height" fx:id="heightChoice" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="height" prefHeight="25.0" prefWidth="48.0" />
             <Label prefHeight="17.0" prefWidth="62.0" text="    Style:" textFill="WHITE">
                <font>
                   <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#negritaOption" text="N">
+            <CheckBox fx:id="bold" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Bold" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#cursiveOption" text="K">
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="italic" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Italic" textFill="WHITE">
                <font>
-                  <Font name="System Italic" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#subOption" text="S" underline="true" />
+            </CheckBox>
+            <Button mnemonicParsing="false" onAction="#setChangesText" prefHeight="25.0" prefWidth="55.0" text="Apply" />
          </children>
       </HBox>
    </children>
