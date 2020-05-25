@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import exception.EmptyFieldException;
+import exception.WordKeyInvalidException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +28,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -267,6 +269,7 @@ public class CrypterGUI {
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
+		secondStage.getIcons().add(new Image("images/iconito.png"));
 		secondStage.setTitle("Show file");
 		secondStage.show();
 	}
@@ -456,6 +459,7 @@ public class CrypterGUI {
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
+		secondStage.getIcons().add(new Image("images/iconito.png"));
 		secondStage.setTitle("Console");
 		secondStage.show();
 	}
@@ -480,15 +484,43 @@ public class CrypterGUI {
 		loadMenu();
 	}
 
-	@FXML
-	void deleteFileRM(ActionEvent event) {
-		System.out.println(decryptedListViewRM.getSelectionModel());
-	}
+    @FXML
+    void showFileEnRM(ActionEvent event) throws IOException {
+    	if(encryptedListViewRM.getSelectionModel().getSelectedItem()==null) {
+    		loadAlert(AlertType.WARNING, "NOTHING SELECTED", "please select any route","try again");
+    	}else {
+    		if(encryptedListViewRM.getSelectionModel().getSelectedItem().toString().equals("Empty")) {
+    			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
+    		}else {
+    			loadShowFile();
+    			textFromText.setText(rm.searchRoute(encryptedListViewRM.getSelectionModel().getSelectedItem().toString()));
+    		}
+    	}
+    }
 
-	@FXML
-	void showFileRM(ActionEvent event) throws IOException {
-		loadShowFile();
-	}
+    @FXML
+    void deleteFileEnRM(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deleteFileDeRM(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showFileDeRM(ActionEvent event) throws IOException {
+    	if(decryptedListViewRM.getSelectionModel().getSelectedItem()==null) {
+    		loadAlert(AlertType.WARNING, "NOTHING SELECTED", "please select any route","try again");
+    	}else {
+    		if(decryptedListViewRM.getSelectionModel().getSelectedItem().toString().equals("Empty")) {
+    			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
+    		}else {
+    			loadShowFile();
+    			textFromText.setText(rm.searchRoute(decryptedListViewRM.getSelectionModel().getSelectedItem().toString()));
+    		}
+    	}
+    }
 
 	// MENU METHODS
 	@FXML
@@ -518,7 +550,7 @@ public class CrypterGUI {
 	}
 	
 	@FXML
-	void encryptByConsole(ActionEvent event) throws IOException {
+	void encryptByConsole(ActionEvent event) throws IOException, WordKeyInvalidException {
 		try {
 			if (!textConsole.getText().equals(" ")) {
 				String method = getSelectedMethod();
@@ -540,7 +572,7 @@ public class CrypterGUI {
 		}
 	}
 
-	private void encryptByConsoleCesar() throws IOException{
+	private void encryptByConsoleCesar() throws IOException, WordKeyInvalidException{
 		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
 		try {
 			int numberKey = Integer.parseInt(numberKeyCesar.getText());
@@ -575,31 +607,36 @@ public class CrypterGUI {
 				throw new EmptyFieldException("KEY", "DECRYPT");
 			}else {
 				crypter = new Vigenere(encriptionKey);
-				String returnText = crypter.encrypt(textConsole.getText());
-				
-				writeRoute(returnText, true);
-				
-				EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-					public void handle(DialogEvent e) {
-						try {
-							loadShowFile();
-						} catch (IOException e1) {
-							e1.printStackTrace();
+				String returnText;
+				try {
+					returnText = crypter.encrypt(textConsole.getText());
+					writeRoute(returnText, true);
+					
+					EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+						public void handle(DialogEvent e) {
+							try {
+								loadShowFile();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							textFromText.setText(returnText);
 						}
-						textFromText.setText(returnText);
-					}
-				};
-				loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-						"then the preview will open", e);
+					};
+					loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+							"then the preview will open", e);
+				} catch (WordKeyInvalidException e) {
+					loadAlert(AlertType.WARNING, "ERROR", e.getMessage(), "Try again");
+				}
 			}
 		} catch (EmptyFieldException e) {
 			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
 		}
 	}
 	
-	private void encryptByConsoleAtbash() throws IOException{
+	private void encryptByConsoleAtbash() throws IOException, WordKeyInvalidException{
 		crypter = new Atbash();
-		String returnText = crypter.encrypt(textConsole.getText());
+		String returnText;
+		returnText = crypter.encrypt(textConsole.getText());
 		
 		writeRoute(returnText, true);
 		
@@ -667,9 +704,13 @@ public class CrypterGUI {
 		}
 	}
 
+<<<<<<< HEAD
 
 	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
 
+=======
+	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
+>>>>>>> 9a39e822539f4ba82d6e58b2cf7dc7a3605d4c25
 	private void decryptByConsoleVigenere() throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -720,7 +761,15 @@ public class CrypterGUI {
 	}
 	
 	// SHOW_STAGE METHODS
+<<<<<<< HEAD
 
+=======
+	
+	/**
+	 * Search the Font's list and the height's list
+	 */
+	
+>>>>>>> 9a39e822539f4ba82d6e58b2cf7dc7a3605d4c25
 	@FXML
 	void cursiveOption(ActionEvent event) {
 	}

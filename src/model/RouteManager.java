@@ -9,10 +9,17 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class RouteManager{
+<<<<<<< HEAD
 
 	private int actualNumberEncrypt;
 	private int actualNumberDecrypt;
 
+=======
+	
+	private int actualNumberEncrypt;
+	private int actualNumberDecrypt;
+	
+>>>>>>> 9a39e822539f4ba82d6e58b2cf7dc7a3605d4c25
 	private RoutesList routeList;
 	
 	public RouteManager() {
@@ -25,7 +32,7 @@ public class RouteManager{
 			return routeList.getRoutes(type);	
 	}
 	
-	public String searchRoute(String route,  boolean type){
+	public String searchRoute(String route){
 		return routeList.search(route);
 	}
 	

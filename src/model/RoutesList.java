@@ -15,7 +15,8 @@ public class RoutesList {
 		LocalDateTime time= LocalDateTime.now();
 		RouteNode node= new RouteNode(route,time, type, text);
 		if(firstRouteNode!=null) {
-			RouteNode current = searchLast(firstRouteNode);
+			RouteNode aux = firstRouteNode;
+			RouteNode current = searchLast(aux);
 			current.setNext(node);
 			current.getNext().setPrev(current);
 		}else {
@@ -41,10 +42,11 @@ public class RoutesList {
 	}
 	*/
 	public String search(String route) {
-	if(firstRouteNode!=null) {
-		return search(firstRouteNode, route);
-	}
-	return null;
+		if(firstRouteNode!=null) {
+			return search(firstRouteNode, route);
+		}else {
+			return null;
+		}
 	}
 	
 	private String search(RouteNode current, String route) {
@@ -52,7 +54,7 @@ public class RoutesList {
 			return current.getText();
 		}else{
 			if(current.getNext()!=null)
-			search(current.getNext(), route);
+			return search(current.getNext(), route);
 		}
 		return null;
 	}
@@ -75,6 +77,7 @@ public class RoutesList {
 			/////When current is the first node	
 			}else if(current.getPrev()==null) {
 				current.getNext().setPrev(null);
+				firstRouteNode = firstRouteNode.getNext();
 				
 			/////When current is the last one 
 			}else if(current.getNext()==null){
@@ -112,6 +115,10 @@ public class RoutesList {
 			return getRoutes(current.getNext(), type,list);
 			else
 				return list;
+	}
+	
+	public RouteNode getFirst() {
+		return firstRouteNode;
 	}
 }
 
