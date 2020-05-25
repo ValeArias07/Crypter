@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import exception.EmptyFieldException;
+import exception.WordKeyInvalidException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -548,7 +549,7 @@ public class CrypterGUI {
 	}
 	
 	@FXML
-	void encryptByConsole(ActionEvent event) throws IOException {
+	void encryptByConsole(ActionEvent event) throws IOException, WordKeyInvalidException {
 		try {
 			if (!textConsole.getText().equals(" ")) {
 				String method = getSelectedMethod();
@@ -570,7 +571,7 @@ public class CrypterGUI {
 		}
 	}
 
-	private void encryptByConsoleCesar() throws IOException{
+	private void encryptByConsoleCesar() throws IOException, WordKeyInvalidException{
 		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
 		try {
 			int numberKey = Integer.parseInt(numberKeyCesar.getText());
@@ -605,31 +606,36 @@ public class CrypterGUI {
 				throw new EmptyFieldException("KEY", "DECRYPT");
 			}else {
 				crypter = new Vigenere(encriptionKey);
-				String returnText = crypter.encrypt(textConsole.getText());
-				
-				writeRoute(returnText, true);
-				
-				EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-					public void handle(DialogEvent e) {
-						try {
-							loadShowFile();
-						} catch (IOException e1) {
-							e1.printStackTrace();
+				String returnText;
+				try {
+					returnText = crypter.encrypt(textConsole.getText());
+					writeRoute(returnText, true);
+					
+					EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+						public void handle(DialogEvent e) {
+							try {
+								loadShowFile();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							textFromText.setText(returnText);
 						}
-						textFromText.setText(returnText);
-					}
-				};
-				loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-						"then the preview will open", e);
+					};
+					loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+							"then the preview will open", e);
+				} catch (WordKeyInvalidException e) {
+					loadAlert(AlertType.WARNING, "ERROR", e.getMessage(), "Try again");
+				}
 			}
 		} catch (EmptyFieldException e) {
 			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
 		}
 	}
 	
-	private void encryptByConsoleAtbash() throws IOException{
+	private void encryptByConsoleAtbash() throws IOException, WordKeyInvalidException{
 		crypter = new Atbash();
-		String returnText = crypter.encrypt(textConsole.getText());
+		String returnText;
+		returnText = crypter.encrypt(textConsole.getText());
 		
 		writeRoute(returnText, true);
 		
@@ -697,12 +703,7 @@ public class CrypterGUI {
 		}
 	}
 
-<<<<<<< HEAD
 	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
-	/**
-	 * Search the Font's list and the height's list
-	 */
-=======
 	private void decryptByConsoleVigenere() throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -753,7 +754,11 @@ public class CrypterGUI {
 	}
 	
 	// SHOW_STAGE METHODS
->>>>>>> fa2dabe6ecab2d73d9d5040ee9f3ea0458c552d9
+	
+	/**
+	 * Search the Font's list and the height's list
+	 */
+	
 	@FXML
 	void cursiveOption(ActionEvent event) {
 

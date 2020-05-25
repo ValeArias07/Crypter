@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import exception.WordKeyInvalidException;
+
 public class VigenereTest {
 
 	private Vigenere vigenere;
@@ -29,7 +31,7 @@ public class VigenereTest {
 	}
 	
 	@Test
-	void encrypt() {
+	void encrypt() throws WordKeyInvalidException {
 		setUp1();
 		String message="niño-";
 		assertEquals("ywxi-",vigenere.encrypt(message));
