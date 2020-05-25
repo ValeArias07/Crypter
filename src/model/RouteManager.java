@@ -25,7 +25,7 @@ public class RouteManager{
 			return routeList.getRoutes(type);	
 	}
 	
-	public String searchRoute(String route,  boolean type){
+	public String searchRoute(String route){
 		return routeList.search(route);
 	}
 	

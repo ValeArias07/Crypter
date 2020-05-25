@@ -26,6 +26,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -266,6 +267,7 @@ public class CrypterGUI {
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
+		secondStage.getIcons().add(new Image("images/iconito.png"));
 		secondStage.setTitle("Show file");
 		secondStage.show();
 	}
@@ -455,6 +457,7 @@ public class CrypterGUI {
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
+		secondStage.getIcons().add(new Image("images/iconito.png"));
 		secondStage.setTitle("Console");
 		secondStage.show();
 	}
@@ -479,15 +482,43 @@ public class CrypterGUI {
 		loadMenu();
 	}
 
-	@FXML
-	void deleteFileRM(ActionEvent event) {
-		System.out.println(decryptedListViewRM.getSelectionModel());
-	}
+    @FXML
+    void showFileEnRM(ActionEvent event) throws IOException {
+    	if(encryptedListViewRM.getSelectionModel().getSelectedItem()==null) {
+    		loadAlert(AlertType.WARNING, "NOTHING SELECTED", "please select any route","try again");
+    	}else {
+    		if(encryptedListViewRM.getSelectionModel().getSelectedItem().toString().equals("Empty")) {
+    			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
+    		}else {
+    			loadShowFile();
+    			textFromText.setText(rm.searchRoute(encryptedListViewRM.getSelectionModel().getSelectedItem().toString()));
+    		}
+    	}
+    }
 
-	@FXML
-	void showFileRM(ActionEvent event) throws IOException {
-		loadShowFile();
-	}
+    @FXML
+    void deleteFileEnRM(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deleteFileDeRM(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showFileDeRM(ActionEvent event) throws IOException {
+    	if(decryptedListViewRM.getSelectionModel().getSelectedItem()==null) {
+    		loadAlert(AlertType.WARNING, "NOTHING SELECTED", "please select any route","try again");
+    	}else {
+    		if(decryptedListViewRM.getSelectionModel().getSelectedItem().toString().equals("Empty")) {
+    			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
+    		}else {
+    			loadShowFile();
+    			textFromText.setText(rm.searchRoute(decryptedListViewRM.getSelectionModel().getSelectedItem().toString()));
+    		}
+    	}
+    }
 
 	// MENU METHODS
 	@FXML
