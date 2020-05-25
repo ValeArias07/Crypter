@@ -85,17 +85,17 @@ public class RoutesList {
 	}
 	
 	
-	public ArrayList <RouteNode> getRoutes(boolean type) {
+	public ArrayList <String> getRoutes(boolean type) {
 		if(firstRouteNode!=null) {
-			ArrayList <RouteNode> list= new ArrayList <RouteNode>();
+			ArrayList <String> list= new ArrayList <String>();
 			return getRoutes(firstRouteNode, type, list);
 		}
 		return null;
 	}
 	
-	private ArrayList <RouteNode> getRoutes(RouteNode current, boolean type, ArrayList <RouteNode> list){
+	private ArrayList <String> getRoutes(RouteNode current, boolean type, ArrayList <String> list){
 		if(current.getType()==type) {
-			list.add(current);
+			list.add(current.getRoute());
 		}
 		
 		if(current.getNext()!=null) 

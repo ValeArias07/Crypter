@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import exception.EmptyFieldException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,6 +34,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Cesar;
 import model.Crypter;
+import model.RouteManager;
+import model.RouteNode;
 
 public class CrypterGUI {
 	
@@ -107,10 +111,10 @@ public class CrypterGUI {
 
 	// ROUTE_MANAGER ATTRIBUTES
 	@FXML
-	private ListView<?> encryptedListViewRM;
+	private ListView<String> encryptedListViewRM;
 
 	@FXML
-	private ListView<?> decryptedListViewRM;
+	private ListView<String> decryptedListViewRM;
 
 	// <<<SUB WINDOWS>>>
 	// CESAR_WINDOW ATTRIBUTES
@@ -160,6 +164,13 @@ public class CrypterGUI {
 		secondStage = new Stage();
 	}
 
+	//RELATIONS
+	private RouteManager rm;
+	
+	public CrypterGUI (RouteManager rm) {
+		this.rm = rm;
+	}
+	
 	/// >>>METHODS CLASS
 
 	// ---// LOADS
@@ -192,8 +203,19 @@ public class CrypterGUI {
 		setTypeSettings();
 	}
 
-	private void loadRouteManager() throws IOException {
+	private void loadRouteManager() throws IOException, InterruptedException {
 		load("RouteManager.fxml");
+		initializeListViews();
+	}
+	
+	private void initializeListViews() throws InterruptedException {
+		ObservableList<String> observableListEn;
+    	observableListEn = FXCollections.observableArrayList(rm.getRoutes(true));
+		encryptedListViewRM.setItems(observableListEn);
+		
+		ObservableList<String> observableListDe;
+    	observableListDe = FXCollections.observableArrayList(rm.getRoutes(false));
+		decryptedListViewRM.setItems(observableListDe);
 	}
 
 	private void loadMenu() throws IOException {
@@ -393,7 +415,7 @@ public class CrypterGUI {
 
 	@FXML
 	void encryptByFile(ActionEvent event) {
-
+		
 	}
 
 	@FXML
@@ -436,6 +458,8 @@ public class CrypterGUI {
 
 		if (file != null)
 			fileRoute.setText(file.getAbsolutePath());
+		
+		
 	}
 
 	// ROUTE_MANAGER METHODS

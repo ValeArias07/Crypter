@@ -9,7 +9,7 @@ public class RouteManager{
 		routeList= new RoutesList();
 	}
 
-	public ArrayList <RouteNode> getRoutes(boolean type) throws InterruptedException {
+	public ArrayList <String> getRoutes(boolean type) throws InterruptedException {
 			return routeList.getRoutes(type);	
 	}
 	
