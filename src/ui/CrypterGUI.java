@@ -704,13 +704,6 @@ public class CrypterGUI {
 		}
 	}
 
-<<<<<<< HEAD
-
-	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
-
-=======
-	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
->>>>>>> 9a39e822539f4ba82d6e58b2cf7dc7a3605d4c25
 	private void decryptByConsoleVigenere() throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -761,15 +754,7 @@ public class CrypterGUI {
 	}
 	
 	// SHOW_STAGE METHODS
-<<<<<<< HEAD
 
-=======
-	
-	/**
-	 * Search the Font's list and the height's list
-	 */
-	
->>>>>>> 9a39e822539f4ba82d6e58b2cf7dc7a3605d4c25
 	@FXML
 	void cursiveOption(ActionEvent event) {
 	}
