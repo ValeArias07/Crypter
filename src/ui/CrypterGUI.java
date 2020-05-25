@@ -717,8 +717,11 @@ public class CrypterGUI {
 		}
 	}
 
+<<<<<<< HEAD
 	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
 
+=======
+>>>>>>> 58b2dd942b3f94588b52cc4a564514a4eb6d9ac5
 	private void decryptByConsoleVigenere() throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -769,7 +772,15 @@ public class CrypterGUI {
 	}
 	
 	// SHOW_STAGE METHODS
+<<<<<<< HEAD
 	
+=======
+
+	@FXML
+	void cursiveOption(ActionEvent event) {
+	}
+
+>>>>>>> 58b2dd942b3f94588b52cc4a564514a4eb6d9ac5
 	@FXML
     void setChangesText(ActionEvent event) {
 		
