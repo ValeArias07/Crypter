@@ -523,7 +523,7 @@ public class CrypterGUI {
 						crypter = new Cesar(numberKey, direction);
 						String returnText = crypter.encrypt(textConsole.getText());
 						
-						rm.writeRoute(returnText, true);
+						rm.writeRoute(returnText, true);//////////////////////////
 						
 						EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
 							public void handle(DialogEvent e) {
@@ -542,21 +542,15 @@ public class CrypterGUI {
 						loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
 								"Please, type a number the next time");
 					}
-				} else {
-					if (method.equals("AES")) {
+				} else if (method.equals("AES")) {
 						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
 								"We are sorry");
-					} else {
-						if (method.equals("VIGENERE")) {
-							loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+				} else if (method.equals("VIGENERE")) {
+						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+								"We are sorry");
+				} else if (method.equals("ATBASH")) {
+						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
 									"We are sorry");
-						} else {
-							if (method.equals("ATBASH")) {
-								loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
-										"We are sorry");
-							}
-						}
-					}
 				}
 			} else {
 				throw new EmptyFieldException("CONSOLE", "ENCRYPT");
@@ -596,21 +590,15 @@ public class CrypterGUI {
 						loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
 								"Please, type a number the next time");
 					}
-				} else {
-					if (method.equals("AES")) {
+				} else if (method.equals("AES")) {
 						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
 								"We are sorry");
-					} else {
-						if (method.equals("VIGENERE")) {
-							loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
-									"We are sorry");
-						} else {
-							if (method.equals("ATBASH")) {
-								loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
-										"We are sorry");
-							}
-						}
-					}
+				} else if (method.equals("VIGENERE")) {
+						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+								"We are sorry");
+				} else if (method.equals("ATBASH")) {
+						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+								"We are sorry");
 				}
 			} else {
 				throw new EmptyFieldException("CONSOLE", "DECRYPT");
