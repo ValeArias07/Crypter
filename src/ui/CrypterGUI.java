@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -666,12 +667,9 @@ public class CrypterGUI {
 		}
 	}
 
-<<<<<<< HEAD
+
 	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
-	/**
-	 * Search the Font's list and the height's list
-	 */
-=======
+
 	private void decryptByConsoleVigenere() throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -722,21 +720,22 @@ public class CrypterGUI {
 	}
 	
 	// SHOW_STAGE METHODS
->>>>>>> fa2dabe6ecab2d73d9d5040ee9f3ea0458c552d9
+
 	@FXML
 	void cursiveOption(ActionEvent event) {
-
 	}
 
 	@FXML
 	void negritaOption(ActionEvent event) {
-
+		textFromText.setStyle("-fx:"+Font.BOLD);
+		
 	}
 
 	@FXML
 	void subOption(ActionEvent event) {
 
 	}
+	////// .setFont(Font.font("Comic Sans MS", 18));
 	
 	////////////////////////////////////////////////ANIMATIONS//////////////////////////////////////////////////////////////////////////
 	public void updateX(boolean type, double value) {
