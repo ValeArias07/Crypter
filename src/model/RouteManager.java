@@ -29,32 +29,38 @@ public class RouteManager{
 		return routeList.search(route);
 	}
 	
-	public void addRoute(String route, String text, boolean type) {
-		routeList.add(route, type, text);
-	}
-	
-	public RouteNode deleteRoute(String route, boolean type) {
-		return routeList.delete(route);
-	}
-
-	public String readRoute(String route) {
+	public void addRoute(String route, boolean type, String text) throws IOException {		
 		try {
-			FileReader fl = new FileReader(route);
-			BufferedReader br = new BufferedReader(fl);
-			String re = br.readLine();
-			br.close();
+			String name;
+			String aux[] = route.split("\\\\");
 			
-			return re;
+			if(type) {
+				name = "Encrypt-" + aux[aux.length-1];
+				actualNumberEncrypt++;
+			}else {
+				name = "Decrypt-"+ aux[aux.length-1];
+				actualNumberDecrypt++;
+			}
+			
+			File file = new File("data/"+name);
+			
+			if(!file.exists()) {
+				file.createNewFile();
+			}
+			
+			PrintWriter pr = new PrintWriter(file);
+			
+			pr.println(text);
+			
+			pr.close();
+			
+			routeList.add("data/"+name, type, text);
 		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (IOException io) {
-			System.out.println(io.getMessage());
+			e.printStackTrace();
 		}
-		
-		return null;
 	}
 	
-	public void writeRoute(String text, boolean type) throws IOException{
+	public void addRoute(boolean type, String text) throws IOException {
 		try {
 			String name;
 			if(type) {
@@ -76,10 +82,36 @@ public class RouteManager{
 			pr.println(text);
 			
 			pr.close();
-			
-			addRoute("data/"+name+".txt", text, type);
+			routeList.add("data/"+name+".txt", type, text);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void deleteRoute(String route) {
+		routeList.delete(route);
+		
+		File file = new File(route);
+		
+		if(file.exists()) {
+			file.delete();
+		}
+	}
+
+	public String readRoute(String route) {
+		try {
+			FileReader fl = new FileReader(route);
+			BufferedReader br = new BufferedReader(fl);
+			String re = br.readLine();
+			br.close();
+			
+			return re;
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch (IOException io) {
+			System.out.println(io.getMessage());
+		}
+		
+		return null;
 	}
 }

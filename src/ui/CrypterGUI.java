@@ -39,7 +39,6 @@ import model.Atbash;
 import model.Cesar;
 import model.Crypter;
 import model.RouteManager;
-import model.RouteNode;
 import model.Vigenere;
 
 public class CrypterGUI {
@@ -218,14 +217,14 @@ public class CrypterGUI {
 		ObservableList<String> observableListEn;
 		ObservableList<String> observableListDe;
 		
-		if(encrypts==null) {
+		if(encrypts==null || encrypts.isEmpty()) {
 			observableListEn = FXCollections.observableArrayList("Empty");		
 		}else {
 			observableListEn = FXCollections.observableArrayList(encrypts);	
 		}
 		encryptedListViewRM.setItems(observableListEn);
 		
-		if(decrypts==null) {
+		if(decrypts==null || decrypts.isEmpty()) {
 			observableListDe = FXCollections.observableArrayList("Empty");		
 		}else {
 			observableListDe = FXCollections.observableArrayList(decrypts);	
@@ -376,6 +375,184 @@ public class CrypterGUI {
 
 		return null;
 	}
+	
+	//ENCRYPT-DECRYPT LOGIC METHODS
+	private void encryptCesar(String text, String route) throws IOException, WordKeyInvalidException{
+		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
+		try {
+			int numberKey = Integer.parseInt(numberKeyCesar.getText());
+			crypter = new Cesar(numberKey, direction);
+			String returnText = crypter.encrypt(text);
+			
+			if(route==null)
+				rm.addRoute(true, returnText);
+			else 
+				rm.addRoute(route, true, returnText);
+			
+			EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+				public void handle(DialogEvent e) {
+					try {
+						loadShowFile();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					textFromText.setText(returnText);
+				}
+			};
+			loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+					"then the preview will open", e);
+
+		} catch (NumberFormatException e) {
+			loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
+					"Please, type a number the next time");
+		}
+	}
+	
+	private void encryptVigenere(String text, String route) throws IOException {
+		try {
+			String encriptionKey = wordKeyVigenere_AES.getText();
+			if(encriptionKey.equals("")) {
+				throw new EmptyFieldException("KEY", "DECRYPT");
+			}else {
+				crypter = new Vigenere(encriptionKey);
+				String returnText;
+				try {
+					returnText = crypter.encrypt(text);
+					
+					if(route==null)
+						rm.addRoute(true, returnText);
+					else 
+						rm.addRoute(route, true, returnText);
+					
+					EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+						public void handle(DialogEvent e) {
+							try {
+								loadShowFile();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							textFromText.setText(returnText);
+						}
+					};
+					loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+							"then the preview will open", e);
+				} catch (WordKeyInvalidException e) {
+					loadAlert(AlertType.WARNING, "ERROR", e.getMessage(), "Try again");
+				}
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
+		}
+	}
+	
+	private void encryptAtbash(String text, String route) throws IOException, WordKeyInvalidException{
+		crypter = new Atbash();
+		String returnText;
+		returnText = crypter.encrypt(text);
+		
+		if(route==null)
+			rm.addRoute(true, returnText);
+		else 
+			rm.addRoute(route, true, returnText);
+		
+		EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+			public void handle(DialogEvent e) {
+				try {
+					loadShowFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				textFromText.setText(returnText);
+			}
+		};
+		loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+				"then the preview will open", e);
+	}
+	
+	private void decryptCesar(String text, String route) throws IOException {
+		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
+		try {
+			int numberKey = Integer.parseInt(numberKeyCesar.getText());
+			crypter = new Cesar(numberKey, direction);
+			String returnText = crypter.decrypt(text);
+			
+			if(route==null)
+				rm.addRoute(false, returnText);
+			else 
+				rm.addRoute(route, false, returnText);
+			
+			EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+				public void handle(DialogEvent e) {
+					try {
+						loadShowFile();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					textFromText.setText(returnText);
+				}
+			};
+			loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+					"then the preview will open", e);
+		} catch (NumberFormatException e) {
+			loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
+					"Please, type a number the next time");
+		}
+	}
+
+	private void decryptVigenere(String text, String route) throws IOException {
+		try {
+			String encriptionKey = wordKeyVigenere_AES.getText();
+			if(encriptionKey.equals("")) {
+				throw new EmptyFieldException("KEY", "DECRYPT");
+			}else {
+				crypter = new Vigenere(encriptionKey);
+				String returnText = crypter.decrypt(text);
+				
+				if(route==null)
+					rm.addRoute(false, returnText);
+				else 
+					rm.addRoute(route, false, returnText);
+				
+				EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+					public void handle(DialogEvent e) {
+						try {
+							loadShowFile();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						textFromText.setText(returnText);
+					}
+				};
+				loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+						"then the preview will open", e);
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
+		}
+	}
+	
+	private void decryptAtbash(String text, String route) throws IOException {
+		crypter = new Atbash();
+		String returnText = crypter.decrypt(text);
+		
+		if(route==null)
+			rm.addRoute(false, returnText);
+		else 
+			rm.addRoute(route, false, returnText);		
+		
+		EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+			public void handle(DialogEvent e) {
+				try {
+					loadShowFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				textFromText.setText(returnText);
+			}
+		};
+		loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+				"then the preview will open", e);
+	}
 
 	// WELCOME METHODS
 	@FXML
@@ -430,13 +607,53 @@ public class CrypterGUI {
 	}
 
 	@FXML
-	void encryptByFile(ActionEvent event) {
-		
+	void encryptByFile(ActionEvent event) throws IOException, WordKeyInvalidException {
+		String route = fileRoute.getText();
+		try {
+			if (!route.equals("")) {
+				String text = rm.readRoute(route);
+				String method = getSelectedMethod();
+				if (method.equals("CESAR")) {
+					encryptCesar(text, route);
+				} else if (method.equals("AES")) {
+					loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+							"We are sorry");
+				} else if (method.equals("VIGENERE")) {
+					encryptVigenere(text, route);
+				} else if (method.equals("ATBASH")) {
+					encryptAtbash(text, route);
+				}
+			} else {
+				throw new EmptyFieldException("ROUTE FIELD", "ENCRYPT");
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try select something");
+		}
 	}
 
 	@FXML
-	void decryptByFile(ActionEvent event) {
-
+	void decryptByFile(ActionEvent event) throws IOException {
+		String route = fileRoute.getText();
+		try {
+			if (!route.equals("")) {
+				String text = rm.readRoute(route);
+				String method = getSelectedMethod();
+				if (method.equals("CESAR")) {
+					decryptCesar(text, route);
+				} else if (method.equals("AES")) {
+					loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
+							"We are sorry");
+				} else if (method.equals("VIGENERE")) {
+					decryptVigenere(text, route);
+				} else if (method.equals("ATBASH")) {
+					decryptAtbash(text, route);
+				}
+			} else {
+				throw new EmptyFieldException("ROUTE FIELD", "ENCRYPT");
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try select something");
+		}
 	}
 
 	@FXML
@@ -498,13 +715,31 @@ public class CrypterGUI {
     }
 
     @FXML
-    void deleteFileEnRM(ActionEvent event) {
-
+    void deleteFileEnRM(ActionEvent event) throws InterruptedException {
+    	if(encryptedListViewRM.getSelectionModel().getSelectedItem()==null) {
+    		loadAlert(AlertType.WARNING, "NOTHING SELECTED", "please select any route","try again");
+    	}else {
+    		if(encryptedListViewRM.getSelectionModel().getSelectedItem().toString().equals("Empty")) {
+    			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
+    		}else {
+    			rm.deleteRoute(encryptedListViewRM.getSelectionModel().getSelectedItem().toString());
+    			initializeListViews();
+    		}
+    	}
     }
 
     @FXML
-    void deleteFileDeRM(ActionEvent event) {
-
+    void deleteFileDeRM(ActionEvent event) throws InterruptedException {
+    	if(decryptedListViewRM.getSelectionModel().getSelectedItem()==null) {
+    		loadAlert(AlertType.WARNING, "NOTHING SELECTED", "please select any route","try again");
+    	}else {
+    		if(decryptedListViewRM.getSelectionModel().getSelectedItem().toString().equals("Empty")) {
+    			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
+    		}else {
+    			rm.deleteRoute(decryptedListViewRM.getSelectionModel().getSelectedItem().toString());
+    			initializeListViews();
+    		}
+    	}
     }
 
     @FXML
@@ -543,25 +778,21 @@ public class CrypterGUI {
 	}
 
 	// CONSOLE METHODS
-	
-	private void writeRoute(String text, boolean type) throws IOException {
-		rm.writeRoute(text, type);
-	}
-	
 	@FXML
 	void encryptByConsole(ActionEvent event) throws IOException, WordKeyInvalidException {
 		try {
 			if (!textConsole.getText().equals(" ")) {
+				String text = textConsole.getText();
 				String method = getSelectedMethod();
 				if (method.equals("CESAR")) {
-					encryptByConsoleCesar();
+					encryptCesar(text, null);
 				} else if (method.equals("AES")) {
 						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
 								"We are sorry");
 				} else if (method.equals("VIGENERE")) {
-					encryptByConsoleVigenere();
+					encryptVigenere(text, null);
 				} else if (method.equals("ATBASH")) {
-					encryptByConsoleAtbash();
+					encryptAtbash(text, null);
 				}
 			} else {
 				throw new EmptyFieldException("CONSOLE", "ENCRYPT");
@@ -570,103 +801,22 @@ public class CrypterGUI {
 			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
 		}
 	}
-
-	private void encryptByConsoleCesar() throws IOException, WordKeyInvalidException{
-		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
-		try {
-			int numberKey = Integer.parseInt(numberKeyCesar.getText());
-			crypter = new Cesar(numberKey, direction);
-			String returnText = crypter.encrypt(textConsole.getText());
-			
-			writeRoute(returnText, true);
-			
-			EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-				public void handle(DialogEvent e) {
-					try {
-						loadShowFile();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					textFromText.setText(returnText);
-				}
-			};
-			loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-					"then the preview will open", e);
-
-		} catch (NumberFormatException e) {
-			loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
-					"Please, type a number the next time");
-		}
-	}
-	
-	private void encryptByConsoleVigenere() throws IOException {
-		try {
-			String encriptionKey = wordKeyVigenere_AES.getText();
-			if(encriptionKey.equals("")) {
-				throw new EmptyFieldException("KEY", "DECRYPT");
-			}else {
-				crypter = new Vigenere(encriptionKey);
-				String returnText;
-				try {
-					returnText = crypter.encrypt(textConsole.getText());
-					writeRoute(returnText, true);
-					
-					EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-						public void handle(DialogEvent e) {
-							try {
-								loadShowFile();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-							textFromText.setText(returnText);
-						}
-					};
-					loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-							"then the preview will open", e);
-				} catch (WordKeyInvalidException e) {
-					loadAlert(AlertType.WARNING, "ERROR", e.getMessage(), "Try again");
-				}
-			}
-		} catch (EmptyFieldException e) {
-			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
-		}
-	}
-	
-	private void encryptByConsoleAtbash() throws IOException, WordKeyInvalidException{
-		crypter = new Atbash();
-		String returnText;
-		returnText = crypter.encrypt(textConsole.getText());
-		
-		writeRoute(returnText, true);
-		
-		EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-			public void handle(DialogEvent e) {
-				try {
-					loadShowFile();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				textFromText.setText(returnText);
-			}
-		};
-		loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-				"then the preview will open", e);
-	}
 	
 	@FXML
 	void decryptByConsole(ActionEvent event) throws IOException {
 		try {
 			if (!textConsole.getText().equals(" ")) {
+				String text = textConsole.getText();
 				String method = getSelectedMethod();
 				if (method.equals("CESAR")) {
-					decryptByConsoleCesar();
+					decryptCesar(text, null);
 				} else if (method.equals("AES")) {
 						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
 								"We are sorry");
 				} else if (method.equals("VIGENERE")) {
-					decryptByConsoleVigenere();
+					decryptVigenere(text, null);
 				} else if (method.equals("ATBASH")) {
-					decryptByConsoleAtbash();
+					decryptAtbash(text, null);
 				}
 			} else {
 				throw new EmptyFieldException("CONSOLE", "DECRYPT");
@@ -674,83 +824,6 @@ public class CrypterGUI {
 		} catch (EmptyFieldException e) {
 			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
 		}
-	}
-	
-	private void decryptByConsoleCesar() throws IOException {
-		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
-		try {
-			int numberKey = Integer.parseInt(numberKeyCesar.getText());
-			crypter = new Cesar(numberKey, direction);
-			String returnText = crypter.decrypt(textConsole.getText());
-			
-			writeRoute(returnText, false);
-			
-			EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-				public void handle(DialogEvent e) {
-					try {
-						loadShowFile();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					textFromText.setText(returnText);
-				}
-			};
-			loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-					"then the preview will open", e);
-		} catch (NumberFormatException e) {
-			loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
-					"Please, type a number the next time");
-		}
-	}
-
-	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
-	private void decryptByConsoleVigenere() throws IOException {
-		try {
-			String encriptionKey = wordKeyVigenere_AES.getText();
-			if(encriptionKey.equals("")) {
-				throw new EmptyFieldException("KEY", "DECRYPT");
-			}else {
-				crypter = new Vigenere(encriptionKey);
-				String returnText = crypter.decrypt(textConsole.getText());
-				
-				writeRoute(returnText, false);
-				
-				EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-					public void handle(DialogEvent e) {
-						try {
-							loadShowFile();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-						textFromText.setText(returnText);
-					}
-				};
-				loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-						"then the preview will open", e);
-			}
-		} catch (EmptyFieldException e) {
-			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
-		}
-	}
-	
-	private void decryptByConsoleAtbash() throws IOException {
-		crypter = new Atbash();
-		String returnText = crypter.decrypt(textConsole.getText());
-		
-		writeRoute(returnText, false);
-		
-		EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-			public void handle(DialogEvent e) {
-				try {
-					loadShowFile();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				textFromText.setText(returnText);
-			}
-		};
-		loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-				"then the preview will open", e);
 	}
 	
 	// SHOW_STAGE METHODS
