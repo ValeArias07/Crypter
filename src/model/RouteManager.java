@@ -6,9 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RouteManager{
+@SuppressWarnings("serial")
+public class RouteManager implements Serializable {
 
 	private int actualNumberEncrypt;
 	private int actualNumberDecrypt;

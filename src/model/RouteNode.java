@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class RouteNode {
+@SuppressWarnings("serial")
+public class RouteNode implements Serializable{
 
 	private String route;
 	private LocalDateTime date;
