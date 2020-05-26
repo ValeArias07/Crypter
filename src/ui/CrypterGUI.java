@@ -717,11 +717,8 @@ public class CrypterGUI {
 		}
 	}
 
-<<<<<<< HEAD
 	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
 
-=======
->>>>>>> 58b2dd942b3f94588b52cc4a564514a4eb6d9ac5
 	private void decryptByConsoleVigenere() throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -772,26 +769,51 @@ public class CrypterGUI {
 	}
 	
 	// SHOW_STAGE METHODS
-<<<<<<< HEAD
-	
-=======
 
-	@FXML
-	void cursiveOption(ActionEvent event) {
-	}
-
->>>>>>> 58b2dd942b3f94588b52cc4a564514a4eb6d9ac5
 	@FXML
     void setChangesText(ActionEvent event) {
-		
+		if(bold.isSelected() && italic.isSelected()) {
+			textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, FontPosture.ITALIC,textFromText.getFont().getSize())); 
+		}else if(bold.isSelected()){
+			textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, textFromText.getFont().getSize()));
+		}else if (italic.isSelected()){
+			textFromText.setFont(Font.font(textFromText.getFont().getFamily(), FontPosture.ITALIC, textFromText.getFont().getSize())); 
+		}
+		changeFont();
+		changeHeight();
     }
+	
+	public void changeHeight(){
+		try {
+			int number =Integer.parseInt(height.getText());
+		    textFromText.setFont(Font.font(number)); 
+		    }catch(NumberFormatException a) {
+		    	Alert alert= new Alert(AlertType.ERROR);
+		    	alert.setContentText("You must write a number");
+		    	alert.setTitle("ERROR");
+		    	alert.show();
+		    }
+		}
     
     void initializeChoiceBox() {
     	fontChoice.setItems(FXCollections.observableArrayList("Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"));
     }
 
     void changeFont() {
-    
+    	
+    	String[] options= {"Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"};
+    	
+    	if(fontChoice.getSelectionModel().getSelectedIndex()==0) {
+    		textFromText.setFont(Font.font(options[0])); 
+    	}else if (fontChoice.getSelectionModel().getSelectedIndex()==1) {
+    		textFromText.setFont(Font.font(options[1]));
+    	}else if(fontChoice.getSelectionModel().getSelectedIndex()==2) {
+    		textFromText.setFont(Font.font(options[2]));
+    	}else if(fontChoice.getSelectionModel().getSelectedIndex()==3) {
+    		textFromText.setFont(Font.font(options[3]));
+    	}else {
+    		textFromText.setFont(Font.font(options[4]));
+    	}
     }
 
 	////////////////////////////////////////////////ANIMATIONS//////////////////////////////////////////////////////////////////////////

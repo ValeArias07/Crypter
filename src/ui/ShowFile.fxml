@@ -40,7 +40,7 @@
             </Label>
             <CheckBox fx:id="bold" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Bold" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
                <padding>
                   <Insets right="3.0" />
@@ -48,10 +48,13 @@
             </CheckBox>
             <CheckBox fx:id="italic" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Italic" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Book Antiqua Bold Italic" size="12.0" />
                </font>
             </CheckBox>
-            <Button mnemonicParsing="false" onAction="#setChangesText" prefHeight="25.0" prefWidth="55.0" text="Apply" />
+            <Button mnemonicParsing="false" onAction="#setChangesText" prefHeight="25.0" prefWidth="55.0" text="Apply">
+               <font>
+                  <Font name="Book Antiqua Bold Italic" size="12.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>
