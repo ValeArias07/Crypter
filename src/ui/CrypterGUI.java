@@ -273,7 +273,7 @@ public class CrypterGUI {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShowFile.fxml"));
 		fxmlLoader.setController(this);
 		Parent parent = fxmlLoader.load();
-
+		initializeChoiceBox();
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
@@ -281,6 +281,10 @@ public class CrypterGUI {
 		secondStage.setTitle("Show file");
 		secondStage.show();
 	}
+	
+	 void initializeChoiceBox() {
+	    	fontChoice.setItems(FXCollections.observableArrayList("Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"));
+	 }
 
 	// *
 	private void loadAlert(AlertType type, String title, String middle, String bot) {
@@ -864,14 +868,10 @@ public class CrypterGUI {
 		    }
 		}
     
-    void initializeChoiceBox() {
-    	fontChoice.setItems(FXCollections.observableArrayList("Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"));
-    }
+   
 
     void changeFont() {
-    	
     	String[] options= {"Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"};
-    	
     	if(fontChoice.getSelectionModel().getSelectedIndex()==0) {
     		textFromText.setFont(Font.font(options[0])); 
     	}else if (fontChoice.getSelectionModel().getSelectedIndex()==1) {
