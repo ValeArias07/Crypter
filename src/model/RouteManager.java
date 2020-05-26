@@ -9,10 +9,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class RouteManager{
-	
+
 	private int actualNumberEncrypt;
 	private int actualNumberDecrypt;
-	
+
 	private RoutesList routeList;
 	
 	public RouteManager() {

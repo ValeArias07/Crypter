@@ -19,11 +19,11 @@ In this part you will have to select 2 options:
 
 ![TxtInput](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Setting_TxtInput.png)
 
-**Cosole:** If you select console, a window opens to write the text.
+- _Cosole:_ If you select console, a window opens to write the text.
           
 ![Console](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Setting_Console.png)
          
-**Text file:** If you select by a text file, the option to search for a document (.txt) on your computer is enabled.
+- _Text file:_ If you select by a text file, the option to search for a document (.txt) on your computer is enabled.
           
 ![file](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Setting_File.png)
 
@@ -31,31 +31,31 @@ In this part you will have to select 2 options:
 
 ![Method](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Setting_Method.png)
 
-**Monoalphabetic:** Within this section you will find two methods of encryption and decryption:
+- _Monoalphabetic:_ Within this section you will find two methods of encryption and decryption:
 
 ![Mono](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Setting_Mono.png)
 
-**Cesar**
+_Cesar_
 
 ![Cesar](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Cesar_Encrypt.png)
 
-**Atbash**
+_Atbash_
 
 ![Atbash](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Atbash_Encrypt.png)
 
-**Polialphabetic:** Within this section you will find two methods of encryption and decryption:
+- _Polialphabetic:_ Within this section you will find two methods of encryption and decryption:
 
 ![Poli](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Setting_Poli.png)
 
-**Vigenère**
+_Vigenère_
 
 ![Vigenere](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Vigenere_Encrypt.png)
 
-**AES**
+_AES_
 
 ![AES](https://github.com/ValeArias07/Crypter-/blob/master/src/images/AES_Encrypt.png)
 
-**Editing text: **This is the window that is displayed when you want to change the format of an encrypted or decrypted text. You can change the letter, its size, color, among others.
+**Editing text:** This is the window that is displayed when you want to change the format of an encrypted or decrypted text. You can change the letter, its size, color, among others.
 
 ![Editing](https://github.com/ValeArias07/Crypter-/blob/master/src/images/EnDecriptTxt.png)
 

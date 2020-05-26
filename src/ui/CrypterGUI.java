@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
@@ -33,6 +34,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polyline;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Atbash;
@@ -58,6 +62,19 @@ public class CrypterGUI {
 
     @FXML
     private Label zLetter;
+    
+    private boolean boldB;
+    
+    private boolean italicB;
+    
+    @FXML
+    private CheckBox bold;
+
+    @FXML
+    private CheckBox italic;
+    
+    @FXML
+    private TextField height;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	// WELCOME ATTRIBUTES
 
@@ -154,10 +171,7 @@ public class CrypterGUI {
 	private TextArea textFromText;
 
 	@FXML
-	private ChoiceBox<?> fontChoice;
-
-	@FXML
-	private ChoiceBox<?> heightChoice;
+	private ChoiceBox<String> fontChoice;
 
 	// >>>ATTRIBUTES CLASS
 	private Stage secondStage;
@@ -826,27 +840,135 @@ public class CrypterGUI {
 		}
 	}
 	
+<<<<<<< HEAD
+=======
+	private void decryptByConsoleCesar() throws IOException {
+		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
+		try {
+			int numberKey = Integer.parseInt(numberKeyCesar.getText());
+			crypter = new Cesar(numberKey, direction);
+			String returnText = crypter.decrypt(textConsole.getText());
+			
+			writeRoute(returnText, false);
+			
+			EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+				public void handle(DialogEvent e) {
+					try {
+						loadShowFile();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					textFromText.setText(returnText);
+				}
+			};
+			loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+					"then the preview will open", e);
+		} catch (NumberFormatException e) {
+			loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
+					"Please, type a number the next time");
+		}
+	}
+
+	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
+
+	private void decryptByConsoleVigenere() throws IOException {
+		try {
+			String encriptionKey = wordKeyVigenere_AES.getText();
+			if(encriptionKey.equals("")) {
+				throw new EmptyFieldException("KEY", "DECRYPT");
+			}else {
+				crypter = new Vigenere(encriptionKey);
+				String returnText = crypter.decrypt(textConsole.getText());
+				
+				writeRoute(returnText, false);
+				
+				EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+					public void handle(DialogEvent e) {
+						try {
+							loadShowFile();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						textFromText.setText(returnText);
+					}
+				};
+				loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+						"then the preview will open", e);
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
+		}
+	}
+	
+	private void decryptByConsoleAtbash() throws IOException {
+		crypter = new Atbash();
+		String returnText = crypter.decrypt(textConsole.getText());
+		
+		writeRoute(returnText, false);
+		
+		EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+			public void handle(DialogEvent e) {
+				try {
+					loadShowFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				textFromText.setText(returnText);
+			}
+		};
+		loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+				"then the preview will open", e);
+	}
+	
+>>>>>>> 6ca438a76d25e8eebaebe09fd620360b54cd3a62
 	// SHOW_STAGE METHODS
-	
-	/**
-	 * Search the Font's list and the height's list
-	 */
-	
-	@FXML
-	void cursiveOption(ActionEvent event) {
-
-	}
 
 	@FXML
-	void negritaOption(ActionEvent event) {
-
-	}
-
-	@FXML
-	void subOption(ActionEvent event) {
-
-	}
+    void setChangesText(ActionEvent event) {
+		if(bold.isSelected() && italic.isSelected()) {
+			textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, FontPosture.ITALIC,textFromText.getFont().getSize())); 
+		}else if(bold.isSelected()){
+			textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, textFromText.getFont().getSize()));
+		}else if (italic.isSelected()){
+			textFromText.setFont(Font.font(textFromText.getFont().getFamily(), FontPosture.ITALIC, textFromText.getFont().getSize())); 
+		}
+		changeFont();
+		changeHeight();
+    }
 	
+	public void changeHeight(){
+		try {
+			int number =Integer.parseInt(height.getText());
+		    textFromText.setFont(Font.font(number)); 
+		    }catch(NumberFormatException a) {
+		    	Alert alert= new Alert(AlertType.ERROR);
+		    	alert.setContentText("You must write a number");
+		    	alert.setTitle("ERROR");
+		    	alert.show();
+		    }
+		}
+    
+    void initializeChoiceBox() {
+    	fontChoice.setItems(FXCollections.observableArrayList("Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"));
+    }
+
+    void changeFont() {
+    	
+    	String[] options= {"Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"};
+    	
+    	if(fontChoice.getSelectionModel().getSelectedIndex()==0) {
+    		textFromText.setFont(Font.font(options[0])); 
+    	}else if (fontChoice.getSelectionModel().getSelectedIndex()==1) {
+    		textFromText.setFont(Font.font(options[1]));
+    	}else if(fontChoice.getSelectionModel().getSelectedIndex()==2) {
+    		textFromText.setFont(Font.font(options[2]));
+    	}else if(fontChoice.getSelectionModel().getSelectedIndex()==3) {
+    		textFromText.setFont(Font.font(options[3]));
+    	}else {
+    		textFromText.setFont(Font.font(options[4]));
+    	}
+    }
+
 	////////////////////////////////////////////////ANIMATIONS//////////////////////////////////////////////////////////////////////////
 	public void updateX(boolean type, double value) {
     	if(type) {
