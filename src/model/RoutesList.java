@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class RoutesList {
+@SuppressWarnings("serial")
+public class RoutesList implements Serializable {
 	
 	private RouteNode firstRouteNode;
 	

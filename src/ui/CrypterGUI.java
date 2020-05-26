@@ -1,7 +1,9 @@
 package ui;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import exception.EmptyFieldException;
@@ -788,7 +790,30 @@ public class CrypterGUI {
 
 	@FXML
 	void exit(ActionEvent event) {
+		save();
 		System.exit(0);
+	}
+	
+	private void save() {
+
+		File file = new File(Main.DATA);
+
+		if(!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		try {
+			FileOutputStream fo = new FileOutputStream(file);
+			ObjectOutputStream oo = new ObjectOutputStream(fo);
+			oo.writeObject(rm);
+			oo.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	// CONSOLE METHODS
@@ -842,7 +867,6 @@ public class CrypterGUI {
 	
 	
 	// SHOW_STAGE METHODS
-
 	@FXML
     void setChangesText(ActionEvent event) {
 		if(bold.isSelected() && italic.isSelected()) {
