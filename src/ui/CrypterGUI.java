@@ -78,8 +78,6 @@ public class CrypterGUI {
     
     @FXML
     private TextField height;
-    
-    private boolean stop;
        
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	// WELCOME ATTRIBUTES
@@ -183,32 +181,49 @@ public class CrypterGUI {
 	private Stage secondStage;
 
 	private Crypter crypter;
-
+	
 	//RELATIONS
 	private RouteManager rm;
+	private ShapeThread up;
+	private ShapeThread down;
+	private LettersThread letterA;
+	private LettersThread letterZ;
 	
 	public CrypterGUI (RouteManager rm) {
 		this.rm = rm;
 		secondStage = new Stage();
+		up = null;
+		down = null;
+		letterA = null;
+		letterZ = null;
 	}
 	
 	/// >>>METHODS CLASS
 	
 	// THREAD METHODS //
 	 void createThreadLetter() {
-		 stop=false;
-		LettersThread letterA= new LettersThread(this, true);
-		LettersThread letterZ= new LettersThread(this, false);
+		letterA= new LettersThread(this, true, true);
+		letterZ= new LettersThread(this, false, true);
 		letterA.start();
 		letterZ.start();
 	}
 	 
 	 void createdThreadShapes() {
-		 stop=false;
-		 ShapeThread up = new ShapeThread (this, true);
-		 ShapeThread down = new ShapeThread (this, false);
+		 up = new ShapeThread (this, true, true);
+		 down = new ShapeThread (this, false, true);
 		 up.start();
 		 down.start();
+	 }
+	 
+	 void stopThreads() {
+		 if(up!=null)
+			 up.stopWork();
+		 if(down!=null)
+			 down.stopWork();
+		 if(letterA!=null)
+			 letterA.stopWork();
+		 if(letterZ!=null)
+			 letterZ.stopWork();
 	 }
 
 	// ---// LOADS
@@ -276,6 +291,8 @@ public class CrypterGUI {
 
 	// ----// SubLOADS
 	private void subLoad(String route) throws IOException {
+		stopThreads();
+		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route));
 		fxmlLoader.setController(this);
 		Parent parent = fxmlLoader.load();
@@ -717,7 +734,7 @@ public class CrypterGUI {
 	@FXML
 	void back(ActionEvent event) throws IOException {
 		loadMenu();
-		stop=true;
+		stopThreads();
 	}
 
 	@FXML
@@ -1076,9 +1093,5 @@ public class CrypterGUI {
     	}else {
     		zLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
     	}
-    }
-    
-    public boolean stopThreads() {
-    	 return stop;
     }
 }
