@@ -46,10 +46,14 @@ import model.Cesar;
 import model.Crypter;
 import model.RouteManager;
 import model.Vigenere;
+import thread.LettersThread;
+import thread.ShapeThread;
 
 public class CrypterGUI {
 	
 	/////////////////////////////////////////////////// ANIMATIONS//////////////////////////////////////////////////////////////////
+	
+	
 	public static final Color[] COLOR = new Color[] {Color.YELLOW, Color.BLUE, Color.RED, Color.GREEN, Color.CORAL, Color.DARKGREY, Color.DARKRED};
 
 	private static final String ABC = "abcdefghijklmnopqrstuvwxyz";
@@ -73,6 +77,8 @@ public class CrypterGUI {
     
     @FXML
     private TextField height;
+    
+    private boolean stop;
        
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	// WELCOME ATTRIBUTES
@@ -186,6 +192,23 @@ public class CrypterGUI {
 	}
 	
 	/// >>>METHODS CLASS
+	
+	// THREAD METHODS //
+	 void createThreadLetter() {
+		 stop=false;
+		LettersThread letterA= new LettersThread(this, true);
+		LettersThread letterZ= new LettersThread(this, false);
+		letterA.start();
+		letterZ.start();
+	}
+	 
+	 void createdThreadShapes() {
+		 stop=false;
+		 ShapeThread up = new ShapeThread (this, true);
+		 ShapeThread down = new ShapeThread (this, false);
+		 up.start();
+		 down.start();
+	 }
 
 	// ---// LOADS
 	private void load(String route) throws IOException {
@@ -265,10 +288,12 @@ public class CrypterGUI {
 
 	private void subLoadAtbash() throws IOException {
 		subLoad("AtbashWindow.fxml");
+		createThreadLetter();
 	}
 
 	private void subLoadVigenereAES() throws IOException {
 		subLoad("Vigenere-AES-Window.fxml");
+		createdThreadShapes();
 	}
 
 	// *
@@ -622,6 +647,7 @@ public class CrypterGUI {
 	@FXML
 	void back(ActionEvent event) throws IOException {
 		loadMenu();
+		stop=true;
 	}
 
 	@FXML
@@ -957,7 +983,7 @@ public class CrypterGUI {
     		fUp.setFill(COLOR[value]);
 
     	}else {
-    		fUp.setFill(COLOR[value]);
+    		fDown.setFill(COLOR[value]);
     	}
     	
     }
@@ -984,5 +1010,9 @@ public class CrypterGUI {
     	}else {
     		zLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
     	}
+    }
+    
+    public boolean stopThreads() {
+    	 return stop;
     }
 }

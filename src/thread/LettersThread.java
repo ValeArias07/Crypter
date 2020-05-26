@@ -16,12 +16,12 @@ public class LettersThread extends Thread {
 			this.type=type;
 			sum=gui.getXLetters(type);
 			stop=false;
-			value=(type)?0:26;
+			value=(type)?0:25;
 			stopLetter=false;
 		}
 		
 		public void run() {
-			while(true) {
+			while(!gui.stopThreads()) {
 			if(type) {
 				sum=calculateSumA();
 				value=calculateContentA();
@@ -36,10 +36,10 @@ public class LettersThread extends Thread {
 		}
 		public double calculateSumA() {
 			
-			if(sum<370 && !stop) {
+			if(sum<503 && !stop) {
 				sum+=10;
 			}else {
-				if(sum<=136) {
+				if(sum<=14) {
 					stop=false;
 				}else {
 					stop=true;
@@ -51,10 +51,10 @@ public class LettersThread extends Thread {
 		
 		public double calculateSumB() {
 		
-		if(sum>136 && !stop) {
+		if(sum>14 && !stop) {
 			sum-=10;
 		}else {
-			if(sum>=370) {
+			if(sum>=503) {
 				stop=false;
 			}else {
 				stop=true;
@@ -66,7 +66,7 @@ public class LettersThread extends Thread {
 		
 		
 		public int calculateContentA() {
-		if(value<=25 && !stopLetter) {
+		if(value<=24 && !stopLetter) {
 			value++;
 		}else {
 			if(value==0) 
@@ -83,7 +83,7 @@ public class LettersThread extends Thread {
 			if(value>0 && !stopLetter) {
 				value--;
 			}else{
-				if(value>=25) {
+				if(value>=24) {
 					stopLetter=false;
 				}else {
 					stopLetter=true;
@@ -95,7 +95,7 @@ public class LettersThread extends Thread {
 		
 		private void sleep() {
 			try {
-				Thread.sleep(100);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

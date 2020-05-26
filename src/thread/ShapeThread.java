@@ -7,19 +7,21 @@ public class ShapeThread extends Thread{
 	private CrypterGUI gui;
 	private boolean type;
 	private double sum;
-	private boolean stop;
+	private boolean jump;
 	private int color;
+	private boolean die;
 	
 	public ShapeThread(CrypterGUI g, boolean type) {
 		gui=g;
 		this.type=type;
 		sum=gui.getX(type);
-		stop=false;
+		jump=false;
 		color=0;
+		die=false;
 	}
 	
 	public void run() {
-		while(true) {
+		while(!gui.stopThreads()) {
 		if(type) {
 			sum=calculateSumUP();
 		}else {
@@ -27,22 +29,21 @@ public class ShapeThread extends Thread{
 		}
 		updateX(sum);
 		sleep();
-		changeColor();
 		}
 	}
 	
 	
 	public double calculateSumUP() {
-		
-		if(sum<440 && !stop) {
+		changeColor();
+		if(sum<514 && !jump) {
 			sum+=10;
 		}else {
-			if(sum==-75) {
+			if(sum==60) {
 				rotate(0);
-				stop=false;
+				jump=false;
 			}else {
 			rotate(180.0);
-			stop=true;
+			jump=true;
 			sum-=10;
 			}
 		}
@@ -50,17 +51,17 @@ public class ShapeThread extends Thread{
 	}
 	
 	public double calculateSumDown() {
-		
-	if(sum>=-45 && !stop) {
+		changeColor();
+	if(sum>=70 && !jump) {
 		sum-=10;
 	}else{
-		if(sum<=460) {
+		if(sum<=514) {
 			rotate(180.0);
-			stop=true;
+			jump=true;
 			sum+=10;
 		}else {
 			rotate(0);
-			stop=false;	
+			jump=false;	
 		}	
 	}
 		return sum;
@@ -68,7 +69,7 @@ public class ShapeThread extends Thread{
 	
 	private void sleep() {
 		try {
-			Thread.sleep(100);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +82,7 @@ public class ShapeThread extends Thread{
 		});
 	}
 	private void changeColor() {
-		if(color>=2) {
+		if(color>=6) {
 			color=0;
 		}else {
 			color++;
