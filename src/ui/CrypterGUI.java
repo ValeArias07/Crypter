@@ -50,8 +50,8 @@ import model.Vigenere;
 public class CrypterGUI {
 	
 	/////////////////////////////////////////////////// ANIMATIONS//////////////////////////////////////////////////////////////////
-	public static final Color[] COLOR = new Color[] {Color.web("#3D1934"),Color.web("#B81858"),Color.web("#EBD46E")};
-	
+	public static final Color[] COLOR = new Color[] {Color.YELLOW, Color.BLUE, Color.RED, Color.GREEN, Color.CORAL, Color.DARKGREY, Color.DARKRED};
+
 	private static final String ABC = "abcdefghijklmnopqrstuvwxyz";
     @FXML
     private Polyline fUp;
@@ -73,6 +73,7 @@ public class CrypterGUI {
     
     @FXML
     private TextField height;
+       
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	// WELCOME ATTRIBUTES
 
@@ -276,6 +277,7 @@ public class CrypterGUI {
 		fxmlLoader.setController(this);
 		Parent parent = fxmlLoader.load();
 		initializeChoiceBox();
+		height.setText(textFromText.getFont().getSize()+"");
 		Scene scene = new Scene(parent);
 		secondStage.setScene(scene);
 		secondStage.setResizable(false);
@@ -869,43 +871,45 @@ public class CrypterGUI {
 	// SHOW_STAGE METHODS
 	@FXML
     void setChangesText(ActionEvent event) {
-		if(bold.isSelected() && italic.isSelected()) {
-			textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, FontPosture.ITALIC,textFromText.getFont().getSize())); 
-		}else if(bold.isSelected()){
-			textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, textFromText.getFont().getSize()));
-		}else if (italic.isSelected()){
-			textFromText.setFont(Font.font(textFromText.getFont().getFamily(), FontPosture.ITALIC, textFromText.getFont().getSize())); 
+		
+		try {
+		double number =Double.parseDouble(height.getText());
+		textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, number));
+		String font=changeFont();
+
+		if(!bold.isSelected() && !italic.isSelected()) {
+			textFromText.setFont(Font.font (font,number)); 
+		}else {
+		if(bold.isSelected() && italic.isSelected()) 
+			textFromText.setFont(Font.font (font, FontWeight.BOLD, FontPosture.ITALIC, number)); 
+		else if(bold.isSelected())
+			textFromText.setFont(Font.font (font, FontWeight.BOLD, number));
+		else if (italic.isSelected())
+			textFromText.setFont(Font.font(font, FontPosture.ITALIC, number)); 
 		}
-		changeFont();
-		changeHeight();
+
+		
+		}catch(NumberFormatException a) {
+	    	Alert alert= new Alert(AlertType.ERROR);
+	    	alert.setContentText("You must write a number");
+	    	alert.setTitle("ERROR");
+	    	alert.show();
+	    }
+
     }
 	
-	public void changeHeight(){
-		try {
-			int number =Integer.parseInt(height.getText());
-		    textFromText.setFont(Font.font(number)); 
-		    }catch(NumberFormatException a) {
-		    	Alert alert= new Alert(AlertType.ERROR);
-		    	alert.setContentText("You must write a number");
-		    	alert.setTitle("ERROR");
-		    	alert.show();
-		    }
-		}
-    
-   
-
-    void changeFont() {
-    	String[] options= {"Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"};
+	
+    String changeFont() {
     	if(fontChoice.getSelectionModel().getSelectedIndex()==0) {
-    		textFromText.setFont(Font.font(options[0])); 
+    		return "Comic Sans MS";
     	}else if (fontChoice.getSelectionModel().getSelectedIndex()==1) {
-    		textFromText.setFont(Font.font(options[1]));
+    		return "New Times Roman";
     	}else if(fontChoice.getSelectionModel().getSelectedIndex()==2) {
-    		textFromText.setFont(Font.font(options[2]));
+    		return "Arial";
     	}else if(fontChoice.getSelectionModel().getSelectedIndex()==3) {
-    		textFromText.setFont(Font.font(options[3]));
+    		return "Calibri";
     	}else {
-    		textFromText.setFont(Font.font(options[4]));
+    		return "Century Gothic";
     	}
     }
 
