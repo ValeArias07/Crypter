@@ -285,7 +285,7 @@ public class CrypterGUI {
 	}
 	
 	 void initializeChoiceBox() {
-	    	fontChoice.setItems(FXCollections.observableArrayList("Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"));
+	    fontChoice.setItems(FXCollections.observableArrayList("Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"));
 	 }
 
 	// *
@@ -869,6 +869,7 @@ public class CrypterGUI {
 	// SHOW_STAGE METHODS
 	@FXML
     void setChangesText(ActionEvent event) {
+		
 		if(bold.isSelected() && italic.isSelected()) {
 			textFromText.setFont(Font.font (textFromText.getFont().getFamily(), FontWeight.BOLD, FontPosture.ITALIC,textFromText.getFont().getSize())); 
 		}else if(bold.isSelected()){
@@ -876,6 +877,7 @@ public class CrypterGUI {
 		}else if (italic.isSelected()){
 			textFromText.setFont(Font.font(textFromText.getFont().getFamily(), FontPosture.ITALIC, textFromText.getFont().getSize())); 
 		}
+		
 		changeFont();
 		changeHeight();
     }
@@ -891,8 +893,6 @@ public class CrypterGUI {
 		    	alert.show();
 		    }
 		}
-    
-   
 
     void changeFont() {
     	String[] options= {"Comic Sans MS","New Times Roman","Arial","Calibri","Century Gothic"};
