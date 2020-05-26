@@ -45,9 +45,11 @@ import model.AES;
 import model.Atbash;
 import model.Cesar;
 import model.Crypter;
+import model.Person;
 import model.RouteManager;
 import model.Vigenere;
 import thread.LettersThread;
+import thread.PersonAnimationThread;
 import thread.ShapeThread;
 
 public class CrypterGUI {
@@ -58,6 +60,8 @@ public class CrypterGUI {
 	public static final Color[] COLOR = new Color[] {Color.YELLOW, Color.BLUE, Color.RED, Color.GREEN, Color.CORAL, Color.DARKGREY, Color.DARKRED};
 
 	private static final String ABC = "abcdefghijklmnopqrstuvwxyz";
+	private Person person;
+		
     @FXML
     private Polyline fUp;
 
@@ -78,6 +82,9 @@ public class CrypterGUI {
     
     @FXML
     private TextField height;
+    
+    @FXML
+    private ImageView animation;
        
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	// WELCOME ATTRIBUTES
@@ -301,15 +308,19 @@ public class CrypterGUI {
 	}
 
 	private void subLoadCesar() throws IOException {
+		person= new Person();
+		createThread();
 		subLoad("CesarWindow.fxml");
 	}
 
 	private void subLoadAtbash() throws IOException {
+		person.stop();
 		subLoad("AtbashWindow.fxml");
 		createThreadLetter();
 	}
 
 	private void subLoadVigenereAES() throws IOException {
+		person.stop();
 		subLoad("Vigenere-AES-Window.fxml");
 		createdThreadShapes();
 	}
@@ -733,6 +744,7 @@ public class CrypterGUI {
 	// ENCRYPT-DECRYPT_WINDOW METHODS
 	@FXML
 	void back(ActionEvent event) throws IOException {
+		person.stop();
 		loadMenu();
 		stopThreads();
 	}
@@ -1092,6 +1104,30 @@ public class CrypterGUI {
     		aLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
     	}else {
     		zLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
+    	}
+    }
+    
+    public void createThread() {
+    	PersonAnimationThread personThread= new PersonAnimationThread (this, person);
+    	personThread.start();
+    }
+    
+    public void updateImage(int value) {
+    	Image[] moves= new Image[] {new Image("images/1.png"),new Image("images/2.png"),new Image("images/3.png"),new Image("images/4.png"),new Image("images/5.png"),new Image("images/6.png") };
+    	if(value==1) {
+    		animation.setImage(moves[0]);
+    	}else if(value==2) {
+    		
+    		animation.setImage(moves[1]);
+    	}else if(value==3) {
+    		
+    		animation.setImage(moves[2]);
+    	}else if(value==4) {
+    		
+    		animation.setImage(moves[3]);
+    	}else if(value==5) {
+    		
+    		animation.setImage(moves[4]);
     	}
     }
 }

@@ -41,5 +41,6 @@
          </image>
       </ImageView>
       <TextField fx:id="numberKeyCesar" layoutX="294.0" layoutY="128.0" prefHeight="30.0" prefWidth="81.0" />
+      <ImageView fx:id="animation" fitHeight="88.0" fitWidth="102.0" layoutX="406.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
