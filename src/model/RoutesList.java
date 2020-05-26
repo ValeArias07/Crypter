@@ -32,15 +32,7 @@ public class RoutesList {
 			return current;
 		}
 	}
-	/**
-	private RouteNode searchLast() {
-		RouteNode current = firstRouteNode;
-		while(current.getNext()!=null) {
-			current = current.getNext();
-		}
-		return current;
-	}
-	*/
+	
 	public String search(String route) {
 		if(firstRouteNode!=null) {
 			return search(firstRouteNode, route);

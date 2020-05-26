@@ -63,10 +63,6 @@ public class CrypterGUI {
     @FXML
     private Label zLetter;
     
-    private boolean boldB;
-    
-    private boolean italicB;
-    
     @FXML
     private CheckBox bold;
 
@@ -840,87 +836,7 @@ public class CrypterGUI {
 		}
 	}
 	
-<<<<<<< HEAD
-=======
-	private void decryptByConsoleCesar() throws IOException {
-		String direction = ((RadioButton) directionToggleCesar.getSelectedToggle()).getText();
-		try {
-			int numberKey = Integer.parseInt(numberKeyCesar.getText());
-			crypter = new Cesar(numberKey, direction);
-			String returnText = crypter.decrypt(textConsole.getText());
-			
-			writeRoute(returnText, false);
-			
-			EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-				public void handle(DialogEvent e) {
-					try {
-						loadShowFile();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					textFromText.setText(returnText);
-				}
-			};
-			loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-					"then the preview will open", e);
-		} catch (NumberFormatException e) {
-			loadAlert(AlertType.WARNING, "WARNING", "You must type a number in the numberKey field",
-					"Please, type a number the next time");
-		}
-	}
-
-	////////////////////////////////////////////////////////SHOW_STAGE METHODS////////////////////////////////////////////////////////
-
-	private void decryptByConsoleVigenere() throws IOException {
-		try {
-			String encriptionKey = wordKeyVigenere_AES.getText();
-			if(encriptionKey.equals("")) {
-				throw new EmptyFieldException("KEY", "DECRYPT");
-			}else {
-				crypter = new Vigenere(encriptionKey);
-				String returnText = crypter.decrypt(textConsole.getText());
-				
-				writeRoute(returnText, false);
-				
-				EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-					public void handle(DialogEvent e) {
-						try {
-							loadShowFile();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-						textFromText.setText(returnText);
-					}
-				};
-				loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-						"then the preview will open", e);
-			}
-		} catch (EmptyFieldException e) {
-			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
-		}
-	}
 	
-	private void decryptByConsoleAtbash() throws IOException {
-		crypter = new Atbash();
-		String returnText = crypter.decrypt(textConsole.getText());
-		
-		writeRoute(returnText, false);
-		
-		EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
-			public void handle(DialogEvent e) {
-				try {
-					loadShowFile();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				textFromText.setText(returnText);
-			}
-		};
-		loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
-				"then the preview will open", e);
-	}
-	
->>>>>>> 6ca438a76d25e8eebaebe09fd620360b54cd3a62
 	// SHOW_STAGE METHODS
 
 	@FXML
@@ -1028,5 +944,4 @@ public class CrypterGUI {
     		zLetter.setText(String.valueOf(ABC.charAt(value)).toUpperCase());
     	}
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
