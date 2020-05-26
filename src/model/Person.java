@@ -11,7 +11,7 @@ public class Person {
 	}
 	
 	public void advance() {
-		if(position>=5) {
+		if(position>=6) {
 			position=0;
 		}else {
 			position++;

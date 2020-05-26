@@ -1113,20 +1113,16 @@ public class CrypterGUI {
     }
     
     public void updateImage(int value) {
-    	Image[] moves= new Image[] {new Image("images/1.png"),new Image("images/2.png"),new Image("images/3.png"),new Image("images/4.png"),new Image("images/5.png"),new Image("images/6.png") };
+    	Image[] moves= new Image[] {new Image("images/1.png"),new Image("images/2.png"),new Image("images/3.png"),new Image("images/4.png"),new Image("images/5.png")};
     	if(value==1) {
     		animation.setImage(moves[0]);
     	}else if(value==2) {
-    		
     		animation.setImage(moves[1]);
     	}else if(value==3) {
-    		
     		animation.setImage(moves[2]);
     	}else if(value==4) {
-    		
     		animation.setImage(moves[3]);
     	}else if(value==5) {
-    		
     		animation.setImage(moves[4]);
     	}
     }
