@@ -9,37 +9,31 @@ public class AESTest {
 	private AES aes;
 	
 	private void setup1() {
-		aes = new AES("" ,"");
+		aes = new AES("algoritmos");
 	}
 	
 	@Test
 	void encryptTest() {
+		
 		setup1();
+		
+		String aux;
+		aux = aes.encrypt("holaaa");
+		assertEquals("elixxx", aux);
+		
+		aux = aes.encrypt("Algoritmos y programacion dos");
+		assertEquals("xidlofqjlp v moldoxjxzflk alp", aux);
 	}
 	
 	@Test
 	void decryptTest() {
 		setup1();
+		
+		String aux;
+		aux = aes.decrypt("elixxx");
+		assertEquals("holaaa", aux);
+		
+		aux = aes.decrypt("xidlofqjlp v moldoxjxzflk alp");
+		assertEquals("algoritmos y programacion dos", aux);
 	}
-	
-	@Test
-	void subBytesTest() {
-		setup1();
-	}
-	
-	@Test
-	void shiftRowsTest() {
-		setup1();
-	}
-	
-	@Test
-	void mixColumsTest() {
-		setup1();
-	}
-	
-	@Test
-	void addRoundKeyTest() {
-		setup1();
-	}
-
 }

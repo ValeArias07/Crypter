@@ -4,13 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.RouteManager;
 
 public class Main extends Application {
@@ -42,6 +43,14 @@ public class Main extends Application {
 		primaryStage.getIcons().add(new Image("images/iconito.png"));
 		primaryStage.setTitle("Crypter");
 		primaryStage.show();
+		
+		EventHandler<WindowEvent> e = new EventHandler<WindowEvent>() {
+			public void handle(WindowEvent e) {
+				crypter.save();
+			}
+		};
+		
+		primaryStage.setOnCloseRequest(e);
 	}
 	
 	@SuppressWarnings("resource")

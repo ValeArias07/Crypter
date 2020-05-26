@@ -41,6 +41,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.AES;
 import model.Atbash;
 import model.Cesar;
 import model.Crypter;
@@ -426,6 +427,43 @@ public class CrypterGUI {
 		}
 	}
 	
+	private void encryptAES(String text, String route) throws IOException {
+		try {
+			String encriptionKey = wordKeyVigenere_AES.getText();
+			if(encriptionKey.equals("")) {
+				throw new EmptyFieldException("KEY", "DECRYPT");
+			}else {
+				crypter = new AES(encriptionKey);
+				String returnText;
+				try {
+					returnText = crypter.encrypt(text);
+					
+					if(route==null)
+						rm.addRoute(true, returnText);
+					else 
+						rm.addRoute(route, true, returnText);
+					
+					EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+						public void handle(DialogEvent e) {
+							try {
+								loadShowFile();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							textFromText.setText(returnText);
+						}
+					};
+					loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+							"then the preview will open", e);
+				} catch (WordKeyInvalidException e) {
+					loadAlert(AlertType.WARNING, "ERROR", e.getMessage(), "Try again");
+				}
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
+		}
+	}
+	
 	private void encryptVigenere(String text, String route) throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -517,6 +555,38 @@ public class CrypterGUI {
 		}
 	}
 
+	private void decryptAES(String text, String route) throws IOException {
+		try {
+			String encriptionKey = wordKeyVigenere_AES.getText();
+			if(encriptionKey.equals("")) {
+				throw new EmptyFieldException("KEY", "DECRYPT");
+			}else {
+				crypter = new AES(encriptionKey);
+				String returnText = crypter.decrypt(text);
+				
+				if(route==null)
+					rm.addRoute(false, returnText);
+				else 
+					rm.addRoute(route, false, returnText);
+				
+				EventHandler<DialogEvent> e = new EventHandler<DialogEvent>() {
+					public void handle(DialogEvent e) {
+						try {
+							loadShowFile();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						textFromText.setText(returnText);
+					}
+				};
+				loadAlert(AlertType.INFORMATION, "SUSSESFUL", "THE PROCESS IS COMPLETE",
+						"then the preview will open", e);
+			}
+		} catch (EmptyFieldException e) {
+			loadAlert(AlertType.WARNING, "WARNING", e.getMessage(), "try type something");
+		}
+	}
+	
 	private void decryptVigenere(String text, String route) throws IOException {
 		try {
 			String encriptionKey = wordKeyVigenere_AES.getText();
@@ -634,8 +704,7 @@ public class CrypterGUI {
 				if (method.equals("CESAR")) {
 					encryptCesar(text, route);
 				} else if (method.equals("AES")) {
-					loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
-							"We are sorry");
+					decryptAES(text, route);
 				} else if (method.equals("VIGENERE")) {
 					encryptVigenere(text, route);
 				} else if (method.equals("ATBASH")) {
@@ -659,8 +728,7 @@ public class CrypterGUI {
 				if (method.equals("CESAR")) {
 					decryptCesar(text, route);
 				} else if (method.equals("AES")) {
-					loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
-							"We are sorry");
+					decryptAES(text, route);
 				} else if (method.equals("VIGENERE")) {
 					decryptVigenere(text, route);
 				} else if (method.equals("ATBASH")) {
@@ -796,7 +864,7 @@ public class CrypterGUI {
 		System.exit(0);
 	}
 	
-	private void save() {
+	public void save() {
 
 		File file = new File(Main.DATA);
 
@@ -828,8 +896,7 @@ public class CrypterGUI {
 				if (method.equals("CESAR")) {
 					encryptCesar(text, null);
 				} else if (method.equals("AES")) {
-						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
-								"We are sorry");
+					encryptAES(text, null);
 				} else if (method.equals("VIGENERE")) {
 					encryptVigenere(text, null);
 				} else if (method.equals("ATBASH")) {
@@ -852,8 +919,7 @@ public class CrypterGUI {
 				if (method.equals("CESAR")) {
 					decryptCesar(text, null);
 				} else if (method.equals("AES")) {
-						loadAlert(AlertType.INFORMATION, "INFORMATION", "This funcionality not implemented yet",
-								"We are sorry");
+					decryptAES(text, null);
 				} else if (method.equals("VIGENERE")) {
 					decryptVigenere(text, null);
 				} else if (method.equals("ATBASH")) {
