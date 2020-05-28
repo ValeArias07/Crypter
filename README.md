@@ -30,9 +30,9 @@ Crypter is a program that encrypts and decrypts text by console or file using cl
                     b.When the user specifies a password longer than the message itself, in the Vigenere Algorithm (WordKeyInvalidException).
                     c.When the user writes a word in the numerical password of Cesar (NumberFormatException)
 
-**CONSTRUCTION OF SCENARIOS AND DESIGN OF TEST CASES: ** _[HERE]()_
+**CONSTRUCTION OF SCENARIOS AND DESIGN OF TEST CASES:** _[HERE](https://github.com/ValeArias07/Crypter-/blob/master/entregas/entrega_final/CONSTRUCTION%20OF%20SCENARIOS%20AND%20DESIGN%20OF%20TEST%20CASES.pdf)_
 
-**CLASS DIAGRAM: ** _[HERE]()_
+**CLASS DIAGRAM:** _[HERE](https://github.com/ValeArias07/Crypter-/blob/master/entregas/entrega_final/CLASS%20DIAGRAM.pdf)_
 
 
 
