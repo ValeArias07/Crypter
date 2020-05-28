@@ -1,6 +1,41 @@
 # Crypter🔐
 Crypter is a program that encrypts and decrypts text by console or file using classic one-letter replacement encryption techniques like the Cesar and Atbash algorithm, polyalphabetic replacement encryption like Vigenère, and a special encryption algorithm inspired by AES.
 
+**REQUERIMIENTS**
+
+- _**Funtional Requerimient:**_
+
+          1.Show a menu with all text file paths both encrypted and decrypted by the program.
+          2.Sort the file paths according to the criteria selected by the user (Name or date).
+          3.Delete text file paths as encrypted or decrypted saved by the program.
+          4.Customize the text’s display of encrypted or decrypted files (Font type, bold, height and italics).
+          5.Encrypt and decrypt text files or console text using the Vigenere polyalphabetic encryption technique using a password (WordKey).
+          7.Encrypt and decrypt text files or console text using a simplified encryption technique inspired by AES symmetric encryption using a password.
+          8.Encrypt and decrypt text files or console text using the Caesar alphabetic monkey encryption technique using a number key and a direction (Right or Left).
+          9.Encrypt and decrypt text files or console text using the Atbash Mono Alphabetic Encryption technique.
+
+- _**Non-Funtional Requerimient:**_
+
+          1.Read a text file to encrypt or decrypt it using the BufferedReader class.
+          2.Save the encrypted or decrypted text in a txt file using the BufferedWritter class.
+          3.Serialize the RouteManager class because it stores the encrypted and decrypted files.
+          4.Store the paths of the encrypted and decrypted texts by the program in a double-linked list.
+          5.Use recursive methods to search Objects in an array.
+          6.Use binary search methods to search a char data in a string.
+          7.Use the Comparable and Comparator interface to sort the linked list of paths using different order criteria, such as date and file name
+          8.Display the paths of encrypted and decrypted texts using TableView
+          9.Implement exceptions for cases:
+          
+                    a.When the user enables the option to write by console but does not write anything in it (ConsoleEmptyException).
+                    b.When the user specifies a password longer than the message itself, in the Vigenere Algorithm (WordKeyInvalidException).
+                    c.When the user writes a word in the numerical password of Cesar (NumberFormatException)
+
+**CONSTRUCTION OF SCENARIOS AND DESIGN OF TEST CASES: ** _[HERE]()_
+
+**CLASS DIAGRAM: ** _[HERE]()_
+
+
+
 **Starting screen**
 
 ![Pantalla_Inicio](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Pantalla_Inicio.PNG)
@@ -63,4 +98,4 @@ _AES_
 
 ![Route_Manager](https://github.com/ValeArias07/Crypter-/blob/master/src/images/Route_Manager.png)
 
-Here you will have the possibility to manage the files that you have encrypted or decrypted. You can delete files or view them, where you can also edit the text format
+Here you will have the possibility to manage the files that you have encrypted or decrypted. You can delete or view files, where you can also edit the text format and sort the files by name or date
