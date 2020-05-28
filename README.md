@@ -10,9 +10,9 @@ Crypter is a program that encrypts and decrypts text by console or file using cl
           3.Delete text file paths as encrypted or decrypted saved by the program.
           4.Customize the text’s display of encrypted or decrypted files (Font type, bold, height and italics).
           5.Encrypt and decrypt text files or console text using the Vigenere polyalphabetic encryption technique using a password (WordKey).
-          7.Encrypt and decrypt text files or console text using a simplified encryption technique inspired by AES symmetric encryption using a password.
-          8.Encrypt and decrypt text files or console text using the Caesar alphabetic monkey encryption technique using a number key and a direction (Right or Left).
-          9.Encrypt and decrypt text files or console text using the Atbash Mono Alphabetic Encryption technique.
+          6.Encrypt and decrypt text files or console text using a simplified encryption technique inspired by AES symmetric encryption using a password.
+          7.Encrypt and decrypt text files or console text using the Caesar alphabetic monkey encryption technique using a number key and a direction (Right or Left).
+          8.Encrypt and decrypt text files or console text using the Atbash Mono Alphabetic Encryption technique.
 
 - _**Non-Funtional Requerimient:**_
 
