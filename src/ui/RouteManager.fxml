@@ -58,7 +58,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <AnchorPane layoutX="167.0" layoutY="27.0" prefHeight="30.0" prefWidth="254.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="167.0" layoutY="14.0" prefHeight="30.0" prefWidth="254.0" style="-fx-background-color: #ffffff;">
          <children>
             <ImageView fitHeight="32.0" fitWidth="323.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -91,5 +91,17 @@
             </ImageView>
          </graphic>
       </Button>
+      <ChoiceBox fx:id="optionSort" layoutX="225.0" layoutY="55.0" prefWidth="150.0" />
+      <Button layoutX="270.0" layoutY="130.0" mnemonicParsing="false" onAction="#sort" prefHeight="60.0" prefWidth="60.0" text="SORT">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <RadioButton layoutX="259.0" layoutY="86.0" mnemonicParsing="false" selected="true" text="Name" textFill="WHITE">
+         <toggleGroup>
+            <ToggleGroup fx:id="attribute" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="259.0" layoutY="108.0" mnemonicParsing="false" text="Date" textFill="WHITE" toggleGroup="$attribute" />
    </children>
 </AnchorPane>

@@ -148,6 +148,12 @@ public class CrypterGUI {
 	@FXML
 	private ListView<String> decryptedListViewRM;
 
+	@FXML
+    private ChoiceBox<String> optionSort;
+	
+	@FXML
+    private ToggleGroup attribute;
+	
 	// <<<SUB WINDOWS>>>
 	// CESAR_WINDOW ATTRIBUTES
 	@FXML
@@ -265,13 +271,13 @@ public class CrypterGUI {
 
 	private void loadRouteManager() throws IOException, InterruptedException {
 		load("RouteManager.fxml");
-		initializeListViews();
+		initializeListViews(rm.getActualSort(), rm.getActualAttribute());
 	}
 	
-	private void initializeListViews() throws InterruptedException {
+	private void initializeListViews(String sort, String at) throws InterruptedException {
 		
-		ArrayList<String> encrypts = rm.getRoutes(true);
-		ArrayList<String> decrypts = rm.getRoutes(false);
+		ArrayList<String> encrypts = rm.getRoutes(true, sort, at);
+		ArrayList<String> decrypts = rm.getRoutes(false, sort, at);
 		
 		ObservableList<String> observableListEn;
 		ObservableList<String> observableListDe;
@@ -289,6 +295,13 @@ public class CrypterGUI {
 			observableListDe = FXCollections.observableArrayList(decrypts);	
 		}
 		decryptedListViewRM.setItems(observableListDe);
+		
+		initializeChoiceBoxSort();
+	}
+	
+	private void initializeChoiceBoxSort() {
+		optionSort.setItems(FXCollections.observableArrayList(RouteManager.BUBBLE_SORT,RouteManager.INSERT_SORT,RouteManager.SELECTION_SORT,RouteManager.COMPARATOR_SORT,RouteManager.COMPARABLE_SORT));
+		optionSort.setValue(rm.getActualSort());
 	}
 
 	private void loadMenu() throws IOException {
@@ -864,7 +877,7 @@ public class CrypterGUI {
     			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
     		}else {
     			rm.deleteRoute(encryptedListViewRM.getSelectionModel().getSelectedItem().toString());
-    			initializeListViews();
+    			initializeListViews(rm.getActualSort(), rm.getActualAttribute());
     		}
     	}
     }
@@ -878,7 +891,7 @@ public class CrypterGUI {
     			loadAlert(AlertType.INFORMATION, "LIST IS EMPTY", "Sorry","try again later");
     		}else {
     			rm.deleteRoute(decryptedListViewRM.getSelectionModel().getSelectedItem().toString());
-    			initializeListViews();
+    			initializeListViews(rm.getActualSort(), rm.getActualAttribute());
     		}
     	}
     }
@@ -895,6 +908,13 @@ public class CrypterGUI {
     			textFromText.setText(rm.searchRoute(decryptedListViewRM.getSelectionModel().getSelectedItem().toString()));
     		}
     	}
+    }
+    
+    @FXML
+    void sort(ActionEvent event) throws InterruptedException {
+    	String at = ((RadioButton)attribute.getSelectedToggle()).getText();
+    	String sort = optionSort.getValue();
+    	initializeListViews(sort, at);
     }
 
 	// MENU METHODS

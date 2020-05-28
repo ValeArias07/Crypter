@@ -43,12 +43,30 @@ public class RoutesList implements Serializable {
 		}
 	}
 	
+	public String searchRoute(String data) {
+		if(firstRouteNode!=null) {
+			return searchRoute(firstRouteNode, data);
+		}else {
+			return null;
+		}
+	}
+	
 	private String search(RouteNode current, String route) {
 		if(current.getRoute().equals(route)) {
 			return current.getText();
 		}else{
 			if(current.getNext()!=null)
 			return search(current.getNext(), route);
+		}
+		return null;
+	}
+	
+	private String searchRoute(RouteNode current, String data) {
+		if(current.toString().equals(data)) {
+			return current.getRoute();
+		}else{
+			if(current.getNext()!=null)
+			return searchRoute(current.getNext(), data);
 		}
 		return null;
 	}
@@ -92,24 +110,59 @@ public class RoutesList implements Serializable {
 	}
 	
 	
-	public ArrayList <String> getRoutes(boolean type) {
+	public ArrayList <String> getRoutes(boolean type, String attribute) {
 		if(firstRouteNode!=null) {
 			ArrayList <String> list= new ArrayList <String>();
-			return getRoutes(firstRouteNode, type, list);
+			if(attribute == null) {
+				return getRoutes(firstRouteNode, type, list, attribute);
+			}else if(attribute.equals(RouteManager.ATTRIBUTE_SORT_1)) {
+				return getRoutes(firstRouteNode, type, list, attribute);
+			}else if(attribute.equals(RouteManager.ATTRIBUTE_SORT_2)) {
+				return getRoutes(firstRouteNode, type, list, attribute);
+			}
 		}
+		
 		return null;
 	}
 	
-	private ArrayList <String> getRoutes(RouteNode current, boolean type, ArrayList <String> list){
+	private ArrayList <String> getRoutes(RouteNode current, boolean type, ArrayList <String> list, String attribute){
 		if(current.getType()==type) {
-			list.add(current.getRoute());
+			if(attribute==null) {
+				list.add(current.toString());
+			}else if(attribute.equals(RouteManager.ATTRIBUTE_SORT_1)) {
+				list.add(current.getName());
+			}else if(attribute.equals(RouteManager.ATTRIBUTE_SORT_2)) {
+				list.add(current.getDate().toString());
+			}
+		}
+		
+		if(current.getNext()!=null) 
+			return getRoutes(current.getNext(), type,list, attribute);
+		else
+			return list;
+	}
+	
+	public ArrayList<RouteNode> getRoute(boolean type){
+		
+		if(firstRouteNode!=null) {
+			ArrayList <RouteNode> list= new ArrayList <RouteNode>();
+			return getRoutes(firstRouteNode, type, list);
+		}
+		
+		return null;
+	}
+	
+	private ArrayList <RouteNode> getRoutes(RouteNode current, boolean type, ArrayList <RouteNode> list){
+		if(current.getType()==type) {
+			list.add(current);
 		}
 		
 		if(current.getNext()!=null) 
 			return getRoutes(current.getNext(), type,list);
-			else
-				return list;
+		else
+			return list;
 	}
+		
 	
 	public RouteNode getFirst() {
 		return firstRouteNode;
