@@ -35,6 +35,7 @@ Crypter is a program that encrypts and decrypts text by console or file using cl
 **CLASS DIAGRAM:** _[HERE](https://github.com/ValeArias07/Crypter-/blob/master/entregas/entrega_final/CLASS%20DIAGRAM.pdf)_
 
 
+# USE MANUAL📚
 
 **Starting screen**
 
